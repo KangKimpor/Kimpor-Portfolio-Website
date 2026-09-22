@@ -1,0 +1,166 @@
+---
+name: kimpor-portfolio
+description: Full project context for Kimpor Kang's construction portfolio website — a single-page static site (plain HTML/CSS/vanilla JS, no build step) showcasing 15 construction and interior fit-out projects in Phnom Penh, Cambodia. Use this skill whenever working on, extending, restyling, or deploying this website.
+metadata:
+  owner: Kimpor Kang
+  location: Phnom Penh, Cambodia
+  repository: https://github.com/KangKimpor/Kimpor-Portfolio-Website
+  hosting: Vercel (static, zero-config)
+---
+
+# Kimpor Kang — Construction Portfolio Website
+
+## 1. Project Purpose
+
+Personal single-page portfolio for **Kimpor Kang**, a junior Civil Engineering
+student at Paragon International University (Phnom Penh) who works as Project
+Coordinator at **Singbuild Construction Co., Ltd.** (design & build contractor,
+est. 2015). The site presents real construction / interior fit-out project
+experience, skills, side projects, and contact info. Target audience: employers,
+clients, and engineering contacts in Phnom Penh and beyond.
+
+## 2. Tech Stack & Constraints
+
+- **Plain HTML5 + CSS3 + vanilla JavaScript** — no frameworks, no bundlers,
+  no npm dependencies, no build step.
+- Fonts loaded from Google Fonts CDN: `Archivo` (headings), `Inter` (body),
+  `IBM Plex Mono` (labels/mono). Site degrades gracefully to system fonts
+  offline.
+- Deployable as-is on any static host. On Vercel it needs **zero config**
+  (no framework, output = repo root, `index.html` entry).
+- Do NOT introduce a framework, package.json, or build pipeline unless the
+  user explicitly asks — the deliberate simplicity is a design decision.
+
+## 3. File Structure
+
+```
+Kimpor-Portfolio-Website/
+├── index.html              # The ENTIRE site (single page, ~380 lines)
+├── css/
+│   └── style.css           # All styling: tokens, layout, responsive (~15 KB)
+├── js/
+│   └── script.js           # All interactivity (IIFE, strict mode, ES5-safe)
+├── images/
+│   ├── projects/           # 15 project JPGs referenced by project cards
+│   └── _PUT-PHOTOS-HERE.txt# Internal note about photo placement
+├── README.md               # Human docs: run, photo map, edit guides
+└── kimpor-portfolio.skill  # This file
+```
+
+## 4. Design System (css/style.css `:root`)
+
+| Token | Value | Use |
+|---|---|---|
+| `--ink` / `--ink-2` | `#23262b` / `#3a3f47` | primary text |
+| `--slate` | `#5c6570` | secondary text |
+| `--paper` | `#f6f4f0` | page background (off-white) |
+| `--card` | `#ffffff` | card background |
+| `--line` / `--line-dark` | `#e4ded3` / `#3a3f47` | borders |
+| `--accent` | `#d97706` | **amber accent** (brand color) |
+| `--accent-strong` | `#b45309` | hover shade |
+| `--accent-soft` | `#fdf1de` | pale tint backgrounds |
+| `--dark` / `--dark-2` | `#1d2024` / `#26292f` | nav/footer dark surfaces |
+| `--nav-h` | `66px` | sticky nav height |
+| `--radius` | `10px` | card radius |
+| `--shadow` | `0 10px 30px rgba(35,38,43,.08)` | card shadow |
+
+Accent alternatives documented in README: steel blue `#2f6f8f/#255a75/#e3eef4`,
+safety orange `#e8552d/#c7431f/#fde9e2`. Change all three variables together.
+
+## 5. Page Sections (index.html, in order)
+
+1. **Nav** — sticky dark header, brand mark `KK`, links: About, Projects,
+   Skills, Side Projects, Contact (CTA style). Hamburger on mobile.
+2. **Hero** — grid-bg, eyebrow "Phnom Penh, Cambodia", name, role, tagline,
+   CTA buttons, facts: 15 projects / 11 handed over.
+3. **About** (`#about`, label `01`) — bio: Paragon scholarship + Singbuild
+   coordination work (reports, BOQ, procurement, RFIs, handover).
+4. **Projects** (`#projects`, label `02`) — status filter buttons
+   (All / Completed / Ongoing / Upcoming) + grid of 15 `.card` articles,
+   each with `data-status` attribute used by the JS filter. Cards show a
+   photo from `images/projects/`; missing files fall back to a blueprint-style
+   CSS placeholder.
+5. **Skills** (`#skills`, label `03`) — two groups: (A) construction
+   coordination competencies, (B) software & digital tools (Excel, Apps Script,
+   React/Firebase, Vercel, Telegram bots, HTML/CSS/JS).
+6. **Side Projects** (`#side-projects`, label `04`) — SB Grab Code Tracker
+   (React + Firebase on Vercel) and Manpower Reporting Automation
+   (Google Apps Script reading Telegram → Google Sheets).
+7. **Contact** (`#contact`, label `05`) — **contains placeholders**:
+   `[Add your email]`, `[Add your phone]`, `[Add your LinkedIn URL]` — update
+   both visible text and `href` attributes when editing.
+8. **Footer** — copyright with JS-injected year, back-to-top link.
+
+Scroll-reveal: elements carry `.reveal` class; JS adds `.is-visible` via
+IntersectionObserver (threshold 0.12). Sections use `scroll-margin-top` to
+offset the sticky nav.
+
+## 6. JavaScript Behavior (js/script.js)
+
+Single IIFE, `'use strict'`, ES5-compatible (var, function expressions) with
+modern APIs guarded:
+1. Mobile nav toggle (`#navToggle` / `#navLinks`, `.is-open`, aria-expanded,
+   closes on link tap).
+2. Scroll reveal via IntersectionObserver; fallback shows everything.
+3. Active nav-link highlighting via second IntersectionObserver
+   (`rootMargin: -45% 0px -50%`).
+4. Project status filter: `.filter-btn[data-filter]` toggles `.is-hidden` on
+   `#projectsGrid .card` by matching `data-status`; re-adds `.is-visible` so
+   filtered cards don't re-animate.
+5. Footer year via `new Date().getFullYear()`.
+
+Keep new JS in the same IIFE style; no external libraries.
+## 7. Content Inventory — 15 Project Cards
+
+Images live in `images/projects/`. Swap a photo by replacing the file with the
+**exact same filename**; landscape ~16:10 works best.
+
+| # | Card | Image file | Status |
+|---|---|---|---|
+| 1 | Norodom Business Center — Pan Pacific Hotel | `nbc-pan-pacific.jpg` | Ongoing |
+| 2 | UVP2 — Penthouse P5 | `uvp2-penthouse-p5.jpg` | Ongoing |
+| 3 | Fengfu Office | `fengfu-office.jpg` | Ongoing |
+| 4 | NoreaCove — SuperVilla 03 | `noreacove-supervilla03.jpg` | Ongoing |
+| 5 | Kungfu Kitchen — K-Mall 2 | `kungfu-kitchen-kmall2.jpg` | Completed |
+| 6 | UVP2 — Common Areas | `uvp2-common-areas.jpg` | Completed |
+| 7 | UVP2 — Swimming Pool | `uvp2-swimming-pool.jpg` | Completed |
+| 8 | UVP2 — Re-tiling Works | `uvp2-retiling.jpg` | Completed |
+| 9 | Singapore Airlines Office | `singapore-airlines-office.jpg` | Completed |
+| 10 | Airport Headhouse Toilet | `airport-headhouse-toilet.jpg` | Completed |
+| 11 | RichTime Watchshop | `richtime-watchshop.jpg` | Completed |
+| 12 | TK Restaurant | `tk-restaurant.jpg` | Completed |
+| 13 | Rosewood Hotel — Ceiling Works | `rosewood-ceiling.jpg` | Completed |
+| 14 | Otteri Wash & Dry — Toul Svay Prey | `otteri-toul-svay-prey.jpg` | Completed |
+| 15 | SOMA | `soma.jpg` | Upcoming |
+
+Hero stats ("15 projects / 11 handed over") must stay in sync with card count
+and statuses. Full photo-source mapping table lives in README.md.
+
+## 8. Content Boundaries (Privacy)
+
+- Deliberately excluded projects: `15. Akram (Show House)`,
+  `16. KFK - Domrey Park` (per owner instruction).
+- Never surface HR/personal data (payroll, reviews, Work & HR Records).
+- Photos should avoid recognizable worker faces and client-sensitive pricing.
+- Contact details are placeholders until the owner supplies real ones.
+
+## 9. Running & Deploying
+
+- **Local:** double-click `index.html`, or `python -m http.server 8000`.
+- **GitHub:** repo `KangKimpor/Kimpor-Portfolio-Website`, default branch `main`.
+- **Vercel:** project linked to that repo; every push to `main` auto-deploys
+  production, every branch/PR gets a preview. Static site — no build command,
+  no output directory override, framework preset "Other".
+
+## 10. Maintenance Cookbook
+
+- **Update contact info:** edit `#contact` in index.html; update text AND
+  `mailto:` / `tel:` / LinkedIn href.
+- **Add a project card:** copy an existing `<article class="card">` block, set
+  `data-status`, add image to `images/projects/`, bump hero stats.
+- **Change accent color:** edit `--accent`, `--accent-strong`, `--accent-soft`.
+- **Restyle:** all visual tokens are in `:root`; prefer editing variables over
+  hard-coding new colors.
+- **Commit style:** small, imperative commits; static assets welcome in git
+  (total images ≈ 3.5 MB, well under limits).
+
