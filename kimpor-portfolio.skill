@@ -148,9 +148,28 @@ and statuses. Full photo-source mapping table lives in README.md.
 
 - **Local:** double-click `index.html`, or `python -m http.server 8000`.
 - **GitHub:** repo `KangKimpor/Kimpor-Portfolio-Website`, default branch `main`.
-- **Vercel:** project linked to that repo; every push to `main` auto-deploys
-  production, every branch/PR gets a preview. Static site — no build command,
-  no output directory override, framework preset "Other".
+- **Live site:** https://kimpor-portfolio-website.vercel.app
+- **Vercel project:** `kimpor-portfolio-website` (scope `kimporkang01-3264s-projects`),
+  linked to the GitHub repo via `vercel git connect`, so **every push to `main`
+  auto-deploys production** and branches/PRs get preview URLs.
+- **Static, zero-config:** no build command, no output directory override,
+  framework preset "Other" (files served from repo root).
+- **Manual deploy (if needed):**
+  ```
+  vercel link --yes --project kimpor-portfolio-website --scope kimporkang01-3264s-projects
+  vercel --prod
+  ```
+  Check state with `vercel ls` and open the dashboard at
+  https://vercel.com/kimporkang01-3264s-projects/kimpor-portfolio-website
+- **Vercel Authentication (SSO) protection is OFF** — the site must stay
+  publicly viewable (it is a portfolio).
+
+### Repo conventions
+
+- `.gitignore` excludes `.vercel`, `.env.local`, OS/editor junk.
+- Commit history starts at "Initial commit: Kimpor Kang construction portfolio
+  site"; the README carries the human-facing docs and photo-source map.
+
 
 ## 10. Maintenance Cookbook
 
