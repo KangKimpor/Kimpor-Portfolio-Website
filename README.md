@@ -37,7 +37,8 @@ Kimpor-Portfolio-Website/
 │   └── script.js              ← menu panel, scroll reveal, status filter
 ├── images/
 │   ├── projects/              ← 15 project photos (already filled)
-│   └── portrait.jpg           ← your headshot (add this file)
+│   ├── KimporKANG_Portrait.png ← original headshot (white studio background)
+│   └── portrait-cutout.png     ← generated transparent-background cutout
 ├── tools/
 │   └── cutout.py              ← cuts the white background off the portrait
 └── README.md                  ← this file
@@ -88,18 +89,23 @@ other colours (green = completed, amber = ongoing, blue = ahead of schedule).
 
 ## Portrait photo (About section)
 
-1. Save your headshot as `images/portrait.jpg` — a white studio background
-   works best for the cutout step.
-2. Run the cutout tool once from this folder:
+The original headshot lives at `images/KimporKANG_Portrait.png` (white studio
+background). If you ever replace it, regenerate the cutout from this folder:
 
-   ```
-   python tools/cutout.py
-   ```
+```
+python tools/cutout.py images/KimporKANG_Portrait.png images/portrait-cutout.png images/_portrait-preview.png
+```
 
-   It writes `images/portrait-cutout.png` (transparent background) plus
-   `images/_portrait-preview.png`, where you can check the result on navy.
-3. The About frame picks up the cutout automatically. If it is missing it
-   falls back to `images/portrait.jpg`, then to a faded "KK" tile.
+It writes `images/portrait-cutout.png` (transparent background) plus
+`images/_portrait-preview.png`, where you can check the result on navy. The
+tool flood-fills the open white background, then clears white pockets sealed
+between hair strands (the hair area is scanned so no white patches remain),
+while protecting the white shirt and collar.
+
+1. The About frame shows the cutout automatically.
+2. If the cutout is missing it falls back to the original
+   `images/KimporKANG_Portrait.png`.
+3. If that is missing too, a faded "KK" tile shows instead.
 
 ## Project cards: source folders and photo map
 

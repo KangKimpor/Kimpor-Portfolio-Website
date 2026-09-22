@@ -23,9 +23,9 @@ clients, and engineering contacts in Phnom Penh and beyond.
 
 - **Plain HTML5 + CSS3 + vanilla JavaScript** — no frameworks, no bundlers,
   no npm dependencies, no build step.
-- Fonts loaded from Google Fonts CDN: `Archivo` (headings), `Inter` (body),
-  `IBM Plex Mono` (labels/mono). Site degrades gracefully to system fonts
-  offline.
+- Fonts loaded from Google Fonts CDN: `Yantramanav` (headings, menu, labels,
+  counters) and `Poppins` (body copy). Site degrades gracefully to system
+  fonts offline.
 - Deployable as-is on any static host. On Vercel it needs **zero config**
   (no framework, output = repo root, `index.html` entry).
 - Do NOT introduce a framework, package.json, or build pipeline unless the
@@ -42,11 +42,11 @@ Kimpor-Portfolio-Website/
 │   └── script.js           # All interactivity (IIFE, strict mode, ES5-safe)
 ├── images/
 │   ├── projects/           # 15 project JPGs referenced by project cards
-│   ├── portrait.jpg        # Owner's headshot (white studio background)
+│   ├── KimporKANG_Portrait.png # Owner's headshot (white studio background)
 │   ├── portrait-cutout.png # Generated: transparent-background portrait
 │   └── _PUT-PHOTOS-HERE.txt# Internal note about photo placement
 ├── tools/
-│   └── cutout.py           # Removes the white background from portrait.jpg
+│   └── cutout.py           # Removes the white background from the headshot
 ├── README.md               # Human docs: run, photo map, edit guides
 └── kimpor-portfolio.skill  # This file
 ```
@@ -208,10 +208,11 @@ photo-source mapping table lives in README.md.
 - **Add a project card:** copy an existing `<article class="card">` block, set
   `data-status`, add image to `images/projects/`, and bump the filter counts,
   stats band and README table.
-- **Regenerate the portrait cutout:** `python tools/cutout.py` — writes
-  `images/portrait-cutout.png` plus a navy-backed `_portrait-preview.png`.
-  Requires Pillow + numpy. Missing cutout falls back to `portrait.jpg`, then
-  to the faded "KK" tile.
+- **Regenerate the portrait cutout:**
+  `python tools/cutout.py images/KimporKANG_Portrait.png images/portrait-cutout.png images/_portrait-preview.png`
+  — writes `images/portrait-cutout.png` plus a navy-backed
+  `_portrait-preview.png`. Requires Pillow + numpy. Missing cutout falls
+  back to `KimporKANG_Portrait.png`, then to the faded "KK" tile.
 - **Swap the hero image:** change the `src` of `.hero-img` — pick a landscape
   shot with a clear band for the centred headline (test under the navy veil).
 - **Re-theme:** all colours live in `:root` (`--navy*`, `--soft`, `--line`,
