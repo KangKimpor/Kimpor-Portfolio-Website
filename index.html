@@ -4,72 +4,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kimpor Kang, Civil Engineering student with project coordinator experience across construction and interior fit-out projects in Phnom Penh, Cambodia.">
+  <meta name="theme-color" content="#0d2841">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kimpor Kang | Civil Engineering Portfolio">
   <meta property="og:description" content="Civil Engineering student &amp; project coordinator at Singbuild Construction Co., Ltd. — 15 construction and interior fit-out projects in Phnom Penh, Cambodia.">
   <meta property="og:url" content="https://kimpor-portfolio-website.vercel.app/">
-  <meta property="og:image" content="https://kimpor-portfolio-website.vercel.app/images/projects/nbc-pan-pacific.jpg">
+  <meta property="og:image" content="https://kimpor-portfolio-website.vercel.app/images/projects/fengfu-office.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <title>Kimpor Kang | Civil Engineering Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ===== Navigation ===== -->
-  <header class="nav" id="top">
-    <div class="nav-inner">
-      <a href="#top" class="nav-brand">
-        <span class="brand-mark">KK</span>
-        <span class="brand-text">Kimpor&nbsp;Kang</span>
-      </a>
-      <nav class="nav-links" id="navLinks" aria-label="Primary">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#side-projects" class="nav-link">Side&nbsp;Projects</a>
-        <a href="#contact" class="nav-link nav-cta">Contact</a>
-      </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+  <!-- ===== Top bar: logo block + menu cells + burger ===== -->
+  <header class="topbar" id="top">
+    <a class="logo" href="#top" aria-label="Kimpor Kang — back to top">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 28 28" width="26" height="26" focusable="false"><path d="M3 3l10 11L3 25V3z" fill="#ffffff"/><path d="M15 3l10 11-10 11V3z" fill="#ffffff" opacity="0.55"/></svg>
+      </span>
+      <span class="logo-words">
+        <span class="logo-name">KIMPOR&nbsp;KANG</span>
+        <span class="logo-tag">Civil Engineering · Phnom Penh</span>
+      </span>
+    </a>
+    <nav class="menu" aria-label="Primary">
+      <a class="menu-item is-active" data-nav href="#about">About</a>
+      <a class="menu-item" data-nav href="#projects">Projects</a>
+      <a class="menu-item" data-nav href="#skills">Skills</a>
+      <a class="menu-item" data-nav href="#side-projects">Side&nbsp;Projects</a>
+      <a class="menu-item" data-nav href="#contact">Contact</a>
+    </nav>
+    <button class="burger" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navPanel">
+      <span></span><span></span><span></span>
+    </button>
   </header>
+
+  <!-- ===== Slide-down menu panel ===== -->
+  <div class="nav-panel" id="navPanel">
+    <div class="nav-panel-inner">
+      <nav class="panel-links" aria-label="Sections">
+        <a class="panel-link" data-nav href="#about"><span class="pl-num">01</span>About</a>
+        <a class="panel-link" data-nav href="#projects"><span class="pl-num">02</span>Projects</a>
+        <a class="panel-link" data-nav href="#skills"><span class="pl-num">03</span>Skills</a>
+        <a class="panel-link" data-nav href="#side-projects"><span class="pl-num">04</span>Side Projects</a>
+        <a class="panel-link" data-nav href="#contact"><span class="pl-num">05</span>Contact</a>
+      </nav>
+      <div class="panel-meta">
+        <p><strong>Kimpor Kang</strong><br>Project Coordinator · Singbuild Construction Co., Ltd.</p>
+        <p>Phnom Penh, Cambodia</p>
+        <p class="panel-domain">kimpor-portfolio-website.vercel.app</p>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="hero-grid-bg" aria-hidden="true"></div>
-    <div class="container hero-inner">
-      <p class="hero-eyebrow reveal">Phnom Penh, Cambodia</p>
-      <h1 class="hero-name reveal">Kimpor Kang</h1>
-      <p class="hero-role reveal">Civil Engineering Student &middot; Project Coordinator at Singbuild Construction Co., Ltd.</p>
-      <p class="hero-tagline reveal">Turning drawings, schedules and site progress into buildings that get handed over, on paper and on time.</p>
-      <div class="hero-actions reveal">
-        <a href="#projects" class="btn btn-accent">View Projects</a>
-        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    <img class="hero-img" src="images/projects/fengfu-office.jpg" alt="Modern multi-storey building at dusk — Fengfu project, Phnom Penh">
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow reveal">Kimpor Kang · Phnom Penh, Cambodia</p>
+      <div class="hero-title-wrap reveal">
+        <span class="hero-ghost" aria-hidden="true">Drawn to Build</span>
+        <h1 class="hero-title">Drawn to Build</h1>
       </div>
-      <ul class="hero-facts reveal">
-        <li><strong>15</strong><span>construction &amp; interior projects</span></li>
-        <li><strong>11</strong><span>completed / handed over</span></li>
-      </ul>
+      <p class="hero-sub reveal">Civil Engineering student &amp; project coordinator at Singbuild Construction Co., Ltd. — turning drawings, schedules and site progress into buildings that get handed over, on paper and on time.</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-solid" href="#projects">View Projects</a>
+        <a class="btn btn-line" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-strip">
+      <span>kimpor-portfolio-website.vercel.app</span>
+      <span>Civil Engineering · Project Coordination</span>
+    </div>
+  </section>
+
+  <!-- ===== Stats band ===== -->
+  <section class="stats">
+    <div class="stats-inner">
+      <div class="stat reveal"><strong>15</strong><span>Projects supported</span></div>
+      <div class="stat reveal"><strong>11</strong><span>Completed &amp; handed over</span></div>
+      <div class="stat reveal"><strong>4</strong><span>Currently ongoing</span></div>
+      <div class="stat reveal"><strong>5</strong><span>Sectors · hotel / residential / retail / F&amp;B / office</span></div>
     </div>
   </section>
 
   <!-- ===== About ===== -->
   <section class="section" id="about">
     <div class="container">
-      <p class="section-label reveal">01 · About</p>
-      <h2 class="section-title reveal">Engineering student with real site mileage</h2>
+      <p class="section-label reveal"><span>01</span>About</p>
       <div class="about-grid">
+        <div class="portrait-frame reveal">
+          <span class="portrait-fallback" aria-hidden="true">KK</span>
+          <img id="portraitImg" src="images/portrait-cutout.png" alt="Portrait of Kimpor Kang" onerror="if(!this.dataset.s){this.dataset.s='1';this.src='images/portrait.jpg';}else{this.closest('.portrait-frame').classList.add('is-empty');this.remove();}">
+          <p class="portrait-caption">Kimpor Kang<em>Project Coordinator · Singbuild Construction</em></p>
+        </div>
         <div class="about-text reveal">
+          <h2 class="section-title">Engineering student with real site mileage</h2>
           <p>I'm a junior Civil Engineering student at <strong>Paragon International University</strong>, Phnom Penh, studying on a fully funded scholarship awarded through a nationwide examination. Alongside my degree, I work with <strong>Singbuild Construction Co., Ltd.</strong>, a Phnom Penh design &amp; build contractor established in 2015, supporting project coordination across hotel, residential, retail, F&amp;B and office fit-out projects.</p>
           <p>My day-to-day covers the paperwork that keeps a site moving: daily, weekly and monthly progress reports, quantity takeoff and BOQ documentation, procurement and delivery tracking, RFIs and transmittals, method statements, defect lists, and handover packages, plus site visits to verify that what's reported matches what's built.</p>
           <p>I enjoy building small tools that remove repetitive work, and I'm steadily connecting what I learn in the classroom with what actually happens on site.</p>
-        </div>
-        <aside class="about-facts reveal">
-          <h3 class="facts-title">Quick Facts</h3>
           <dl class="facts-list">
             <div><dt>Degree</dt><dd>B.Sc. Civil Engineering (junior), Paragon International University, full national scholarship</dd></div>
             <div><dt>Experience</dt><dd>Project coordination at Singbuild Construction Co., Ltd. since July 2025</dd></div>
@@ -77,30 +114,34 @@
             <div><dt>Languages</dt><dd>Khmer (native) · English (fluent, IELTS 7.5) · Chinese (limited working)</dd></div>
             <div><dt>Based in</dt><dd>Phnom Penh, Cambodia</dd></div>
           </dl>
-        </aside>
+        </div>
       </div>
     </div>
   </section>
-  <!-- ===== Projects ===== -->
-  <section class="section section-alt" id="projects">
-    <div class="container">
-      <p class="section-label reveal">02 · Projects</p>
-      <h2 class="section-title reveal">Project portfolio</h2>
-      <p class="section-lede reveal">Real projects supported at Singbuild Construction Co., Ltd., from first site survey to handover and warranty. Photos can be dropped into <code>images/projects/</code> (see README).</p>
 
-      <div class="filter-bar reveal" role="group" aria-label="Filter projects by status">
-        <button class="filter-btn is-active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="completed">Completed / Handover</button>
-        <button class="filter-btn" data-filter="ongoing">Ongoing</button>
+  <!-- ===== Projects ===== -->
+  <section class="section section-soft" id="projects">
+    <div class="container">
+      <p class="section-label reveal"><span>02</span>Projects</p>
+      <div class="proj-head">
+        <div>
+          <h2 class="section-title reveal">Project portfolio</h2>
+          <p class="section-lede reveal">Real projects supported at Singbuild Construction Co., Ltd., from first site survey to handover and warranty.</p>
+        </div>
+        <div class="filter-bar reveal" role="group" aria-label="Filter projects by status">
+          <button class="filter-btn is-active" data-filter="all" type="button">All<em>15</em></button>
+          <button class="filter-btn" data-filter="completed" type="button">Completed / Handover<em>11</em></button>
+          <button class="filter-btn" data-filter="ongoing" type="button">Ongoing<em>4</em></button>
+        </div>
       </div>
 
       <div class="projects-grid" id="projectsGrid">
 
         <article class="card reveal" data-status="ongoing">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">NBC</span><span class="mp-note">images/projects/nbc-pan-pacific.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">NBC</span></div>
             <img src="images/projects/nbc-pan-pacific.jpg" alt="Norodom Business Center - Pan Pacific Hotel fit-out" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-ongoing">Ongoing</span>
+            <span class="badge"><i class="dot dot-live"></i>Ongoing</span>
           </div>
           <div class="card-body">
             <h3>Norodom Business Center - Pan Pacific Hotel</h3>
@@ -111,9 +152,9 @@
 
         <article class="card reveal" data-status="ongoing">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">P5</span><span class="mp-note">images/projects/uvp2-penthouse-p5.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">P5</span></div>
             <img src="images/projects/uvp2-penthouse-p5.jpg" alt="Urban Village Phase 2 - Penthouse P5 interior" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-ongoing">Ongoing</span>
+            <span class="badge"><i class="dot dot-live"></i>Ongoing</span>
           </div>
           <div class="card-body">
             <h3>UVP2 - Penthouse P5</h3>
@@ -124,9 +165,9 @@
 
         <article class="card reveal" data-status="ongoing">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">FF</span><span class="mp-note">images/projects/fengfu-office.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">FF</span></div>
             <img src="images/projects/fengfu-office.jpg" alt="Fengfu Office fit-out" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-ongoing">Ongoing</span>
+            <span class="badge"><i class="dot dot-live"></i>Ongoing</span>
           </div>
           <div class="card-body">
             <h3>Fengfu Office</h3>
@@ -137,9 +178,9 @@
 
         <article class="card reveal" data-status="ongoing">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">NC</span><span class="mp-note">images/projects/noreacove-supervilla03.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">NC</span></div>
             <img src="images/projects/noreacove-supervilla03.jpg" alt="NoreaCove SuperVilla 03" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-ongoing">Ongoing</span>
+            <span class="badge"><i class="dot dot-live"></i>Ongoing</span>
           </div>
           <div class="card-body">
             <h3>NoreaCove - SuperVilla 03</h3>
@@ -150,9 +191,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">KFK</span><span class="mp-note">images/projects/kungfu-kitchen-kmall2.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">KFK</span></div>
             <img src="images/projects/kungfu-kitchen-kmall2.jpg" alt="Kungfu Kitchen restaurant at K-Mall 2" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Handed Over</span>
+            <span class="badge"><i class="dot dot-done"></i>Handed Over</span>
           </div>
           <div class="card-body">
             <h3>Kungfu Kitchen - K-Mall 2</h3>
@@ -163,9 +204,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">UV2</span><span class="mp-note">images/projects/uvp2-common-areas.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">UV2</span></div>
             <img src="images/projects/uvp2-common-areas.jpg" alt="Urban Village Phase 2 - Common Areas" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Handed Over</span>
+            <span class="badge"><i class="dot dot-done"></i>Handed Over</span>
           </div>
           <div class="card-body">
             <h3>UVP2 - Common Areas</h3>
@@ -176,9 +217,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">SP</span><span class="mp-note">images/projects/uvp2-swimming-pool.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">SP</span></div>
             <img src="images/projects/uvp2-swimming-pool.jpg" alt="Urban Village Phase 2 - Swimming Pool" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Completed</span>
+            <span class="badge"><i class="dot dot-done"></i>Completed</span>
           </div>
           <div class="card-body">
             <h3>UVP2 - Swimming Pool</h3>
@@ -189,9 +230,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">RT</span><span class="mp-note">images/projects/uvp2-retiling.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">RT</span></div>
             <img src="images/projects/uvp2-retiling.jpg" alt="Urban Village Phase 2 - Re-tiling works" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Ahead of Schedule</span>
+            <span class="badge"><i class="dot dot-ahead"></i>Ahead of Schedule</span>
           </div>
           <div class="card-body">
             <h3>UVP2 - Re-tiling Works</h3>
@@ -202,9 +243,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">SIA</span><span class="mp-note">images/projects/singapore-airlines-office.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">SIA</span></div>
             <img src="images/projects/singapore-airlines-office.jpg" alt="Singapore Airlines Office renovation" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Completed</span>
+            <span class="badge"><i class="dot dot-done"></i>Completed</span>
           </div>
           <div class="card-body">
             <h3>Singapore Airlines Office</h3>
@@ -215,9 +256,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">AT</span><span class="mp-note">images/projects/airport-headhouse-toilet.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">AT</span></div>
             <img src="images/projects/airport-headhouse-toilet.jpg" alt="Airport headhouse toilet facility" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Completed</span>
+            <span class="badge"><i class="dot dot-done"></i>Completed</span>
           </div>
           <div class="card-body">
             <h3>Airport Headhouse Toilet</h3>
@@ -228,9 +269,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">RTW</span><span class="mp-note">images/projects/richtime-watchshop.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">RTW</span></div>
             <img src="images/projects/richtime-watchshop.jpg" alt="RichTime watch retail shop interior render" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Completed</span>
+            <span class="badge"><i class="dot dot-done"></i>Completed</span>
           </div>
           <div class="card-body">
             <h3>RichTime Watchshop</h3>
@@ -241,9 +282,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">TK</span><span class="mp-note">images/projects/tk-restaurant.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">TK</span></div>
             <img src="images/projects/tk-restaurant.jpg" alt="TK Restaurant fit-out" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Completed</span>
+            <span class="badge"><i class="dot dot-done"></i>Completed</span>
           </div>
           <div class="card-body">
             <h3>TK Restaurant</h3>
@@ -254,9 +295,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">RW</span><span class="mp-note">images/projects/rosewood-ceiling.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">RW</span></div>
             <img src="images/projects/rosewood-ceiling.jpg" alt="Rosewood Hotel Phnom Penh ceiling works" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Handed Over</span>
+            <span class="badge"><i class="dot dot-done"></i>Handed Over</span>
           </div>
           <div class="card-body">
             <h3>Rosewood Hotel - Ceiling Works</h3>
@@ -267,9 +308,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">OT</span><span class="mp-note">images/projects/otteri-toul-svay-prey.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">OT</span></div>
             <img src="images/projects/otteri-toul-svay-prey.jpg" alt="Otteri Wash and Dry laundromat, Toul Svay Prey" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Completed</span>
+            <span class="badge"><i class="dot dot-done"></i>Completed</span>
           </div>
           <div class="card-body">
             <h3>Otteri Wash &amp; Dry - Toul Svay Prey</h3>
@@ -280,9 +321,9 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media">
-            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">SM</span><span class="mp-note">images/projects/soma.jpg</span></div>
+            <div class="media-placeholder" aria-hidden="true"><span class="mp-initials">SM</span></div>
             <img src="images/projects/soma.jpg" alt="SOMA hospitality building defect rectification" loading="lazy" onerror="this.remove()">
-            <span class="badge badge-completed">Completed</span>
+            <span class="badge"><i class="dot dot-done"></i>Completed</span>
           </div>
           <div class="card-body">
             <h3>SOMA</h3>
@@ -298,7 +339,7 @@
   <!-- ===== Skills ===== -->
   <section class="section" id="skills">
     <div class="container">
-      <p class="section-label reveal">03 · Skills</p>
+      <p class="section-label reveal"><span>03</span>Skills</p>
       <h2 class="section-title reveal">Tools of the trade</h2>
       <div class="skills-grid">
         <div class="skill-group reveal">
@@ -334,9 +375,9 @@
   </section>
 
   <!-- ===== Side Projects ===== -->
-  <section class="section section-alt" id="side-projects">
+  <section class="section section-navy" id="side-projects">
     <div class="container">
-      <p class="section-label reveal">04 · Side Projects</p>
+      <p class="section-label reveal"><span>04</span>Side Projects</p>
       <h2 class="section-title reveal">Small tools, built out of curiosity</h2>
       <p class="section-lede reveal">Outside of site work, I enjoy building lightweight internal tools that remove repetitive manual steps, as a personal interest rather than professional software engineering.</p>
       <div class="side-grid">
@@ -357,29 +398,33 @@
   <!-- ===== Contact ===== -->
   <section class="section" id="contact">
     <div class="container">
-      <p class="section-label reveal">05 · Contact</p>
+      <p class="section-label reveal"><span>05</span>Contact</p>
       <h2 class="section-title reveal">Let's build something</h2>
       <p class="section-lede reveal">Open to site experience, project coordination opportunities and engineering conversations in Phnom Penh and beyond.</p>
       <div class="contact-card reveal">
-        <ul class="contact-list">
-          <li><span class="contact-key">Email</span><a href="mailto:[Add your email]">[Add your email]</a></li>
-          <li><span class="contact-key">Phone</span><a href="tel:[Add your phone]">[Add your phone]</a></li>
-          <li><span class="contact-key">LinkedIn</span><a href="https://www.linkedin.com/" target="_blank" rel="noopener">[Add your LinkedIn URL]</a></li>
-          <li><span class="contact-key">Location</span><span>Phnom Penh, Cambodia</span></li>
-        </ul>
+        <div class="contact-row"><span class="contact-key">Email</span><span class="contact-val"><a href="mailto:[Add your email]">[Add your email]</a></span></div>
+        <div class="contact-row"><span class="contact-key">Phone</span><span class="contact-val"><a href="tel:[Add your phone]">[Add your phone]</a></span></div>
+        <div class="contact-row"><span class="contact-key">LinkedIn</span><span class="contact-val"><a href="https://www.linkedin.com/" target="_blank" rel="noopener">[Add your LinkedIn URL]</a></span></div>
+        <div class="contact-row"><span class="contact-key">Location</span><span class="contact-val">Phnom Penh, Cambodia</span></div>
       </div>
     </div>
   </section>
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
-    <div class="container footer-inner">
+    <div class="footer-inner">
       <p>&copy; <span id="year">2026</span> Kimpor Kang · Phnom Penh, Cambodia</p>
-      <a href="#top" class="to-top">Back to top &uarr;</a>
+      <a class="to-top" href="#top">Back to top &uarr;</a>
     </div>
   </footer>
 
   <script src="js/script.js"></script>
-
 </body>
 </html>
+
+
+
+
+
+
+

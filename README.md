@@ -34,9 +34,12 @@ Kimpor-Portfolio-Website/
 ├── css/
 │   └── style.css              ← all styling (colors, layout, responsive)
 ├── js/
-│   └── script.js              ← mobile nav, scroll reveal, status filter
+│   └── script.js              ← menu panel, scroll reveal, status filter
 ├── images/
-│   └── projects/              ← 15 project photos (already filled)
+│   ├── projects/              ← 15 project photos (already filled)
+│   └── portrait.jpg           ← your headshot (add this file)
+├── tools/
+│   └── cutout.py              ← cuts the white background off the portrait
 └── README.md                  ← this file
 ```
 
@@ -59,18 +62,42 @@ and replace the three placeholders:
 - `[Add your phone]`: also update the `href="tel:..."`
 - `[Add your LinkedIn URL]`: replace both the link text and the `href`
 
-## Changing the accent color
+## Design system & re-theming
 
-In `css/style.css`, edit the three variables at the top:
+The site uses a corporate architectural theme — deep navy bars, white menu
+cells divided by hairlines, Jost headings over Inter body copy, and a
+full-bleed hero with a ghost-outline headline. The full token table lives in
+`kimpor-portfolio.skill` (section 4).
+
+All colours sit at the top of `css/style.css`:
 
 ```css
---accent: #d97706;        /* amber (current) */
---accent-strong: #b45309; /* darker hover shade */
---accent-soft: #fdf1de;   /* pale tint */
+--navy: #0d2841;   /* bars, logo block, buttons, rules   */
+--navy-2: #14395c; /* hovers + text links                */
+--soft: #f4f6f8;   /* alt sections, portrait frame        */
+--line: #e4e8ec;   /* hairline borders                    */
+--text: #22303c;   /* body copy                           */
+--dim: #6c7a88;    /* secondary copy                      */
+--menu: #95a1ad;   /* inactive menu cells                 */
 ```
 
-Steel blue alternative: `#2f6f8f` / `#255a75` / `#e3eef4`.
-Safety-orange alternative: `#e8552d` / `#c7431f` / `#fde9e2`.
+Change those variables and the whole site re-themes. Status dots are the only
+other colours (green = completed, amber = ongoing, blue = ahead of schedule).
+
+## Portrait photo (About section)
+
+1. Save your headshot as `images/portrait.jpg` — a white studio background
+   works best for the cutout step.
+2. Run the cutout tool once from this folder:
+
+   ```
+   python tools/cutout.py
+   ```
+
+   It writes `images/portrait-cutout.png` (transparent background) plus
+   `images/_portrait-preview.png`, where you can check the result on navy.
+3. The About frame picks up the cutout automatically. If it is missing it
+   falls back to `images/portrait.jpg`, then to a faded "KK" tile.
 
 ## Project cards: source folders and photo map
 

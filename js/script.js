@@ -1,30 +1,42 @@
 /* ============================================================
    Kimpor Kang - Portfolio
-   Lightweight vanilla JS: mobile nav, scroll reveal,
-   active nav highlighting, project status filter, footer year.
+   Vanilla JS: slide-down menu panel, scroll reveal, active nav
+   highlighting, project status filter, footer year.
    ============================================================ */
 
 (function () {
   'use strict';
 
-  /* ---------- Mobile nav toggle ---------- */
+  /* ---------- Slide-down menu panel ---------- */
   var navToggle = document.getElementById('navToggle');
-  var navLinks = document.getElementById('navLinks');
+  var navPanel = document.getElementById('navPanel');
 
-  if (navToggle && navLinks) {
+  function closePanel() {
+    if (!navPanel || !navPanel.classList.contains('is-open')) return;
+    navPanel.classList.remove('is-open');
+    if (navToggle) {
+      navToggle.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    }
+  }
+
+  if (navToggle && navPanel) {
     navToggle.addEventListener('click', function () {
-      var open = navLinks.classList.toggle('is-open');
+      var open = navPanel.classList.toggle('is-open');
       navToggle.classList.toggle('is-open', open);
       navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
 
-    // Close the menu after tapping a link (mobile)
-    navLinks.addEventListener('click', function (e) {
-      if (e.target.closest('.nav-link')) {
-        navLinks.classList.remove('is-open');
-        navToggle.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      }
+    // Close after choosing a link
+    navPanel.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { closePanel(); }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closePanel(); }
     });
   }
 
@@ -43,27 +55,21 @@
 
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   } else {
-    // Fallback: just show everything
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
   /* ---------- Active nav link highlighting ---------- */
   var sections = document.querySelectorAll('section[id]');
-  var linkMap = {};
-  document.querySelectorAll('.nav-link').forEach(function (link) {
-    var hash = link.getAttribute('href');
-    if (hash && hash.charAt(0) === '#') { linkMap[hash.slice(1)] = link; }
-  });
+  var navLinks = document.querySelectorAll('[data-nav]');
 
-  if ('IntersectionObserver' in window && sections.length) {
+  if ('IntersectionObserver' in window && sections.length && navLinks.length) {
     var sectionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting && linkMap[entry.target.id]) {
-          Object.keys(linkMap).forEach(function (id) {
-            linkMap[id].classList.remove('is-active');
-          });
-          linkMap[entry.target.id].classList.add('is-active');
-        }
+        if (!entry.isIntersecting) { return; }
+        var target = '#' + entry.target.id;
+        navLinks.forEach(function (link) {
+          link.classList.toggle('is-active', link.getAttribute('href') === target);
+        });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
 
