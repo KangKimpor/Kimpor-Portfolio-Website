@@ -3,6 +3,13 @@
 A clean, single-page portfolio site built with plain HTML, CSS and vanilla
 JavaScript. No build tools, no frameworks, no dependencies to install.
 
+## Live site
+
+**https://kimpor-portfolio-website.vercel.app**
+
+Hosted on Vercel and deployed straight from this repository's `main` branch —
+every push to `main` triggers a new production deployment automatically.
+
 ## How to open / run
 
 **Option A: just open it**
