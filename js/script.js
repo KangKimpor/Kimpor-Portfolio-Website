@@ -7,36 +7,40 @@
 (function () {
   'use strict';
 
-  /* ---------- Slide-down menu panel ---------- */
+  /* ---------- Side menu (slides in from the right) ---------- */
   var navToggle = document.getElementById('navToggle');
   var navPanel = document.getElementById('navPanel');
+  var navClose = document.getElementById('navClose');
+  var navBackdrop = document.getElementById('navBackdrop');
 
-  function closePanel() {
-    if (!navPanel || !navPanel.classList.contains('is-open')) return;
-    navPanel.classList.remove('is-open');
-    if (navToggle) {
-      navToggle.classList.remove('is-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.setAttribute('aria-label', 'Open menu');
-    }
+  function setMenu(open) {
+    if (!navPanel || !navToggle) { return; }
+    navPanel.classList.toggle('is-open', open);
+    navPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    navToggle.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('menu-open', open);
   }
+
+  function closeMenu() { setMenu(false); }
 
   if (navToggle && navPanel) {
     navToggle.addEventListener('click', function () {
-      var open = navPanel.classList.toggle('is-open');
-      navToggle.classList.toggle('is-open', open);
-      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      setMenu(!navPanel.classList.contains('is-open'));
     });
+
+    if (navClose) { navClose.addEventListener('click', closeMenu); }
+    if (navBackdrop) { navBackdrop.addEventListener('click', closeMenu); }
 
     // Close after choosing a link
     navPanel.addEventListener('click', function (e) {
-      if (e.target.closest('a')) { closePanel(); }
+      if (e.target.closest('a')) { closeMenu(); }
     });
 
     // Close on Escape
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { closePanel(); }
+      if (e.key === 'Escape') { closeMenu(); }
     });
   }
 

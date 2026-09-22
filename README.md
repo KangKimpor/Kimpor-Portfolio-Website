@@ -64,21 +64,23 @@ and replace the three placeholders:
 
 ## Design system & re-theming
 
-The site uses a corporate architectural theme — deep navy bars, white menu
-cells divided by hairlines, Jost headings over Inter body copy, and a
-full-bleed hero with a ghost-outline headline. The full token table lives in
-`kimpor-portfolio.skill` (section 4).
+The site uses a corporate architectural theme modelled on tpmoralgroup.com —
+deep navy bars (#00283b), white menu cells divided by hairlines, Yantramanav
+headings over Poppins body copy, a navy side menu that slides in from the
+right, and ghost-outline text behind the hero headline and the stat counters.
+The full token table lives in `kimpor-portfolio.skill` (section 4).
 
 All colours sit at the top of `css/style.css`:
 
 ```css
---navy: #0d2841;   /* bars, logo block, buttons, rules   */
---navy-2: #14395c; /* hovers + text links                */
---soft: #f4f6f8;   /* alt sections, portrait frame        */
---line: #e4e8ec;   /* hairline borders                    */
---text: #22303c;   /* body copy                           */
---dim: #6c7a88;    /* secondary copy                      */
---menu: #95a1ad;   /* inactive menu cells                 */
+--navy: #00283b;   /* bars, logo block, menus, counters   */
+--navy-2: #0a4159; /* hovers + text links                 */
+--soft: #f4f6f8;   /* alt sections, portrait frame         */
+--line: #e8e8e9;   /* hairline borders                     */
+--text: #383a40;   /* body copy                            */
+--dim: #565969;    /* secondary copy                       */
+--menu: #9aa2ab;   /* inactive menu cells                  */
+--ghost: rgba(222, 223, 224, 0.19);  /* ghost stroke text */
 ```
 
 Change those variables and the whole site re-themes. Status dots are the only

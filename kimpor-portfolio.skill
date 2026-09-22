@@ -55,26 +55,28 @@ Kimpor-Portfolio-Website/
 
 | Token | Value | Use |
 |---|---|---|
-| `--navy` | `#0d2841` | logo block, burger, hero strip, footer, badges, rules |
-| `--navy-2` | `#14395c` | hovers on navy, text links |
-| `--navy-deep` | `#08192a` | headings, hero veil, hero fallback background |
+| `--navy` | `#00283b` | TPMG brand navy: logo block, burger, side menu, stats band, hero strip, footer, badges (`rgba(0,40,59,.86)`) |
+| `--navy-2` | `#0a4159` | hovers on navy, text links |
+| `--navy-deep` | `#001d2b` | headings, hero veil + fallback background |
 | `--paper` | `#ffffff` | page background |
 | `--soft` | `#f4f6f8` | alt sections + portrait frame background |
-| `--line` | `#e4e8ec` | hairline borders and dividers |
-| `--text` / `--dim` | `#22303c` / `#6c7a88` | body / secondary text |
-| `--menu` | `#95a1ad` | inactive nav menu cells |
+| `--line` | `#e8e8e9` | hairline borders and dividers (TPMG's sticky-header line) |
+| `--text` / `--dim` | `#383a40` / `#565969` | body / secondary text |
+| `--menu` | `#9aa2ab` | inactive nav menu cells |
+| `--ghost` | `rgba(222,223,224,.19)` | ghost stroke text — TPMG's `#DEDFE030` |
 | `--ok` / `--live` | `#2f855a` / `#c07a17` | status colours (dots render `#5fd39a` done, `#f0b34e` ongoing, `#7dc4ff` ahead) |
 | `--bar` | `72px` | top-bar height (60px under 640px) |
-| `--w` | `min(1200px, 92%)` | content width |
+| `--w` | `min(1300px, 92%)` | content width (TPMG uses a 1300px grid) |
 
-- Headings, menu, labels: **Jost** (300–600). Body copy: **Inter**. Both from
-  Google Fonts with system fallbacks.
-- Hero tagline **"Drawn to Build"** is rendered twice: a huge stroke-only
-  "ghost" (`-webkit-text-stroke: 1px rgba(255,255,255,.3)`, uppercase) layered
-  behind the solid white title.
-- Typography system: uppercase micro-labels with 0.16–0.32em letter-spacing,
-  hairline rules instead of cards-with-shadows where possible, square corners
-  (no border radius anywhere).
+- Headings, menu, counters, labels: **Yantramanav** (300/400/500/700) — the
+  font TPMG uses. Body copy: **Poppins** (300–600). Both from Google Fonts
+  with system fallbacks.
+- Signature treatments matched to tpmoralgroup.com: stroke-only ghost text
+  (`-webkit-text-stroke: 1px var(--ghost)`) behind the hero tagline
+  **"Drawn to Build"** and behind the stat counters (`.stat-ghost` layered
+  behind `.stat-solid`, mirroring TPMG's `.mkdf-counter-background`); a navy
+  side menu sliding in from the right; uppercase micro-labels with 0.1–0.32em
+  letter-spacing; hairline rules; square corners (no border radius anywhere).
 - Re-theming: colours live only in `:root`; README documents the palette.
 
 ## 5. Page Sections (index.html, in order)
@@ -83,14 +85,19 @@ Kimpor-Portfolio-Website/
    "Civil Engineering · Phnom Penh"), equal-width white menu cells divided by
    hairlines (`.menu-item[data-nav]`), and a navy hamburger block
    (`#navToggle`) at the far right. Menu cells hide below 980px.
-2. **Slide-down panel** (`#navPanel`) — the hamburger toggles a full-width
-   panel with numbered section links (`.panel-link`) plus contact meta.
+2. **Side menu** (`#navPanel`, TPMG style) — the hamburger slides a navy panel
+   in from the right (over `.menu-backdrop`, body gets `.menu-open` to lock
+   scroll) with numbered `.side-link`s and contact meta; closes via the X
+   button (`#navClose`), backdrop click, Escape, or choosing a link.
 3. **Hero** — full-bleed `images/projects/fengfu-office.jpg` under a navy veil;
    eyebrow "Kimpor Kang · Phnom Penh, Cambodia"; the double-rendered
    **"Drawn to Build"** title (ghost stroke text behind solid white); sub-line;
    two buttons (`.btn-solid`, `.btn-line`); navy bottom strip with the domain.
-4. **Stats band** — four hairline-divided cells: 15 projects / 11 completed &
-   handed over / 4 ongoing / 5 sectors.
+4. **Stats band** (navy, TPMG counters) — four cells, each a big `.stat-ghost`
+   stroke number behind a `.stat-solid` number, then `.stat-kicker` +
+   `.stat-title`: 15 Projects Supported / 11 Delivery Completed & handed over /
+   04 Live Currently ongoing / 05 Sectors Hotel · Residential · Retail · F&B ·
+   Office.
 5. **About** (`#about`, label `01`) — portrait frame (`#portraitImg` on a
    blueprint-grid background with a navy name plate) beside the bio and a
    hairline `.facts-list` (degree, experience, focus, languages, location).
@@ -117,8 +124,10 @@ IntersectionObserver. Sections use `scroll-margin-top` to clear the sticky bar.
 
 Single IIFE, `'use strict'`, ES5-compatible (var, function expressions) with
 modern APIs guarded:
-1. Menu panel (`#navToggle` / `#navPanel`): toggles `.is-open`, keeps
-   aria-expanded/aria-label in sync, closes on link click and on Escape.
+1. Side menu: `#navToggle` ↔ `#navPanel` (`.is-open` slides it in from the
+   right), keeps aria-expanded/aria-hidden/label in sync, toggles
+   `body.menu-open` (locks scroll + fades `.menu-backdrop`); also closes via
+   `#navClose`, backdrop click, Escape, or choosing a link.
 2. Scroll reveal via IntersectionObserver; fallback shows everything.
 3. Active nav highlighting: second IntersectionObserver over `section[id]`
    toggles `.is-active` on every `[data-nav]` link with a matching hash
