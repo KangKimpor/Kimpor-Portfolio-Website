@@ -36,24 +36,36 @@ Kimpor-Portfolio-Website/
 ├── js/
 │   └── script.js              ← menu panel, scroll reveal, status filter
 ├── images/
-│   ├── projects/              ← 15 project photos (already filled)
+│   ├── projects/              ← 8 project photo galleries (one folder per project)
+│   ├── hero.jpg               ← hero background photo
 │   ├── KimporKANG_Portrait.png ← original headshot (white studio background)
 │   └── portrait-cutout.png     ← generated transparent-background cutout
 ├── tools/
-│   └── cutout.py              ← cuts the white background off the portrait
+│   ├── cutout.py              ← cuts the white background off the portrait
+│   └── build_galleries.py     ← copies + resizes project photos into galleries
 └── README.md                  ← this file
 ```
 
 ## Project photos
 
-All 15 cards already show a real photo copied from the project archive.
-To swap any card photo, replace the matching JPG inside
-`images/projects/` keeping the **exact same filename**. Landscape
-orientation (~16:10) works best. If a file is missing, a blueprint-style
-placeholder shows instead.
+Each project card holds a scrollable photo gallery. Photos live in
+`images/projects/<project-slug>/` as `01.jpg`, `02.jpg`, ... The card's
+`data-total` attribute in `index.html` controls how many photos load, and
+the first photo (`01.jpg`) is the card cover.
 
-The photo sources used are listed in the mapping table below, so you can
-pick different shots from the same folders at any time.
+To rebuild all galleries from the source archive at
+`D:\SingBuild's Document`:
+
+```
+python tools/build_galleries.py
+```
+
+The tool copies every photo from each project's "Completion Photos" /
+"Photos" folder and resizes them for the web (max 1600 px, JPEG q82).
+Norodom Business Center's archive holds ~38,000 photos (6.5 GB), so an
+even sample from its most recent month is used. Fengfu has no photo
+folder (SITE PHOTO folders are empty), so its 16 3D renders are used.
+
 ## Where to fill in your contact details
 
 In `index.html`, find the **Contact** section (search for `id="contact"`)
@@ -68,20 +80,20 @@ and replace the three placeholders:
 The site uses a corporate architectural theme modelled on tpmoralgroup.com —
 deep navy bars (#00283b), white menu cells divided by hairlines, Yantramanav
 headings over Poppins body copy, a navy side menu that slides in from the
-right, and ghost-outline text behind the hero headline and the stat counters.
-The full token table lives in `kimpor-portfolio.skill` (section 4).
+right, and solid-color text in the hero headline and the stat counters (no
+outline fills). The full token table lives in `kimpor-portfolio.skill` (section 4).
 
 All colours sit at the top of `css/style.css`:
 
 ```css
---navy: #00283b;   /* bars, logo block, menus, counters   */
+--navy: #00283b;   /* bars, menus, counters                */
 --navy-2: #0a4159; /* hovers + text links                 */
+--navy-deep: #001d2b; /* headings, logo text, card titles   */
 --soft: #f4f6f8;   /* alt sections, portrait frame         */
 --line: #e8e8e9;   /* hairline borders                     */
 --text: #383a40;   /* body copy                            */
 --dim: #565969;    /* secondary copy                       */
 --menu: #9aa2ab;   /* inactive menu cells                  */
---ghost: rgba(222, 223, 224, 0.19);  /* ghost stroke text */
 ```
 
 Change those variables and the whole site re-themes. Status dots are the only
@@ -107,39 +119,28 @@ while protecting the white shirt and collar.
    `images/KimporKANG_Portrait.png`.
 3. If that is missing too, a faded "KK" tile shows instead.
 
-## Project cards: source folders and photo map
+## Projects and photo sources
 
-Every card on the site was written from the real archive at
-`D:\SingBuild's Document`. The third column shows where the current card
-photo came from. Nothing in the archive was moved or modified; files were
-only read and copied.
+The site lists 8 projects, written from the real archive at
+`D:\SingBuild's Document`. Gallery folders and their photo sources:
 
-| Card | Image filename | Current photo source |
+| Card | Gallery folder | Photo source |
 |---|---|---|
-| Norodom Business Center - Pan Pacific Hotel | `nbc-pan-pacific.jpg` | `1. Norodom Business Center\NBC Pan Pacific Hotel - Project Photo Archive...\2026\07 - July` |
-| UVP2 - Penthouse P5 | `uvp2-penthouse-p5.jpg` | `11. UVP2 - Penthouse P5\Progress Report\Weekly Report\Weekly Progress Report No.18\Photos` |
-| Fengfu Office | `fengfu-office.jpg` | `8. Fengfu\Drawing List\Shop Drawing\Shop Drawing\Scene 1.png` (3D render) |
-| NoreaCove - SuperVilla 03 | `noreacove-supervilla03.jpg` | Extracted from `12. NoreaCove\Weekly Report (SuperVilla 03)\Weekly Progress Report No.05` (.pptx) |
-| Kungfu Kitchen - K-Mall 2 | `kungfu-kitchen-kmall2.jpg` | `10. KFK - KMALL 2\Progress Report (DR, WR, MR)\2. WEEKLY REPORT\Weekly Progress Report No.02\Photos` |
-| UVP2 - Common Areas | `uvp2-common-areas.jpg` | `3. UVP2 - Common Areas\Completion Photos\Picture10.png` |
-| UVP2 - Swimming Pool | `uvp2-swimming-pool.jpg` | `4. UVP2 - Swimming Pool\Completion Report\Photos\IMG_0747.JPG` |
-| UVP2 - Re-tiling Works | `uvp2-retiling.jpg` | `2. UVP2 - Retilling Work\Document Submission\MOS\MOS-001...\Photos` |
-| Singapore Airlines Office | `singapore-airlines-office.jpg` | `6. Singapore Airlines Office\Completion Photos\Picture10.jpg` |
-| Airport Headhouse Toilet | `airport-headhouse-toilet.jpg` | Extracted from `7. Airport Toilet\TOC Document\1. Punchlist\MOCKUP TOILET DEFECT LIST... (Signed).pdf` |
-| RichTime Watchshop | `richtime-watchshop.jpg` | `9. RichTime Watchshop\3D Render\RICHTIME WATCH RETAIL SHOP REV6 02.09.25.pdf` (page 5 render) |
-| TK Restaurant | `tk-restaurant.jpg` | `5. TK Restaurant\Procurement\Finishes\Quotation from supplier\Toilet partition Board China` |
-| Rosewood Hotel - Ceiling Works | `rosewood-ceiling.jpg` | `13. Rosewood Ceiling Work\Existing Ceiling Measurement Photos\TC_00290.JPG` |
-| Otteri Wash & Dry - Toul Svay Prey | `otteri-toul-svay-prey.jpg` | Extracted from `14. Otteri Toul Svay Prey\Defect List\... (Completed) - 21Jan.2026.xlsx` |
-| SOMA | `soma.jpg` | `17. SOMA\Layout Drawing\GF.pdf` (ground floor layout, page 1) |
+| Norodom Business Center | `norodom-business-center/` | `1. Norodom Business Center\NBC Pan Pacific Hotel - Project Photo Archive - 25 Aug 2025 to 12 September 2026\2026\09 - September` (16-photo sample) |
+| UVP2 - Retilling Work | `uvp2-retiling/` | `2. UVP2 - Retilling Work\Completion Photos` (6 photos) |
+| UVP2 - Common Areas | `uvp2-common-areas/` | `3. UVP2 - Common Areas\Completion Photos` (34 photos) |
+| UVP2 - Swimming Pool | `uvp2-swimming-pool/` | `4. UVP2 - Swimming Pool\Completion Report\Photos` (26 photos) |
+| Singapore Airlines Office | `singapore-airlines/` | `6. Singapore Airlines Office\Completion Photos` (14 photos) |
+| Fengfu | `fengfu/` | `8. Fengfu\...\RENDER\08.11.24` + `RENDER\18mar25` (16 renders; no site-photo folder exists) |
+| KFK - KMALL 2 | `kfk-kmall2/` | `10. KFK - KMALL 2\Completion Photos` (12 photos) |
+| UVP2 - Penthouse P5 | `uvp2-penthouse-p5/` | `11. UVP2 - Penthouse P5\Completion Photos` (21 photos) |
+
+Nothing in the archive was moved or modified; files were only read and copied.
 
 ### Tips
 
-- **PDFs to images:** open the PDF, screenshot the page (Win+Shift+S),
-  save as JPG with the card's filename.
 - **Keep it appropriate:** prefer shots without recognizable faces of
   workers or client-sensitive pricing on drawings.
-- **Folders not shown on the site** (per your instruction):
-  `15. Akram (Show House)` and `16. KFK - Domrey Park`.
 - HR and personal folders (`Work & HR Records`, payroll, reviews) were
   excluded from the scan and the site.
 

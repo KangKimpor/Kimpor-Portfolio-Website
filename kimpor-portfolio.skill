@@ -1,6 +1,6 @@
 ---
 name: kimpor-portfolio
-description: Full project context for Kimpor Kang's construction portfolio website — a single-page static site (plain HTML/CSS/vanilla JS, no build step) showcasing 15 construction and interior fit-out projects in Phnom Penh, Cambodia. Use this skill whenever working on, extending, restyling, or deploying this website.
+description: Full project context for Kimpor Kang's construction portfolio website — a single-page static site (plain HTML/CSS/vanilla JS, no build step) showcasing 8 construction and interior fit-out projects in Phnom Penh, Cambodia. Use this skill whenever working on, extending, restyling, or deploying this website.
 metadata:
   owner: Kimpor Kang
   location: Phnom Penh, Cambodia
@@ -41,12 +41,13 @@ Kimpor-Portfolio-Website/
 ├── js/
 │   └── script.js           # All interactivity (IIFE, strict mode, ES5-safe)
 ├── images/
-│   ├── projects/           # 15 project JPGs referenced by project cards
+│   ├── projects/           # 8 project photo galleries (one folder per project)
+│   ├── hero.jpg            # Hero background (Fengfu render)
 │   ├── KimporKANG_Portrait.png # Owner's headshot (white studio background)
-│   ├── portrait-cutout.png # Generated: transparent-background portrait
-│   └── _PUT-PHOTOS-HERE.txt# Internal note about photo placement
+│   └── portrait-cutout.png # Generated: transparent-background portrait
 ├── tools/
-│   └── cutout.py           # Removes the white background from the headshot
+│   ├── cutout.py           # Removes the white background from the headshot
+│   └── build_galleries.py  # Copies + resizes archive photos into the galleries
 ├── README.md               # Human docs: run, photo map, edit guides
 └── kimpor-portfolio.skill  # This file
 ```
@@ -55,7 +56,7 @@ Kimpor-Portfolio-Website/
 
 | Token | Value | Use |
 |---|---|---|
-| `--navy` | `#00283b` | TPMG brand navy: logo block, burger, side menu, stats band, hero strip, footer, badges (`rgba(0,40,59,.86)`) |
+| `--navy` | `#00283b` | TPMG brand navy: burger, side menu, stats band, hero strip, footer, badges (`rgba(0,40,59,.86)`) |
 | `--navy-2` | `#0a4159` | hovers on navy, text links |
 | `--navy-deep` | `#001d2b` | headings, hero veil + fallback background |
 | `--paper` | `#ffffff` | page background |
@@ -63,7 +64,6 @@ Kimpor-Portfolio-Website/
 | `--line` | `#e8e8e9` | hairline borders and dividers (TPMG's sticky-header line) |
 | `--text` / `--dim` | `#383a40` / `#565969` | body / secondary text |
 | `--menu` | `#9aa2ab` | inactive nav menu cells |
-| `--ghost` | `rgba(222,223,224,.19)` | ghost stroke text — TPMG's `#DEDFE030` |
 | `--ok` / `--live` | `#2f855a` / `#c07a17` | status colours (dots render `#5fd39a` done, `#f0b34e` ongoing, `#7dc4ff` ahead) |
 | `--bar` | `72px` | top-bar height (60px under 640px) |
 | `--w` | `min(1300px, 92%)` | content width (TPMG uses a 1300px grid) |
@@ -71,41 +71,42 @@ Kimpor-Portfolio-Website/
 - Headings, menu, counters, labels: **Yantramanav** (300/400/500/700) — the
   font TPMG uses. Body copy: **Poppins** (300–600). Both from Google Fonts
   with system fallbacks.
-- Signature treatments matched to tpmoralgroup.com: stroke-only ghost text
-  (`-webkit-text-stroke: 1px var(--ghost)`) behind the hero tagline
-  **"Drawn to Build"** and behind the stat counters (`.stat-ghost` layered
-  behind `.stat-solid`, mirroring TPMG's `.mkdf-counter-background`); a navy
-  side menu sliding in from the right; uppercase micro-labels with 0.1–0.32em
-  letter-spacing; hairline rules; square corners (no border radius anywhere).
+- Signature treatments matched to tpmoralgroup.com: solid-color typography
+  only (no ghost/stroke text — the hero title and stat numbers are plain solid
+  text); the logo SVG mark is removed and "KIMPOR KANG" is centered in the top
+  bar; a navy side menu sliding in from the right; uppercase micro-labels with
+  0.1–0.32em letter-spacing; hairline rules; square corners (no border radius
+  anywhere).
 - Re-theming: colours live only in `:root`; README documents the palette.
 
 ## 5. Page Sections (index.html, in order)
 
-1. **Top bar** — navy logo block (SVG twin-chevron mark, "KIMPOR KANG",
-   "Civil Engineering · Phnom Penh"), equal-width white menu cells divided by
-   hairlines (`.menu-item[data-nav]`), and a navy hamburger block
+1. **Top bar** — white bar; the SVG logo mark is removed and "KIMPOR KANG ·
+   Civil Engineering · Phnom Penh" is centered, with equal-width menu cells
+   divided by hairlines (`.menu-item[data-nav]`) and a navy hamburger
    (`#navToggle`) at the far right. Menu cells hide below 980px.
 2. **Side menu** (`#navPanel`, TPMG style) — the hamburger slides a navy panel
    in from the right (over `.menu-backdrop`, body gets `.menu-open` to lock
    scroll) with numbered `.side-link`s and contact meta; closes via the X
    button (`#navClose`), backdrop click, Escape, or choosing a link.
-3. **Hero** — full-bleed `images/projects/fengfu-office.jpg` under a navy veil;
-   eyebrow "Kimpor Kang · Phnom Penh, Cambodia"; the double-rendered
-   **"Drawn to Build"** title (ghost stroke text behind solid white); sub-line;
+3. **Hero** — full-bleed `images/hero.jpg` (Fengfu dusk render) under a navy
+   veil; eyebrow "Kimpor Kang · Phnom Penh, Cambodia"; the plain **"Civil
+   Engineering Portfolio"** title (solid text, no ghost/stroke); sub-line;
    two buttons (`.btn-solid`, `.btn-line`); navy bottom strip with the domain.
-4. **Stats band** (navy, TPMG counters) — four cells, each a big `.stat-ghost`
-   stroke number behind a `.stat-solid` number, then `.stat-kicker` +
-   `.stat-title`: 15 Projects Supported / 11 Delivery Completed & handed over /
-   04 Live Currently ongoing / 05 Sectors Hotel · Residential · Retail · F&B ·
-   Office.
+4. **Stats band** (navy) — four solid-number cells (`.stat-num`), each
+   followed by `.stat-kicker` + `.stat-title`: 8 Projects Supported / 5 Delivery
+   Completed & handed over / 3 Currently ongoing / 4 Sectors Hotel ·
+   Residential · F&B · Office.
 5. **About** (`#about`, label `01`) — portrait frame (`#portraitImg` on a
    blueprint-grid background with a navy name plate) beside the bio and a
    hairline `.facts-list` (degree, experience, focus, languages, location).
 6. **Projects** (`#projects`, label `02`, soft-grey) — filter buttons
-   (All 15 / Completed-Handover 11 / Ongoing 4) + 15 `.card` tiles carrying
-   `data-status`; each card has a 16:10 photo, `.badge` with `.dot`, title,
-   type line and description. Missing photos fall back to the
-   `.media-placeholder` initials tile.
+   (All 8 / Completed-Handover 5 / Ongoing 3) + 8 `.card` tiles carrying
+   `data-status`; each card has a 16:10 media area that builds a horizontal
+   scroll-snap photo gallery (`data-gallery` + `data-total` → `images/
+   projects/<slug>/01.jpg` …) with prev/next buttons, a counter, and a
+   click-to-open lightbox. Each card also shows a `.badge` with `.dot`,
+   title, type line and description.
 7. **Skills** (`#skills`, label `03`) — groups A/B (`.skill-group`) with
    `.chip-list` hairline rows.
 8. **Side Projects** (`#side-projects`, label `04`, navy section) — two
@@ -135,36 +136,42 @@ modern APIs guarded:
 4. Project status filter: `.filter-btn[data-filter]` toggles `.is-hidden` on
    `#projectsGrid .card` by matching `data-status`; re-adds `.is-visible` so
    filtered cards don't re-animate.
-5. Footer year via `new Date().getFullYear()`.
+5. Project photo galleries: each `.card-media[data-gallery]` builds a
+   scroll-snap strip from `images/projects/<slug>/01.jpg`…`data-total`, with
+   prev/next buttons, a live counter, and click-to-open lightbox navigation
+   (Esc / ← / → supported).
+6. Footer year via `new Date().getFullYear()`.
 
 Keep new JS in the same IIFE style; no external libraries.
-## 7. Content Inventory — 15 Project Cards
+## 7. Content Inventory — 8 Project Galleries
 
-Images live in `images/projects/`. Swap a photo by replacing the file with the
-**exact same filename**; landscape ~16:10 works best.
+Photos live in `images/projects/<slug>/` as `01.jpg`, `02.jpg`, … A card's
+`data-total` attribute in `index.html` controls how many photos load; the first
+file (`01.jpg`) is the card cover. Rebuild all galleries from the source archive
+at `D:\SingBuild's Document` with:
 
-| # | Card | Image file | Status |
+```
+python tools/build_galleries.py
+```
+
+(The archive's Norodom folder holds ~38,000 photos / 6.5 GB, so an even sample
+from its latest month is used; Fengfu has no photo folder — its 16 3D renders
+are used instead.)
+
+| # | Card | Slug | Status |
 |---|---|---|---|
-| 1 | Norodom Business Center — Pan Pacific Hotel | `nbc-pan-pacific.jpg` | Ongoing |
-| 2 | UVP2 — Penthouse P5 | `uvp2-penthouse-p5.jpg` | Ongoing |
-| 3 | Fengfu Office | `fengfu-office.jpg` | Ongoing |
-| 4 | NoreaCove — SuperVilla 03 | `noreacove-supervilla03.jpg` | Ongoing |
-| 5 | Kungfu Kitchen — K-Mall 2 | `kungfu-kitchen-kmall2.jpg` | Completed |
-| 6 | UVP2 — Common Areas | `uvp2-common-areas.jpg` | Completed |
-| 7 | UVP2 — Swimming Pool | `uvp2-swimming-pool.jpg` | Completed |
-| 8 | UVP2 — Re-tiling Works | `uvp2-retiling.jpg` | Completed |
-| 9 | Singapore Airlines Office | `singapore-airlines-office.jpg` | Completed |
-| 10 | Airport Headhouse Toilet | `airport-headhouse-toilet.jpg` | Completed |
-| 11 | RichTime Watchshop | `richtime-watchshop.jpg` | Completed |
-| 12 | TK Restaurant | `tk-restaurant.jpg` | Completed |
-| 13 | Rosewood Hotel — Ceiling Works | `rosewood-ceiling.jpg` | Completed |
-| 14 | Otteri Wash & Dry — Toul Svay Prey | `otteri-toul-svay-prey.jpg` | Completed |
-| 15 | SOMA | `soma.jpg` | Upcoming |
+| 1 | Norodom Business Center | `norodom-business-center/` | Ongoing |
+| 2 | UVP2 - Retilling Work | `uvp2-retiling/` | Completed |
+| 3 | UVP2 - Common Areas | `uvp2-common-areas/` | Completed |
+| 4 | UVP2 - Swimming Pool | `uvp2-swimming-pool/` | Completed |
+| 5 | Singapore Airlines Office | `singapore-airlines/` | Completed |
+| 6 | Fengfu | `fengfu/` | Ongoing |
+| 7 | KFK - KMALL 2 | `kfk-kmall2/` | Completed |
+| 8 | UVP2 - Penthouse P5 | `uvp2-penthouse-p5/` | Ongoing |
 
-Hero stats (15 / 11 / 4 / 5 in the stats band and filter counts) must stay in
-sync with card count and statuses. The hero background is
-`images/projects/fengfu-office.jpg` (the dusk architectural render). Full
-photo-source mapping table lives in README.md.
+Hero stats (8 / 5 / 3 / 4 in the stats band and filter counts) must stay in
+sync with card count and statuses. The hero background is `images/hero.jpg`.
+Full photo-source mapping table lives in README.md.
 
 ## 8. Content Boundaries (Privacy)
 

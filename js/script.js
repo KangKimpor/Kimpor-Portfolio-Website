@@ -99,6 +99,132 @@
     });
   });
 
+  /* ---------- Project galleries (scrollable photo strips) ---------- */
+  var galleryMedias = document.querySelectorAll('#projectsGrid .card-media');
+
+  galleryMedias.forEach(function (media) {
+    var slug = media.getAttribute('data-gallery');
+    var total = parseInt(media.getAttribute('data-total'), 10) || 0;
+            if (!slug || total < 2) { return; }
+
+    var track = document.createElement('div');
+    track.className = 'gallery-track';
+
+    // reuse the static cover <img> as the first slide (one canonical image per card)
+    var cover = media.querySelector('img');
+    if (cover) { cover.alt = slug.replace(/-/g, ' '); track.appendChild(cover); }
+
+    for (var i = 2; i <= total; i++) {
+      var img = document.createElement('img');
+      img.src = 'images/projects/' + slug + '/' + (i < 10 ? '0' + i : i) + '.jpg';
+      img.alt = slug.replace(/-/g, ' ');
+      img.loading = 'lazy';
+      img.draggable = false;
+      img.onerror = function () { this.style.display = 'none'; };
+      track.appendChild(img);
+    }
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'gal-btn gal-prev';
+    prev.setAttribute('aria-label', 'Previous photo');
+    prev.textContent = '\u2039';
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'gal-btn gal-next';
+    var max = total - 1;
+    var current = 0;
+    next.setAttribute('aria-label', 'Next photo');
+    next.textContent = '\u203a';
+
+    var count = document.createElement('span');
+    count.className = 'gal-count';
+    count.textContent = '1/' + total;
+
+    function syncCount() {
+      var w = track.clientWidth || 1;
+      current = Math.min(max, Math.round(track.scrollLeft / w));
+      count.textContent = (current + 1) + '/' + total;
+    }
+    track.addEventListener('scroll', syncCount, { passive: true });
+    window.addEventListener('resize', syncCount);
+
+    prev.addEventListener('click', function () {
+      track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+    });
+    next.addEventListener('click', function () {
+      track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+    });
+
+    media.appendChild(track);
+    media.appendChild(prev);
+    media.appendChild(next);
+    media.appendChild(count);
+
+    // Lightbox on photo click (drag / swipe still scrolls the strip)
+    var dragX = 0;
+    track.addEventListener('pointerdown', function (e) { dragX = e.clientX; });
+    track.addEventListener('click', function (e) {
+      if (e.target.tagName !== 'IMG') { return; }
+      if (Math.abs(e.clientX - dragX) > 8) { return; }
+      openLightbox(slug, total, current);
+    });
+  });
+
+  /* ---------- Lightbox ---------- */
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxCount = document.getElementById('lightboxCount');
+  var lightboxSlug = '';
+  var lightboxTotal = 0;
+  var lightboxIndex = 0;
+
+  function renderLightbox() {
+    if (lightboxImg) {
+      lightboxImg.src = 'images/projects/' + lightboxSlug + '/' +
+        (lightboxIndex < 9 ? '0' + (lightboxIndex + 1) : lightboxIndex + 1) + '.jpg';
+    }
+    if (lightboxCount) { lightboxCount.textContent = (lightboxIndex + 1) + ' / ' + lightboxTotal; }
+  }
+
+  function openLightbox(slug, total, index) {
+    lightboxSlug = slug;
+    lightboxTotal = total;
+    lightboxIndex = index;
+    renderLightbox();
+    if (lightbox) {
+      lightbox.classList.add('is-open');
+      document.body.classList.add('lb-open');
+    }
+  }
+
+  function closeLightbox() {
+    if (lightbox) {
+      lightbox.classList.remove('is-open');
+      document.body.classList.remove('lb-open');
+    }
+  }
+
+  function stepLightbox(dir) {
+    lightboxIndex = (lightboxIndex + dir + lightboxTotal) % lightboxTotal;
+    renderLightbox();
+  }
+
+  if (lightbox) {
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', function () { stepLightbox(-1); });
+    document.getElementById('lbNext').addEventListener('click', function () { stepLightbox(1); });
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) { closeLightbox(); } });
+
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('is-open')) { return; }
+      if (e.key === 'Escape') { closeLightbox(); }
+      if (e.key === 'ArrowLeft') { stepLightbox(-1); }
+      if (e.key === 'ArrowRight') { stepLightbox(1); }
+    });
+  }
+
   /* ---------- Footer year ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
