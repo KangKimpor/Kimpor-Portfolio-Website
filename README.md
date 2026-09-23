@@ -67,14 +67,12 @@ Norodom Business Center's archive holds ~38,000 photos (6.5 GB), so an
 even sample from its most recent month is used. Fengfu has no photo
 folder (SITE PHOTO folders are empty), so its 16 3D renders are used.
 
-## Where to fill in your contact details
+## Contact
 
-In `index.html`, find the **Contact** section (search for `id="contact"`)
-and replace the three placeholders:
-
-- `[Add your email]`: also update the `href="mailto:..."` next to it
-- `[Add your phone]`: also update the `href="tel:..."`
-- `[Add your LinkedIn URL]`: replace both the link text and the `href`
+Email, phone and LinkedIn are set in the Contact section of `index.html`.
+There is no PDF résumé in the repo yet — the “Request CV” button opens an
+email so you can send the file directly. Drop a PDF in later if you want
+a download link.
 
 ## Design system & re-theming
 

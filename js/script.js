@@ -44,23 +44,11 @@
     });
   }
 
-  /* ---------- Scroll reveal ---------- */
+  /* ---------- Motion ----------
+     Text is visible without this script. The class is only a hook
+     for anything that still looks for .is-visible after filtering. */
   var revealEls = document.querySelectorAll('.reveal');
-
-  if ('IntersectionObserver' in window) {
-    var revealObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    revealEls.forEach(function (el) { revealObserver.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-  }
+  revealEls.forEach(function (el) { el.classList.add('is-visible'); });
 
   /* ---------- Active nav link highlighting ---------- */
   var sections = document.querySelectorAll('section[id]');
@@ -99,7 +87,16 @@
     });
   });
 
-  /* ---------- Project galleries (scrollable photo strips) ---------- */
+  /* ---------- Project galleries ----------
+     Only the cover, plus the slide on either side of the one in view,
+     is downloaded. The rest wait until the visitor swipes. */
+  var BUILD = '3';
+
+  function photoSrc(slug, n) {
+    var name = (n < 10 ? '0' : '') + n;
+    return 'images/projects/' + slug + '/' + name + '.jpg?v=' + BUILD;
+  }
+
   var galleryMedias = document.querySelectorAll('#projectsGrid .card-media');
 
   galleryMedias.forEach(function (media) {
@@ -111,10 +108,16 @@
 
     var track = document.createElement('div');
     track.className = 'gallery-track';
+    var slides = [];
 
-    // reuse the static cover <img> as the first slide (one canonical image per card)
     var cover = media.querySelector('img');
-    if (cover) { cover.alt = slug.replace(/-/g, ' '); track.appendChild(cover); }
+    if (cover) {
+      cover.alt = slug.replace(/-/g, ' ');
+      cover.decoding = 'async';
+      cover.draggable = false;
+      track.appendChild(cover);
+      slides.push(cover);
+    }
 
     for (var i = 2; i <= total; i++) {
       var img = document.createElement('img');
@@ -123,8 +126,19 @@
       img.loading = 'lazy';
       img.decoding = 'async';
       img.draggable = false;
-      img.onerror = function () { this.style.display = 'none'; };
       track.appendChild(img);
+      slides.push(img);
+    }
+
+    function loadAround(index) {
+      for (var j = index - 1; j <= index + 1; j++) {
+        if (j < 0 || j >= slides.length) { continue; }
+        var wanted = photoSrc(slug, j + 1);
+        if (slides[j].getAttribute('data-src-set') !== wanted) {
+          slides[j].src = wanted;
+          slides[j].setAttribute('data-src-set', wanted);
+        }
+      }
     }
 
     var prev = document.createElement('button');
@@ -149,14 +163,17 @@
       var w = track.clientWidth || 1;
       current = Math.min(max, Math.round(track.scrollLeft / w));
       count.textContent = (current + 1) + '/' + total;
+      loadAround(current);
     }
     track.addEventListener('scroll', syncCount, { passive: true });
     window.addEventListener('resize', syncCount);
 
-    prev.addEventListener('click', function () {
+    prev.addEventListener('click', function (e) {
+      e.stopPropagation();
       track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
     });
-    next.addEventListener('click', function () {
+    next.addEventListener('click', function (e) {
+      e.stopPropagation();
       track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
     });
 
@@ -165,7 +182,19 @@
     media.appendChild(next);
     media.appendChild(count);
 
-    // Lightbox on photo click (drag / swipe still scrolls the strip)
+    if ('IntersectionObserver' in window) {
+      var near = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) { return; }
+          loadAround(0);
+          near.unobserve(media);
+        });
+      }, { rootMargin: '240px 0px' });
+      near.observe(media);
+    } else {
+      loadAround(0);
+    }
+
     var dragX = 0;
     track.addEventListener('pointerdown', function (e) { dragX = e.clientX; });
     track.addEventListener('click', function (e) {

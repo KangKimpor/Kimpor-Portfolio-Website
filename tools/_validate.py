@@ -33,7 +33,7 @@ else:
         print(f"manifest {slug}: data-total={total}, listed={n} {status}")
 
 # every referenced cover image exists
-for src in re.findall(r'src="(images/[^"]+)"', html):
+for src in re.findall(r'src="(images/[^"?]+)(?:\?[^"]*)?"', html):
     if not os.path.isfile(os.path.join(ROOT, src)):
         ok = False
         print("MISSING FILE:", src)
