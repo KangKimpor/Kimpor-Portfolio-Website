@@ -119,6 +119,7 @@
       img.src = 'images/projects/' + slug + '/' + (i < 10 ? '0' + i : i) + '.jpg';
       img.alt = slug.replace(/-/g, ' ');
       img.loading = 'lazy';
+      img.decoding = 'async';
       img.draggable = false;
       img.onerror = function () { this.style.display = 'none'; };
       track.appendChild(img);
@@ -180,12 +181,21 @@
   var lightboxTotal = 0;
   var lightboxIndex = 0;
 
+  if (lightboxImg) { lightboxImg.decoding = 'async'; }
+
+  function lightboxSrc(index) {
+    return 'images/projects/' + lightboxSlug + '/' +
+      (index < 9 ? '0' + (index + 1) : index + 1) + '.jpg';
+  }
+
   function renderLightbox() {
-    if (lightboxImg) {
-      lightboxImg.src = 'images/projects/' + lightboxSlug + '/' +
-        (lightboxIndex < 9 ? '0' + (lightboxIndex + 1) : lightboxIndex + 1) + '.jpg';
-    }
+    if (lightboxImg) { lightboxImg.src = lightboxSrc(lightboxIndex); }
     if (lightboxCount) { lightboxCount.textContent = (lightboxIndex + 1) + ' / ' + lightboxTotal; }
+    // Preload only the next photo so stepping forward feels instant
+    if (lightboxTotal > 1) {
+      var pre = new Image();
+      pre.src = lightboxSrc((lightboxIndex + 1) % lightboxTotal);
+    }
   }
 
   function openLightbox(slug, total, index) {
