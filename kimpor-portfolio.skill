@@ -101,42 +101,37 @@ warm linen canvas, hairline rules, terracotta accent, monospaced drafting annota
 
 1. **Top bar** (`#top`, sticky, `backdrop-filter: blur(12px)` at 85% opacity) — brand
    block "KIMPOR KANG / Civil Engineering · Singbuild Construction", mono `.nav-link`
-   cells for the six sections (shown from 1240px), `Get in Touch` + terracotta `Dossier`
+   cells for the five sections (shown from 1240px), `Get in Touch` + terracotta `Email Me`
    buttons, a decorative avatar, and `#navToggle`.
 2. **Drawer** (`#navPanel`, `inert` while closed) — dark panel sliding from the right
-   with numbered `01-06` links and contact meta; closes via `#navClose`, backdrop,
+   with numbered `01-05` links and contact meta; closes via `#navClose`, backdrop,
    Escape or link choice; focus moves to the close button and returns to the burger.
-3. **Hero** (`#overview`) — live status pill, `DOSSIER // KIMPOR KANG` eyebrow, the H1
+3. **Hero** (`#overview`) — live status pill, `PORTFOLIO // KIMPOR KANG` eyebrow, the H1
    "Project coordination, from drawing to handover.", a hairline spec card (firm
    affiliation, academic standing, delivery record), a narrative paragraph, three CTAs,
    and four metric cells (7 / 5 / PIU Scholar / 7.5).
 4. **Featured band** (`figure.band`) — edge-to-edge `images/hero.jpg` with a mono
    caption pair.
-5. **01 // Operational Competency** (`#about`) — narrative cards, "Daily operational
-   scope" badges, Paragon/Singbuild snapshot cards, and a sticky `Candidate Spec Sheet`
+5. **01 // About Me** (`#about`) — narrative cards, "What I handle
+   daily" badges, Paragon/Singbuild snapshot cards, and a sticky `Profile`
    card (`Doc ID: KK-ENG-25`).
 6. **02 // Experience & Education** (`#experience-and-education`) — sticky portrait card
-   (`#portraitImg`) beside three entry cards (Singbuild role, Paragon degree, independent
-   tooling) with square-bulleted record lists.
+   (`#portraitImg`) beside three entry cards (Singbuild role, Paragon degree, personal
+   tools) with square-bulleted record lists.
 7. **03 // Field Projects** (`#projects-and-milestones`) — filter chips
    (All 7 / Handed over 5 / Active 2) above the `#projectsGrid` of 7 `.project-card`
    tiles; each card has a 16:10 `data-gallery` / `data-total` media strip, status pill,
    mono index overlay, title, kicker, narrative, and a Scope/Location/Deliverables meta
    matrix.
-8. **04 // Engineering Utilities** (`#workflow-utilities`) — two utility cards
+8. **04 // Tools** (`#workflow-utilities`) — two tool cards
    (SB Grab Code Tracker with its screenshot; Manpower Reporting Automation with a
    terminal snapshot and a friction/impact comparison).
-9. **05 // Employer Value Proposition** (`#handover-competencies`) — four pillars, then
-   the `Competency Verification Matrix` (real `<table>` with labelled star ratings) and a
-   note that ratings are self-assessed.
-10. **06 // Hiring & Engagement** (`#contact`) — `Direct Channels` spec list with dotted
-    separators and a CV request button, plus the `Direct Inquiry Terminal` form
-    (native validation; submit composes a `mailto:` for the visitor's mail client and
-    reveals an `aria-live` notice).
-11. **Footer** — brand/copy/availability beacon, `01 // Navigation` links,
-    `02 // Structural Spec Sheet` key/value pairs, and a hairline base line with the
+9. **05 // Contact** (`#contact`) — a centred `Contact Details` card with the spec list
+    (dotted separators), an availability pill and a CV request `mailto:` button.
+10. **Footer** — brand/copy/availability beacon, `01 // Navigation` links,
+    `02 // Details` key/value pairs, and a hairline base line with the
     JS-filled year.
-12. **Lightbox** (`#lightbox`, `inert` while closed) — counter, close/prev/next labelled
+11. **Lightbox** (`#lightbox`, `inert` while closed) — counter, close/prev/next labelled
     buttons, image, Esc/←/→ support, focus captured on open and returned on close.
 
 ## 6. JavaScript Behavior (js/script.js)
@@ -166,11 +161,7 @@ guarded by feature checks:
    close) and returns focus to the trigger.
 6. **Portrait fallback**: if `#portraitImg` fails, `.portrait-frame` gets `.is-empty` and
    a "KK" tile shows instead.
-7. **Inquiry form**: native validation runs first; on submit the script composes a
-   `mailto:` to the address in `data-mailto` with name, company, email, engagement
-   category and message, hands it to the visitor's mail client, and reveals the
-   `aria-live` notice. It never fakes a send — there is no backend.
-8. **Footer year** via `new Date().getFullYear()`.
+7. **Footer year** via `new Date().getFullYear()`.
 
 Keep new JS in the same IIFE style; no external libraries.
 
@@ -210,7 +201,6 @@ archive holds ~38,000 photos / 6.5 GB, so an even sample from its latest month i
 - Photos should avoid recognizable worker faces and client-sensitive pricing.
 - Claims are kept factual: project and handed-over counts follow the table above, and
   IELTS 7.5, the full 4-year scholarship and the tool descriptions come from the owner.
-  Competency star ratings are self-assessed, which the matrix note states.
 
 ## 9. Running, Validating & Deploying
 
@@ -248,8 +238,7 @@ archive holds ~38,000 photos / 6.5 GB, so an even sample from its latest month i
 ## 10. Maintenance Cookbook
 
 - **Update contact info:** edit the `#contact` section and keep the visible text,
-  `mailto:` / `tel:` / LinkedIn href, the drawer footer and the `data-mailto` on
-  `#portfolioContactForm` aligned.
+  `mailto:` / `tel:` / LinkedIn href and the drawer footer aligned.
 - **Add or change a project card:** copy an `<article class="card project-card">` block,
   set `data-status` + `data-gallery` + `data-total`, add the photo folder, regenerate
   `js/gallery-manifest.js`, then bump the filter chip counts, the hero metrics, this

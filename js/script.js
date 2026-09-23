@@ -2,7 +2,7 @@
    Kimpor Kang - Portfolio
    Vanilla JS: mobile drawer, scroll-spy navigation, project
    status filter (synced to the URL), lazy photo galleries,
-   lightbox, portrait fallback, inquiry form, footer year.
+   lightbox, portrait fallback, footer year.
    ============================================================ */
 
 (function () {
@@ -321,44 +321,6 @@
     function markPortraitMissing() { portraitFrame.classList.add('is-empty'); }
     portraitImg.addEventListener('error', markPortraitMissing);
     if (portraitImg.complete && portraitImg.naturalWidth === 0) { markPortraitMissing(); }
-  }
-
-  /* ---------- Inquiry form ----------
-     The site is static, so the form hands the message to the
-     visitor's own mail client instead of pretending to send it. */
-  var inquiryForm = document.getElementById('portfolioContactForm');
-  var inquiryNotice = document.getElementById('contactFormNotice');
-
-  function fieldValue(id) {
-    var el = document.getElementById(id);
-    return el ? el.value.trim() : '';
-  }
-
-  if (inquiryForm) {
-    inquiryForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      var to = inquiryForm.getAttribute('data-mailto') || 'kimporkang01@gmail.com';
-      var topic = fieldValue('inqTopic') || 'Project inquiry';
-      var lines = [
-        'Name: ' + fieldValue('inqName'),
-        'Company: ' + fieldValue('inqCompany'),
-        'Email: ' + fieldValue('inqEmail'),
-        'Engagement: ' + topic,
-        '',
-        fieldValue('inqMessage')
-      ];
-      var url = 'mailto:' + to +
-        '?subject=' + encodeURIComponent('Project inquiry: ' + topic) +
-        '&body=' + encodeURIComponent(lines.join('\n'));
-
-      window.location.href = url;
-
-      if (inquiryNotice) {
-        inquiryNotice.textContent = 'Your mail client should open with these details addressed to Kimpor Kang. If it does not open, email kimporkang01@gmail.com directly.';
-        inquiryNotice.hidden = false;
-      }
-    });
   }
 
   /* ---------- Footer year ---------- */

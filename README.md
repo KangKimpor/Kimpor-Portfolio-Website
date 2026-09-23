@@ -54,19 +54,18 @@ Kimpor-Portfolio-Website/
 
 ## Page structure
 
-The single page runs as a numbered document, the way a project dossier would:
+The single page is laid out in numbered sections:
 
 | # | Section | Anchor | Contents |
 |---|---|---|---|
 | — | Hero | `#overview` | Status pill, headline, spec card, three CTAs, four metrics |
 | — | Featured band | — | Edge-to-edge `images/hero.jpg` with a mono caption |
-| 01 | Operational Competency | `#about` | Narrative, daily scope badges, school/firm snapshots, Candidate Spec Sheet |
-| 02 | Experience & Education | `#experience-and-education` | Portrait card plus Singbuild, Paragon and tooling entries |
+| 01 | About Me | `#about` | Narrative, daily scope badges, school/firm snapshots, profile card |
+| 02 | Experience & Education | `#experience-and-education` | Portrait card plus Singbuild, Paragon and tools entries |
 | 03 | Field Projects | `#projects-and-milestones` | Filter chips and 7 project cards with photo galleries |
-| 04 | Engineering Utilities | `#workflow-utilities` | SB Grab Code Tracker and Manpower Reporting Automation |
-| 05 | Employer Value Proposition | `#handover-competencies` | Four pillars plus the Competency Verification Matrix |
-| 06 | Hiring & Engagement | `#contact` | Direct channels and the inquiry form |
-| — | Footer | — | Brand block, navigation, structural spec sheet |
+| 04 | Tools | `#workflow-utilities` | SB Grab Code Tracker and Manpower Reporting Automation |
+| 05 | Contact | `#contact` | Contact details card with a CV request button |
+| — | Footer | — | Brand block, navigation, details |
 
 Top navigation, drawer links and footer links all point at those anchors, and the
 active section is highlighted while you scroll.
@@ -80,11 +79,11 @@ Change those tokens and the whole site re-themes.
 |---|---|---|
 | `--surface-canvas` | `#fbfbfa` | page background |
 | `--surface-card` | `#ffffff` | cards and panels |
-| `--surface-subtle` | `#f0efea` | badges, key/value rows, form fields |
+| `--surface-subtle` | `#f0efea` | badges, key/value rows |
 | `--surface-container-low` | `#f4f4f2` | alternating sections and the footer |
 | `--surface-container-high` | `#e8e8e6` | the contact section |
 | `--primary-container` | `#1e232a` | primary buttons, drawer, terminal blocks |
-| `--accent` | `#c85028` | section indices, kickers, hovers, Dossier button |
+| `--accent` | `#c85028` | section indices, kickers, hovers, accent buttons |
 | `--accent-deep` | `#a83912` | accent hover state |
 | `--text-primary` | `#111418` | headings and primary copy |
 | `--text-secondary` | `#575d66` | body copy |
@@ -173,18 +172,15 @@ hair strands, while protecting the white shirt and collar.
 2. If the cutout is missing, a faded "KK" tile shows instead (the script adds
    `.is-empty` when the image fails).
 
-## Contact details and the inquiry form
+## Contact details
 
 Email, phone, LinkedIn, location and degree are set in the `#contact` section of
-`index.html` — update the visible text and the `mailto:` / `tel:` / LinkedIn `href`
-together, plus the drawer footer and the `data-mailto` attribute on
-`#portfolioContactForm`.
+`index.html` - update the visible text and the `mailto:` / `tel:` / LinkedIn `href`
+together, plus the drawer footer.
 
-There is no backend and no PDF résumé in the repo. The **Direct Inquiry Terminal**
-composes a pre-filled email in the visitor's own mail client (name, company, email,
-engagement category, message) and then shows a confirmation notice, and the
-**Request official CV** button opens a CV request email. Drop a PDF in later if you
-want a real download link.
+There is no backend and no PDF resume in the repo. The **Request official CV** button
+opens a pre-filled CV request email in the visitor's mail client. Drop a PDF in later
+if you want a real download link.
 
 ## Validate before you push
 
