@@ -117,13 +117,17 @@
       if (!cover.alt) { cover.alt = slug.replace(/-/g, ' '); }
       cover.decoding = 'async';
       cover.draggable = false;
+      // Already has its final URL, so loadAround must not re-request it
+      cover.setAttribute('data-src-set', cover.getAttribute('src') || '');
       track.appendChild(cover);
       slides.push(cover);
     }
 
+    // Slides are created without src; loadAround assigns it only
+    // when a slide is (about to be) viewed, so photos are never
+    // downloaded twice or all at once.
     for (var i = 2; i <= total; i++) {
       var img = document.createElement('img');
-      img.src = 'images/projects/' + slug + '/' + (files && files[i - 1] ? files[i - 1] : (i < 10 ? '0' + i : i) + '.jpg');
       img.alt = slug.replace(/-/g, ' ');
       img.loading = 'lazy';
       img.decoding = 'async';
@@ -221,7 +225,7 @@
     var name = (files && files[index])
       ? files[index]
       : (index < 9 ? '0' + (index + 1) : index + 1) + '.jpg';
-    return 'images/projects/' + lightboxSlug + '/' + name;
+    return 'images/projects/' + lightboxSlug + '/' + name + '?v=' + BUILD;
   }
 
   function renderLightbox() {

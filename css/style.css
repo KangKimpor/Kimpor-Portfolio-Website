@@ -154,10 +154,10 @@ body.menu-open .menu-backdrop { opacity: 1; pointer-events: auto; }
 .card.is-hidden { display: none; }
 
 .card-media { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #ddd8ca; touch-action: pan-y; }
-.card-media img, .card-media .gallery-track img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.card-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .gallery-track { position: absolute; inset: 0; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .gallery-track::-webkit-scrollbar { display: none; }
-.gallery-track img { position: static; flex: 0 0 100%; scroll-snap-align: start; }
+.gallery-track img { position: static; flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; }
 .gal-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border: none; background: rgba(16,23,34,.55); color: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .15s; }
 .card-media:hover .gal-btn { opacity: 1; }
 .gal-prev { left: 8px; } .gal-next { right: 8px; }
