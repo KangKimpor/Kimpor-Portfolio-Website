@@ -1,3 +1,4 @@
+import json
 import os
 import re
 
@@ -7,13 +8,29 @@ html = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
 print("em-dashes in html:", html.count("\u2014"))
 
 ok = True
-for slug, total in re.findall(r'data-gallery="([^"]+)" data-total="(\d+)"', html):
+totals = dict(re.findall(r'data-gallery="([^"]+)" data-total="(\d+)"', html))
+for slug, total in totals.items():
     folder = os.path.join(ROOT, "images", "projects", slug)
-    files = [f for f in os.listdir(folder) if f.lower().endswith(".jpg")]
+    files = [f for f in os.listdir(folder) if f.lower().endswith((".jpg", ".png"))]
     status = "OK" if int(total) == len(files) else "MISMATCH"
     if status != "OK":
         ok = False
     print(f"{slug}: data-total={total}, files={len(files)} {status}")
+
+# manifest counts must match data-total too
+manifest_path = os.path.join(ROOT, "js", "gallery-manifest.js")
+if not os.path.isfile(manifest_path):
+    ok = False
+    print("MISSING FILE: js/gallery-manifest.js")
+else:
+    m = re.search(r"window\.GALLERY_FILES\s*=\s*(\{.*\});", open(manifest_path, encoding="utf-8").read(), re.S)
+    manifest = json.loads(m.group(1)) if m else {}
+    for slug, total in totals.items():
+        n = len(manifest.get(slug, []))
+        status = "OK" if int(total) == n else "MISMATCH"
+        if status != "OK":
+            ok = False
+        print(f"manifest {slug}: data-total={total}, listed={n} {status}")
 
 # every referenced cover image exists
 for src in re.findall(r'src="(images/[^"]+)"', html):

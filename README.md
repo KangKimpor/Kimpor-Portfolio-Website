@@ -34,7 +34,8 @@ Kimpor-Portfolio-Website/
 ├── css/
 │   └── style.css              ← all styling (colors, layout, responsive)
 ├── js/
-│   └── script.js              ← menu panel, scroll reveal, status filter
+│   ├── gallery-manifest.js      ← generated gallery filenames (tools/build_galleries.py)
+│   └── script.js                ← menu panel, scroll reveal, status filter
 ├── images/
 │   ├── projects/              ← 8 project photo galleries (one folder per project)
 │   ├── hero.jpg               ← hero background photo

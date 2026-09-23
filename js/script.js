@@ -105,6 +105,8 @@
   galleryMedias.forEach(function (media) {
     var slug = media.getAttribute('data-gallery');
     var total = parseInt(media.getAttribute('data-total'), 10) || 0;
+    // Exact filenames from the build manifest (extensions vary: jpg/png)
+    var files = (window.GALLERY_FILES && window.GALLERY_FILES[slug]) || null;
             if (!slug || total < 2) { return; }
 
     var track = document.createElement('div');
@@ -116,7 +118,7 @@
 
     for (var i = 2; i <= total; i++) {
       var img = document.createElement('img');
-      img.src = 'images/projects/' + slug + '/' + (i < 10 ? '0' + i : i) + '.jpg';
+      img.src = 'images/projects/' + slug + '/' + (files && files[i - 1] ? files[i - 1] : (i < 10 ? '0' + i : i) + '.jpg');
       img.alt = slug.replace(/-/g, ' ');
       img.loading = 'lazy';
       img.decoding = 'async';
@@ -184,8 +186,11 @@
   if (lightboxImg) { lightboxImg.decoding = 'async'; }
 
   function lightboxSrc(index) {
-    return 'images/projects/' + lightboxSlug + '/' +
-      (index < 9 ? '0' + (index + 1) : index + 1) + '.jpg';
+    var files = window.GALLERY_FILES && window.GALLERY_FILES[lightboxSlug];
+    var name = (files && files[index])
+      ? files[index]
+      : (index < 9 ? '0' + (index + 1) : index + 1) + '.jpg';
+    return 'images/projects/' + lightboxSlug + '/' + name;
   }
 
   function renderLightbox() {
