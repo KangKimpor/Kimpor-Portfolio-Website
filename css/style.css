@@ -56,7 +56,7 @@ section { scroll-margin-top: calc(var(--bar) + 8px); }
 }
 
 .logo {
-  position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   display: flex; align-items: center; gap: 13px;
   text-decoration: none; color: var(--navy-deep);
 }
@@ -70,10 +70,11 @@ section { scroll-margin-top: calc(var(--bar) + 8px); }
   color: rgba(0, 29, 43, 0.55);
 }
 
-.menu { display: flex; flex: 0 0 auto; margin-right: 18px; }
+.menu { display: flex; flex: 0 0 auto; margin-right: 18px; align-self: stretch; align-items: stretch; }
 .menu-item {
     position: relative; flex: none;
   display: flex; align-items: center; justify-content: center;
+  padding: 0 18px;
   border-left: 1px solid var(--line);
   color: var(--menu); text-decoration: none;
   font-family: var(--font-head); font-size: 15px; letter-spacing: 0.04em;
@@ -87,7 +88,7 @@ section { scroll-margin-top: calc(var(--bar) + 8px); }
 }
 
 .burger {
-  width: var(--bar); flex: 0 0 var(--bar);
+  width: var(--bar); height: var(--bar); flex: 0 0 var(--bar);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
   background: var(--navy); border: 0; cursor: pointer;
   transition: background 0.2s ease;
