@@ -37,7 +37,7 @@ Kimpor-Portfolio-Website/
 │   ├── gallery-manifest.js      ← generated gallery filenames (tools/build_galleries.py)
 │   └── script.js                ← menu panel, scroll reveal, status filter
 ├── images/
-│   ├── projects/              ← 8 project photo galleries (one folder per project)
+│   ├── projects/              ← 7 project photo galleries (one folder per project)
 │   ├── hero.jpg               ← hero background photo
 │   ├── KimporKANG_Portrait.png ← original headshot (white studio background)
 │   └── portrait-cutout.png     ← generated transparent-background cutout
@@ -64,8 +64,7 @@ python tools/build_galleries.py
 The tool copies every photo from each project's "Completion Photos" /
 "Photos" folder and resizes them for the web (max 1600 px, JPEG q82).
 Norodom Business Center's archive holds ~38,000 photos (6.5 GB), so an
-even sample from its most recent month is used. Fengfu has no photo
-folder (SITE PHOTO folders are empty), so its 16 3D renders are used.
+even sample from its most recent month is used.
 
 ## Contact
 
@@ -120,7 +119,7 @@ while protecting the white shirt and collar.
 
 ## Projects and photo sources
 
-The site lists 8 projects, written from the real archive at
+The site lists 7 projects, written from the real archive at
 `D:\SingBuild's Document`. Gallery folders and their photo sources:
 
 | Card | Gallery folder | Photo source |
@@ -129,8 +128,7 @@ The site lists 8 projects, written from the real archive at
 | UVP2 - Retilling Work | `uvp2-retiling/` | `2. UVP2 - Retilling Work\Completion Photos` (6 photos) |
 | UVP2 - Common Areas | `uvp2-common-areas/` | `3. UVP2 - Common Areas\Completion Photos` (34 photos) |
 | UVP2 - Swimming Pool | `uvp2-swimming-pool/` | `4. UVP2 - Swimming Pool\Completion Report\Photos` (26 photos) |
-| Singapore Airlines Office | `singapore-airlines/` | `6. Singapore Airlines Office\Completion Photos` (14 photos) |
-| Fengfu | `fengfu/` | `8. Fengfu\...\RENDER\08.11.24` + `RENDER\18mar25` (16 renders; no site-photo folder exists) |
+| Singapore Airlines Office | `singapore-airlines/` | `6. Singapore Airlines Office\Completion Photos` (12 photos) |
 | KFK - KMALL 2 | `kfk-kmall2/` | `10. KFK - KMALL 2\Completion Photos` (12 photos) |
 | UVP2 - Penthouse P5 | `uvp2-penthouse-p5/` | `11. UVP2 - Penthouse P5\Completion Photos` (21 photos) |
 

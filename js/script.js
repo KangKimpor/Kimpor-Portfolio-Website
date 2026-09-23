@@ -92,9 +92,11 @@
      is downloaded. The rest wait until the visitor swipes. */
   var BUILD = '3';
 
-  function photoSrc(slug, n) {
-    var name = (n < 10 ? '0' : '') + n;
-    return 'images/projects/' + slug + '/' + name + '.jpg?v=' + BUILD;
+  function slideSrc(slug, files, index) {
+    var name = (files && files[index])
+      ? files[index]
+      : (index < 9 ? '0' + (index + 1) : index + 1) + '.jpg';
+    return 'images/projects/' + slug + '/' + name + '?v=' + BUILD;
   }
 
   var galleryMedias = document.querySelectorAll('#projectsGrid .card-media');
@@ -112,7 +114,7 @@
 
     var cover = media.querySelector('img');
     if (cover) {
-      cover.alt = slug.replace(/-/g, ' ');
+      if (!cover.alt) { cover.alt = slug.replace(/-/g, ' '); }
       cover.decoding = 'async';
       cover.draggable = false;
       track.appendChild(cover);
@@ -133,7 +135,7 @@
     function loadAround(index) {
       for (var j = index - 1; j <= index + 1; j++) {
         if (j < 0 || j >= slides.length) { continue; }
-        var wanted = photoSrc(slug, j + 1);
+        var wanted = slideSrc(slug, files, j);
         if (slides[j].getAttribute('data-src-set') !== wanted) {
           slides[j].src = wanted;
           slides[j].setAttribute('data-src-set', wanted);

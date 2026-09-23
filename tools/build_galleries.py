@@ -17,8 +17,6 @@ Special cases (kept as close to "all photos in the folder" as practical):
   - Norodom Business Center: the photo archive holds ~38,000 photos (6.5 GB),
     far too many for a website. An even sample from the most recent month
     (2026/09) is used instead.
-  - Fengfu: has no "Completion Photos"/"Photos" folder (SITE PHOTO folders
-    are empty), so the project's 16 3D renders are used.
 """
 import json
 import os
@@ -40,8 +38,6 @@ PROJECTS = {
     "uvp2-common-areas": ([r"3. UVP2 - Common Areas\Completion Photos"], None),
     "uvp2-swimming-pool": ([r"4. UVP2 - Swimming Pool\Completion Report\Photos"], None),
     "singapore-airlines": ([r"6. Singapore Airlines Office\Completion Photos"], None),
-    "fengfu": ([r"8. Fengfu\Drawing List\Shop Drawing\Shop Drawing\DWG\As of 4.28.25\RENDER\08.11.24",
-                r"8. Fengfu\Drawing List\Shop Drawing\Shop Drawing\DWG\As of 4.28.25\RENDER\18mar25"], None),
     "kfk-kmall2": ([r"10. KFK - KMALL 2\Completion Photos"], None),
     "uvp2-penthouse-p5": ([r"11. UVP2 - Penthouse P5\Completion Photos"], None),
 }

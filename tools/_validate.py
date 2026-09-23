@@ -38,10 +38,6 @@ for src in re.findall(r'src="(images/[^"?]+)(?:\?[^"]*)?"', html):
         ok = False
         print("MISSING FILE:", src)
 
-# skills sanity
-print("skill groups:", html.count('class="skill-group reveal"'))
-print("skill categories:", re.findall(r'skill-index">[ABC]</span>([^<]+)<', html))
-
 # tag balance for key elements
 for tag in ["section", "article", "div", "ul", "li", "dl"]:
     o = len(re.findall(rf"<{tag}[\s>]", html))
