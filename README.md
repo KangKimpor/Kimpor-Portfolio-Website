@@ -58,9 +58,9 @@ The single page is laid out in numbered sections:
 
 | # | Section | Anchor | Contents |
 |---|---|---|---|
-| — | Hero | `#overview` | Status pill, headline, spec card, three CTAs, four metrics |
+| — | Hero | `#overview` | Headline, spec card, three CTAs |
 | — | Featured band | — | Edge-to-edge `images/hero.jpg` with a mono caption |
-| 01 | About Me | `#about` | Narrative, daily scope badges, school/firm snapshots, profile card |
+| 01 | About Me | `#about` | Narrative, school/firm snapshots, profile card |
 | 02 | Experience & Education | `#experience-and-education` | Portrait card plus Singbuild, Paragon and tools entries |
 | 03 | Field Projects | `#projects-and-milestones` | Filter chips and 7 project cards with photo galleries |
 | 04 | Tools | `#workflow-utilities` | SB Grab Code Tracker and Manpower Reporting Automation |

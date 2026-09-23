@@ -269,10 +269,6 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 1.5rem); }
 .status-done { background: var(--status-done-bg); border-color: rgba(22, 101, 52, 0.24); color: var(--status-done-ink); }
 .status-ahead { background: var(--status-ahead-bg); border-color: rgba(2, 132, 199, 0.26); color: var(--status-ahead-ink); }
 
-.status-inline { background: var(--surface-card); border-color: var(--border-subtle); color: var(--text-secondary); }
-.status-sep { color: var(--border-strong); }
-.status-loc { color: var(--accent); font-weight: 700; }
-
 /* ---------- Cards ---------- */
 .card {
   background: var(--surface-card);
@@ -517,13 +513,6 @@ body.menu-open { overflow: hidden; }
 /* ---------- Hero ---------- */
 .hero { padding: 2.5rem 0 3rem; }
 
-.status-inline { margin: 0 0 2rem; max-width: 100%; }
-
-@media (max-width: 639px) {
-  /* a wrapped multi-line pill would read badly on phones */
-  .status-inline { border-radius: var(--radius-md); align-items: flex-start; line-height: 18px; padding: 8px 10px; }
-}
-
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -566,48 +555,11 @@ body.menu-open { overflow: hidden; }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
 
-.metrics {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gutter);
-  margin-top: 3rem;
-}
-.metric { padding-top: 1rem; border-top: 1px solid var(--border-subtle); }
-.metric dt {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-}
-.metric-value {
-  font-family: var(--font-display);
-  font-size: 36px;
-  line-height: 44px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 0.3rem 0;
-  font-variant-numeric: tabular-nums;
-}
-.metric-value-sm {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 24px;
-  line-height: 32px;
-  letter-spacing: -0.015em;
-}
-.metric-note { font-size: 13px; line-height: 20px; color: var(--text-secondary); }
-
-@media (min-width: 640px) {
-  .metrics { grid-template-columns: repeat(2, 1fr); }
-}
 @media (min-width: 900px) {
   .hero-grid { grid-template-columns: 2fr 1fr; }
 }
 @media (min-width: 1024px) {
   .hero { padding: 3.5rem 0 4rem; }
-  .metrics { grid-template-columns: repeat(4, 1fr); }
 }
 
 /* ---------- Edge-to-edge feature band ---------- */
@@ -677,8 +629,6 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- 01 About Me ---------- */
 .prose p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
-.scope-card { margin-top: var(--gutter); }
-.scope-card .eyebrow { margin-bottom: 0.75rem; }
 .snapshot { margin-top: var(--gutter); }
 .snapshot .card { display: flex; flex-direction: column; gap: 0.55rem; }
 .snapshot-kicker {
@@ -1163,18 +1113,15 @@ body.lb-open { overflow: hidden; }
     animation: beacon-ping 2.6s var(--ease) infinite;
   }
 
-  .hero .status-inline,
   .hero .hero-lead,
   .hero .hero-spec,
   .hero .hero-sub,
-  .hero .hero-actions,
-  .hero .metrics { animation: rise 0.7s var(--ease) both; }
+  .hero .hero-actions { animation: rise 0.7s var(--ease) both; }
 
   .hero .hero-lead { animation-delay: 0.06s; }
   .hero .hero-spec { animation-delay: 0.12s; }
   .hero .hero-sub { animation-delay: 0.18s; }
   .hero .hero-actions { animation-delay: 0.24s; }
-  .hero .metrics { animation-delay: 0.3s; }
 }
 
 /* Scroll-linked reveals, only where view timelines are supported.
@@ -1185,7 +1132,6 @@ body.lb-open { overflow: hidden; }
     .project-card,
     .util-card,
     .entry,
-    .scope-card,
     .snapshot .card {
       animation: rise linear both;
       animation-timeline: view();

@@ -16,7 +16,7 @@ Personal single-page portfolio for **Kimpor Kang**, a Civil Engineering student 
 Paragon International University (Phnom Penh, full national scholarship) who works as
 Project Coordinator at **Singbuild Construction Co., Ltd.** (design & build contractor,
 est. 2015). The site presents 7 real construction / interior fit-out packages, the
-experience and education record, two internal automation tools, a competency matrix and
+experience and education record, two internal automation tools, and
 contact channels. Audience: tier-1 contractors, developers, consultants, and recruiters.
 
 ## 2. Tech Stack & Constraints
@@ -106,15 +106,13 @@ warm linen canvas, hairline rules, terracotta accent, monospaced drafting annota
 2. **Drawer** (`#navPanel`, `inert` while closed) — dark panel sliding from the right
    with numbered `01-05` links and contact meta; closes via `#navClose`, backdrop,
    Escape or link choice; focus moves to the close button and returns to the burger.
-3. **Hero** (`#overview`) — live status pill, `PORTFOLIO // KIMPOR KANG` eyebrow, the H1
+3. **Hero** (`#overview`) — `PORTFOLIO // KIMPOR KANG` eyebrow, the H1
    "Project coordination, from drawing to handover.", a hairline spec card (firm
-   affiliation, academic standing, delivery record), a narrative paragraph, three CTAs,
-   and four metric cells (7 / 5 / PIU Scholar / 7.5).
+   affiliation, academic standing, delivery record), a narrative paragraph, and three CTAs.
 4. **Featured band** (`figure.band`) — edge-to-edge `images/hero.jpg` with a mono
    caption pair.
-5. **01 // About Me** (`#about`) — narrative cards, "What I handle
-   daily" badges, Paragon/Singbuild snapshot cards, and a sticky `Profile`
-   card (`Doc ID: KK-ENG-25`).
+5. **01 // About Me** (`#about`) — narrative cards, Paragon/Singbuild snapshot
+   cards, and a sticky `Profile` card (`Doc ID: KK-ENG-25`).
 6. **02 // Experience & Education** (`#experience-and-education`) — sticky portrait card
    (`#portraitImg`) beside three entry cards (Singbuild role, Paragon degree, personal
    tools) with square-bulleted record lists.
@@ -241,7 +239,7 @@ archive holds ~38,000 photos / 6.5 GB, so an even sample from its latest month i
   `mailto:` / `tel:` / LinkedIn href and the drawer footer aligned.
 - **Add or change a project card:** copy an `<article class="card project-card">` block,
   set `data-status` + `data-gallery` + `data-total`, add the photo folder, regenerate
-  `js/gallery-manifest.js`, then bump the filter chip counts, the hero metrics, this
+  `js/gallery-manifest.js`, then bump the filter chip counts, this
   skill's table and the README table.
 - **Change a status label:** pill classes are `status-ongoing`, `status-done`,
   `status-ahead`; the pill text is free text, but `data-status` must stay `ongoing` or
