@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Kimpor Kang — civil engineering student and project coordinator at Singbuild Construction. Hotel, residential, F&amp;B and office fit-out in Phnom Penh, from drawings to handover.">
   <meta name="theme-color" content="#0d2841">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kimpor Kang | Civil Engineering Portfolio">
   <meta property="og:description" content="Project coordinator at Singbuild Construction. Seven fit-out packages in Phnom Penh — drawings, programmes and handover packs that match the site.">
   <meta property="og:url" content="https://kimpor-portfolio-website.vercel.app/">
-  <meta property="og:image" content="https://kimpor-portfolio-website.vercel.app/images/hero.jpg">
+  <meta property="og:image" content="https://kimpor-portfolio-website.vercel.app/images/hero.jpg?v=3">
   <meta name="twitter:card" content="summary_large_image">
   <title>Kimpor Kang | Civil Engineering Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/hero.jpg?v=3" fetchpriority="high">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -65,7 +66,7 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <img class="hero-img" src="images/hero.jpg" alt="Modern multi-storey building at dusk in Phnom Penh">
+    <img class="hero-img" src="images/hero.jpg?v=3" alt="Modern multi-storey building at dusk in Phnom Penh" fetchpriority="high" decoding="async">
     <div class="hero-veil" aria-hidden="true"></div>
     <div class="hero-inner">
       <p class="hero-eyebrow reveal">Kimpor Kang · Phnom Penh, Cambodia</p>
@@ -88,7 +89,7 @@
       <div class="about-grid">
         <div class="portrait-frame reveal">
           <span class="portrait-fallback" aria-hidden="true">KK</span>
-          <img id="portraitImg" src="images/portrait-cutout.png" alt="Portrait of Kimpor Kang" onerror="if(!this.dataset.s){this.dataset.s='1';this.src='images/KimporKANG_Portrait.png';}else{this.closest('.portrait-frame').classList.add('is-empty');this.remove();}">
+          <img id="portraitImg" src="images/portrait-cutout.webp?v=3" alt="Portrait of Kimpor Kang" width="760" height="938" decoding="async" loading="lazy">
           <p class="portrait-caption">Kimpor Kang<em>Project Coordinator · Singbuild Construction</em></p>
         </div>
         <div class="about-text reveal">
@@ -129,7 +130,7 @@
 
         <article class="card reveal" data-status="ongoing">
           <div class="card-media" data-gallery="norodom-business-center" data-total="16">
-            <img src="images/projects/norodom-business-center/01.jpg" alt="Norodom Business Center project photo" loading="lazy" onerror="this.remove()">
+            <img src="images/projects/norodom-business-center/01.jpg?v=3" alt="Norodom Business Center project photo" loading="lazy" onerror="this.remove()">
             <span class="badge"><i class="dot dot-live"></i>Ongoing</span>
           </div>
           <div class="card-body">
@@ -141,7 +142,7 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media" data-gallery="uvp2-retiling" data-total="6">
-            <img src="images/projects/uvp2-retiling/01.jpg" alt="UVP2 re-tiling work project photo" loading="lazy" onerror="this.remove()">
+            <img src="images/projects/uvp2-retiling/01.jpg?v=3" alt="UVP2 re-tiling work project photo" loading="lazy" onerror="this.remove()">
           </div>
           <div class="card-body">
             <h3>UVP2 - Retilling Work</h3>
@@ -152,7 +153,7 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media" data-gallery="uvp2-common-areas" data-total="33">
-            <img src="images/projects/uvp2-common-areas/01.jpg" alt="UVP2 common areas project photo" loading="lazy" onerror="this.remove()">
+            <img src="images/projects/uvp2-common-areas/01.jpg?v=3" alt="UVP2 common areas project photo" loading="lazy" onerror="this.remove()">
           </div>
           <div class="card-body">
             <h3>UVP2 - Common Areas</h3>
@@ -163,7 +164,7 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media" data-gallery="uvp2-swimming-pool" data-total="26">
-            <img src="images/projects/uvp2-swimming-pool/01.jpg" alt="UVP2 swimming pool project photo" loading="lazy" onerror="this.remove()">
+            <img src="images/projects/uvp2-swimming-pool/01.jpg?v=3" alt="UVP2 swimming pool project photo" loading="lazy" onerror="this.remove()">
           </div>
           <div class="card-body">
             <h3>UVP2 - Swimming Pool</h3>
@@ -174,7 +175,7 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media" data-gallery="singapore-airlines" data-total="14">
-            <img src="images/projects/singapore-airlines/01.jpg" alt="Singapore Airlines Office project photo" loading="lazy" onerror="this.remove()">
+            <img src="images/projects/singapore-airlines/01.jpg?v=3" alt="Singapore Airlines Office project photo" loading="lazy" onerror="this.remove()">
           </div>
           <div class="card-body">
             <h3>Singapore Airlines Office</h3>
@@ -186,7 +187,7 @@
 
         <article class="card reveal" data-status="completed">
           <div class="card-media" data-gallery="kfk-kmall2" data-total="12">
-            <img src="images/projects/kfk-kmall2/01.jpg" alt="KFK - KMALL 2 project photo" loading="lazy" onerror="this.remove()">
+            <img src="images/projects/kfk-kmall2/01.jpg?v=3" alt="KFK - KMALL 2 project photo" loading="lazy" onerror="this.remove()">
           </div>
           <div class="card-body">
             <h3>KFK - KMALL 2</h3>
@@ -197,7 +198,7 @@
 
         <article class="card reveal" data-status="ongoing">
           <div class="card-media" data-gallery="uvp2-penthouse-p5" data-total="21">
-            <img src="images/projects/uvp2-penthouse-p5/01.jpg" alt="UVP2 Penthouse P5 project photo" loading="lazy" onerror="this.remove()">
+            <img src="images/projects/uvp2-penthouse-p5/01.jpg?v=3" alt="UVP2 Penthouse P5 project photo" loading="lazy" onerror="this.remove()">
             <span class="badge"><i class="dot dot-live"></i>Ongoing</span>
           </div>
           <div class="card-body">
@@ -267,7 +268,7 @@
       <p class="section-lede reveal">Small internal tools that take a repetitive step off the team. These are personal builds, not a software-engineering practice.</p>
       <div class="side-grid">
         <article class="side-card reveal">
-          <img class="side-shot" src="images/side/sb-grab.jpg" alt="SB Grab Code Tracker showing 53 of 110 codes available">
+          <img class="side-shot" src="images/side/sb-grab.jpg?v=3" alt="SB Grab Code Tracker showing 53 of 110 codes available" width="880" height="1046" decoding="async" loading="lazy">
           <p class="side-tag">Web app · Internal tool</p>
           <h3>SB Grab Code Tracker</h3>
           <p>Staff collect their own ride codes instead of sending every request through one person. I found the bottleneck at work, then designed and shipped the fix.</p>
