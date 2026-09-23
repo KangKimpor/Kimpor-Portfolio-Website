@@ -443,7 +443,20 @@ body.menu-open { overflow: hidden; }
 .card-desc { font-size: 14px; line-height: 1.7; color: var(--dim); }
 
 /* ---------- Skills ---------- */
-.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 46px; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 42px; }
+
+.skill-group {
+  display: flex; flex-direction: column;
+  padding: 26px 26px 16px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.skill-group:hover {
+  border-color: var(--navy);
+  box-shadow: 0 14px 34px rgba(0, 40, 59, 0.09);
+  transform: translateY(-3px);
+}
 
 .skill-group-title {
   display: flex; align-items: center; gap: 15px;
@@ -456,6 +469,11 @@ body.menu-open { overflow: hidden; }
   width: 28px; height: 28px; flex: 0 0 28px;
   background: var(--navy); color: #fff;
   font-size: 12.5px; letter-spacing: 0.05em;
+}
+
+.skill-group-desc {
+  margin: 12px 0 2px;
+  font-size: 13.5px; color: var(--dim);
 }
 
 .chip-list { list-style: none; margin-top: 8px; }
@@ -567,6 +585,8 @@ body.lb-open { overflow: hidden; }
 
 @media (max-width: 1120px) {
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .skill-group:last-child { grid-column: 1 / -1; }
     .about-grid { grid-template-columns: 320px 1fr; gap: 44px; }
   .logo { padding-left: 20px; }
 }
