@@ -196,7 +196,7 @@ body.menu-open { overflow: hidden; }
 .hero-inner {
   position: relative; width: var(--w); margin: 0 auto;
   text-align: center; color: #fff;
-  padding: 96px 0 140px;
+  padding: 72px 0 88px;
 }
 .hero-eyebrow {
   font-family: var(--font-head); font-size: 11.5px;
@@ -209,7 +209,7 @@ body.menu-open { overflow: hidden; }
 }
 .hero-title {
   position: relative;
-  font-family: var(--font-head); font-weight: 300;
+  font-family: var(--font-head); font-weight: 700;
   font-size: clamp(1.9rem, 4.4vw, 3.45rem); letter-spacing: 0.01em;
   color: #fff;
   max-width: 16em; margin-left: auto; margin-right: auto;
@@ -276,12 +276,11 @@ body.menu-open { overflow: hidden; }
 .section-navy { background: var(--navy); color: #fff; }
 
 .section-label {
-  display: flex; align-items: center; gap: 14px;
+  display: flex; align-items: center; gap: 10px;
   font-family: var(--font-head); font-size: 12px;
   letter-spacing: 0.3em; text-transform: uppercase;
   color: var(--navy); margin-bottom: 20px;
 }
-.section-label::before { content: ''; width: 36px; height: 1px; background: var(--navy); }
 .section-label span { color: #6a7580; margin-right: 8px; }
 
 .section-title {
@@ -292,7 +291,6 @@ body.menu-open { overflow: hidden; }
 .section-lede { margin-top: 16px; max-width: 70ch; font-size: 15.5px; line-height: 1.8; color: var(--dim); }
 
 .section-navy .section-label { color: #fff; }
-.section-navy .section-label::before { background: #fff; }
 .section-navy .section-label span { color: rgba(255, 255, 255, 0.5); }
 .section-navy .section-title { color: #fff; }
 .section-navy .section-lede { color: rgba(255, 255, 255, 0.75); }
@@ -486,6 +484,12 @@ body.menu-open { overflow: hidden; }
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 .side-card:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.32); }
+.side-card:has(.side-shot) { padding-top: 0; }
+.side-shot {
+  display: block; width: calc(100% + 56px); max-width: none;
+  margin: 0 -28px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 .side-tag {
   margin-bottom: 15px;
   font-family: var(--font-head); font-size: 11px;
