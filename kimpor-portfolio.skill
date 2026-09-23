@@ -107,8 +107,8 @@ warm linen canvas, hairline rules, terracotta accent, monospaced drafting annota
    with numbered `01-05` links and contact meta; closes via `#navClose`, backdrop,
    Escape or link choice; focus moves to the close button and returns to the burger.
 3. **Hero** (`#overview`) — `PORTFOLIO // KIMPOR KANG` eyebrow, the H1
-   "Project coordination, from drawing to handover.", a hairline spec card (firm
-   affiliation, academic standing, delivery record), a narrative paragraph, and three CTAs.
+   "Project coordination, from drawing to handover.", a portrait card
+   (`images/portrait-cutout.webp`), a narrative paragraph, and three CTAs.
 4. **Featured band** (`figure.band`) — edge-to-edge `images/hero.jpg` with a mono
    caption pair.
 5. **01 // About Me** (`#about`) — narrative cards, Paragon/Singbuild snapshot
@@ -126,7 +126,7 @@ warm linen canvas, hairline rules, terracotta accent, monospaced drafting annota
    terminal snapshot and a friction/impact comparison).
 9. **05 // Contact** (`#contact`) — a centred `Contact Details` card with the spec list
     (dotted separators), an availability pill and a CV request `mailto:` button.
-10. **Footer** — brand/copy/availability beacon, `01 // Navigation` links,
+10. **Footer** — brand/copy, `01 // Navigation` links,
     `02 // Details` key/value pairs, and a hairline base line with the
     JS-filled year.
 11. **Lightbox** (`#lightbox`, `inert` while closed) — counter, close/prev/next labelled
@@ -157,8 +157,8 @@ guarded by feature checks:
    image. Opens from a photo click or the counter button, preloads only the next photo,
    supports Esc / ← / →, keeps off-canvas focus out (`inert` removed on open, restored on
    close) and returns focus to the trigger.
-6. **Portrait fallback**: if `#portraitImg` fails, `.portrait-frame` gets `.is-empty` and
-   a "KK" tile shows instead.
+6. **Portrait fallback**: if any `.portrait-frame img` fails to load, its frame gets
+   `.is-empty` and a "KK" tile shows instead.
 7. **Footer year** via `new Date().getFullYear()`.
 
 Keep new JS in the same IIFE style; no external libraries.
@@ -179,8 +179,7 @@ file count and the manifest entry in `js/gallery-manifest.js`. The card cover is
 | 6 | KFK - KMALL 2 | `kfk-kmall2` | Handed Over | `handed-over` |
 | 7 | UVP2 Penthouse P5 | `uvp2-penthouse-p5` | Ongoing | `ongoing` |
 
-Filter chips (`All 7`, `Handed over 5`, `Active 2`), the hero delivery row
-(`5 handed over · 2 live`) and the `Handed over` metric must stay in sync with this table.
+Filter chips (`All 7`, `Handed over 5`, `Active 2`) must stay in sync with this table.
 
 Rebuild all galleries from the source archive at `D:\SingBuild's Document`:
 

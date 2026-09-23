@@ -58,7 +58,7 @@ The single page is laid out in numbered sections:
 
 | # | Section | Anchor | Contents |
 |---|---|---|---|
-| — | Hero | `#overview` | Headline, spec card, three CTAs |
+| — | Hero | `#overview` | Headline, portrait card, three CTAs |
 | — | Featured band | — | Edge-to-edge `images/hero.jpg` with a mono caption |
 | 01 | About Me | `#about` | Narrative, school/firm snapshots, profile card |
 | 02 | Experience & Education | `#experience-and-education` | Portrait card plus Singbuild, Paragon and tools entries |
@@ -126,9 +126,8 @@ keyboard support (Esc, ←, →).
 | KFK - KMALL 2 | `kfk-kmall2/` | Handed over | 12 |
 | UVP2 - Penthouse P5 | `uvp2-penthouse-p5/` | Ongoing | 21 |
 
-The filter chips read `All 7`, `Handed over 5`, `Active 2`; the hero delivery row
-reads `5 handed over · 2 live`. If a project changes state, update the pill text,
-`data-status`, those counts and this table together.
+The filter chips read `All 7`, `Handed over 5`, `Active 2`. If a project changes
+state, update the pill text, `data-status`, those counts and this table together.
 
 To rebuild all galleries from the source archive at `D:\SingBuild's Document`:
 

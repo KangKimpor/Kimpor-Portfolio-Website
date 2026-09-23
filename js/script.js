@@ -314,14 +314,14 @@
   }
 
   /* ---------- Portrait fallback ---------- */
-  var portraitImg = document.getElementById('portraitImg');
-  var portraitFrame = portraitImg && portraitImg.closest('.portrait-frame');
-
-  if (portraitImg && portraitFrame) {
-    function markPortraitMissing() { portraitFrame.classList.add('is-empty'); }
-    portraitImg.addEventListener('error', markPortraitMissing);
-    if (portraitImg.complete && portraitImg.naturalWidth === 0) { markPortraitMissing(); }
-  }
+  var portraitImgs = document.querySelectorAll('.portrait-frame img');
+  portraitImgs.forEach(function (img) {
+    var frame = img.closest('.portrait-frame');
+    if (!frame) { return; }
+    function markPortraitMissing() { frame.classList.add('is-empty'); }
+    img.addEventListener('error', markPortraitMissing);
+    if (img.complete && img.naturalWidth === 0) { markPortraitMissing(); }
+  });
 
   /* ---------- Footer year ---------- */
   var yearEl = document.getElementById('year');
