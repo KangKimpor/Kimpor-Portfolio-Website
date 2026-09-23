@@ -3,292 +3,763 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Kimpor Kang, civil engineering student and project coordinator at Singbuild Construction. Hotel, residential, F&amp;B and office fit-out in Phnom Penh, from drawings to handover.">
-  <meta name="theme-color" content="#0d2841">
+  <meta name="description" content="Kimpor Kang, Civil Engineering student at Paragon International University and Project Coordinator at Singbuild Construction Co., Ltd. Hotel, residential, retail, F&amp;B and office fit-out in Phnom Penh, from drawings to handover.">
+  <meta name="theme-color" content="#FBFBFA">
+  <meta name="color-scheme" content="light">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kimpor Kang | Civil Engineering Portfolio">
-  <meta property="og:description" content="Civil Engineering student &amp; project coordinator at Singbuild Construction Co., Ltd. Hotel, residential, retail, F&amp;B and office fit-out projects in Phnom Penh, Cambodia.">
+  <meta property="og:description" content="Project Coordinator at Singbuild Construction Co., Ltd. Site documentation, quantity takeoff, BOQ and handover packages for hotel, residential, retail, F&amp;B and office fit-out in Phnom Penh, Cambodia.">
   <meta property="og:url" content="https://kimpor-portfolio-website.vercel.app/">
   <meta property="og:image" content="https://kimpor-portfolio-website.vercel.app/images/hero.jpg?v=4">
   <meta name="twitter:card" content="summary_large_image">
   <title>Kimpor Kang | Civil Engineering Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/hero.jpg?v=4" fetchpriority="high">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ===== Top bar: logo block + menu cells + burger ===== -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== Inline icon sprite: hairline line work, no icon font ===== -->
+  <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="ico-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 12h16.6M14.2 6.2 20.2 12l-6 5.8"/></symbol>
+      <symbol id="ico-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6v16.6M6.2 14.2 12 20.2l5.8-6"/></symbol>
+      <symbol id="ico-chev-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.6 5.4 8 12l6.6 6.6"/></symbol>
+      <symbol id="ico-chev-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.4 5.4 16 12l-6.6 6.6"/></symbol>
+      <symbol id="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.6 5.6 18.4 18.4M18.4 5.6 5.6 18.4"/></symbol>
+      <symbol id="ico-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 6.2h17.2v11.6H3.4z"/><path d="m4.1 7 7.9 6.1L20 7"/></symbol>
+      <symbol id="ico-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.8v10.4M7.9 10.2 12 14.3l4.1-4.1"/><path d="M4.4 17.4v2.8h15.2v-2.8"/></symbol>
+      <symbol id="ico-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 5.2h17.2v13.6H3.4z"/><path d="m7.3 10 2.3 2-2.3 2M12 14.6h4.9"/></symbol>
+      <symbol id="ico-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5.4h12v15.2H6z"/><path d="M9.4 3.4h5.2v3.4H9.4z"/><path d="M9 10.4h6M9 13.7h6M9 17h3.6"/></symbol>
+      <symbol id="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="m7.9 12.3 2.7 2.7 5.5-6"/></symbol>
+      <symbol id="ico-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2.6 9.5 9.4-4.6 9.4 4.6-9.4 4.6z"/><path d="M6.6 11.6v4.3c0 1.7 10.8 1.7 10.8 0v-4.3"/><path d="M20.6 10.2v5.6"/></symbol>
+      <symbol id="ico-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.2 5.4h9.4v15.2H4.2z"/><path d="M13.6 10.4h6.2v10.2h-6.2z"/><path d="M7 8.6h1.6M10.4 8.6h1.6M7 12h1.6M10.4 12h1.6M7 15.4h1.6M10.4 15.4h1.6"/></symbol>
+      <symbol id="ico-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><ellipse cx="12" cy="12" rx="4.1" ry="8.6"/><path d="M3.6 12h16.8"/></symbol>
+      <symbol id="ico-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 19.2 6v6c0 4.4-3 7.5-7.2 9-4.2-1.5-7.2-4.6-7.2-9V6z"/><path d="m8.9 12.1 2.4 2.4 4.1-4.6"/></symbol>
+      <symbol id="ico-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.6" r="3.5"/><path d="M5 19.8c.6-3.4 3.5-5.2 7-5.2s6.4 1.8 7 5.2"/></symbol>
+      <symbol id="ico-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 3.6 3.6 10.4l6.3 2.5 2.5 6.3z"/><path d="m9.9 12.9 10.5-9.3"/></symbol>
+      <symbol id="ico-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 14.65,8.36 21.51,8.91 16.28,13.39 17.88,20.09 12,16.5 6.12,20.09 7.72,13.39 2.49,8.91 9.36,8.36"/></symbol>
+      <symbol id="ico-star-o" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><polygon points="12,2 14.65,8.36 21.51,8.91 16.28,13.39 17.88,20.09 12,16.5 6.12,20.09 7.72,13.39 2.49,8.91 9.36,8.36"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ===== Sticky top navigation ===== -->
   <header class="topbar" id="top">
-        <a class="logo" href="#top" aria-label="Kimpor Kang, back to top">
-      <span class="logo-words">
-        <span class="logo-name">KIMPOR&nbsp;KANG</span>
-        <span class="logo-tag">Civil Engineering · Phnom Penh</span>
-      </span>
-    </a>
-    <nav class="menu" aria-label="Primary">
-      <a class="menu-item is-active" data-nav href="#about">About</a>
-      <a class="menu-item" data-nav href="#projects">Projects</a>
-      <a class="menu-item" data-nav href="#side-projects">Side&nbsp;Projects</a>
-      <a class="menu-item" data-nav href="#contact">Contact</a>
-    </nav>
-    <button class="burger" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navPanel">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Kimpor Kang, back to top">
+        <span class="brand-name">Kimpor&nbsp;Kang</span>
+        <span class="brand-tag">Civil Engineering · Singbuild Construction</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-link" data-nav href="#about">About</a>
+        <a class="nav-link" data-nav href="#experience-and-education">Experience</a>
+        <a class="nav-link" data-nav href="#projects-and-milestones">Projects</a>
+        <a class="nav-link" data-nav href="#workflow-utilities">Utilities</a>
+        <a class="nav-link" data-nav href="#handover-competencies">Competencies</a>
+        <a class="nav-link" data-nav href="#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <a class="btn btn-ghost btn-sm nav-cta" href="#contact">Get in Touch</a>
+        <a class="btn btn-accent btn-sm" href="mailto:kimporkang01@gmail.com?subject=Dossier%20request%20%E2%80%94%20Kimpor%20Kang">Dossier</a>
+        <button class="burger" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navPanel">
+          <span></span><span></span><span></span>
+        </button>
+        <span class="avatar" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><use href="#ico-user"></use></svg></span>
+      </div>
+    </div>
   </header>
 
-  <!-- ===== Side menu (slides in from the right) ===== -->
-  <div class="menu-backdrop" id="navBackdrop"></div>
-  <aside class="side-menu" id="navPanel" aria-hidden="true">
-    <div class="side-menu-head">
-      <span class="side-menu-brand">KIMPOR&nbsp;KANG</span>
-      <button class="side-menu-close" id="navClose" type="button" aria-label="Close menu">
-        <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.6"/></svg>
+  <!-- ===== Mobile drawer ===== -->
+  <div class="drawer-backdrop" id="navBackdrop"></div>
+  <aside class="drawer" id="navPanel" aria-hidden="true" aria-label="Sections" inert>
+    <div class="drawer-head">
+      <span class="drawer-brand">Kimpor&nbsp;Kang</span>
+      <button class="drawer-close" id="navClose" type="button" aria-label="Close menu">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-close"></use></svg>
       </button>
     </div>
-    <nav class="side-menu-links" aria-label="Sections">
-      <a class="side-link" data-nav href="#about"><span class="sl-num">01</span>About</a>
-      <a class="side-link" data-nav href="#projects"><span class="sl-num">02</span>Projects</a>
-      <a class="side-link" data-nav href="#side-projects"><span class="sl-num">03</span>Side Projects</a>
-      <a class="side-link" data-nav href="#contact"><span class="sl-num">04</span>Contact</a>
+    <nav class="drawer-links" aria-label="Sections">
+      <a class="drawer-link" data-nav href="#about"><span class="drawer-num">01</span>About</a>
+      <a class="drawer-link" data-nav href="#experience-and-education"><span class="drawer-num">02</span>Experience &amp; Education</a>
+      <a class="drawer-link" data-nav href="#projects-and-milestones"><span class="drawer-num">03</span>Projects &amp; Milestones</a>
+      <a class="drawer-link" data-nav href="#workflow-utilities"><span class="drawer-num">04</span>Workflow Utilities</a>
+      <a class="drawer-link" data-nav href="#handover-competencies"><span class="drawer-num">05</span>Handover Competencies</a>
+      <a class="drawer-link" data-nav href="#contact"><span class="drawer-num">06</span>Contact</a>
     </nav>
-    <div class="side-menu-foot">
-      <p class="smf-strong">Kimpor Kang</p>
+    <div class="drawer-foot">
+      <p class="drawer-strong">Kimpor Kang</p>
       <p>Project Coordinator · Singbuild Construction Co., Ltd.</p>
       <p>Phnom Penh, Cambodia</p>
-      <p class="smf-domain"><a href="mailto:kimporkang01@gmail.com">kimporkang01@gmail.com</a></p>
+      <p><a href="mailto:kimporkang01@gmail.com">kimporkang01@gmail.com</a></p>
     </div>
   </aside>
 
-  <!-- ===== Hero ===== -->
-  <section class="hero">
-    <img class="hero-img" src="images/hero.jpg?v=4" alt="Luxury penthouse living room interior, UVP2 Penthouse P5, Phnom Penh" fetchpriority="high" decoding="async">
-    <div class="hero-veil" aria-hidden="true"></div>
-    <div class="hero-inner">
-      <p class="hero-eyebrow reveal">Kimpor Kang · Phnom Penh, Cambodia</p>
-      <div class="hero-title-wrap reveal">
-        <h1 class="hero-title">Project coordination, from drawing to handover.</h1>
-      </div>
-      <p class="hero-sub reveal">Civil Engineering student and project coordinator at Singbuild Construction Co., Ltd. I turn drawings, schedules and site progress into buildings handed over on time.</p>
-      <div class="hero-actions reveal">
-        <a class="btn btn-solid" href="#projects">View Projects</a>
-        <a class="btn btn-line" href="#contact">Get in Touch</a>
-      </div>
-    </div>
-  </section>
+  <main id="main">
 
+    <!-- ===== Hero: dossier cover sheet ===== -->
+    <section class="hero" id="overview">
+      <div class="wrap">
+        <p class="status-pill status-inline">
+          <span class="beacon beacon-live" aria-hidden="true"></span>
+          Open to site management &amp; project coordination roles
+          <span class="status-sep" aria-hidden="true">|</span>
+          <span class="status-loc">Phnom Penh, KH</span>
+        </p>
 
-  <!-- ===== About ===== -->
-  <section class="section" id="about">
-    <div class="container">
-      <p class="section-label reveal"><span>01</span>About</p>
-      <div class="about-grid">
-        <div class="portrait-frame reveal">
-          <span class="portrait-fallback" aria-hidden="true">KK</span>
-          <img id="portraitImg" src="images/portrait-cutout.webp?v=3" alt="Portrait of Kimpor Kang" width="760" height="938" decoding="async" loading="lazy">
-          <p class="portrait-caption">Kimpor Kang<em>Project Coordinator · Singbuild Construction</em></p>
+        <div class="hero-grid">
+          <div class="hero-lead">
+            <p class="eyebrow">Dossier // Kimpor Kang</p>
+            <h1 class="hero-title">Project coordination, from drawing to handover.</h1>
+          </div>
+          <div class="hero-spec card">
+            <div class="spec-row"><span>Firm affiliation</span><strong>Singbuild Co., Ltd.</strong></div>
+            <div class="spec-row"><span>Academic standing</span><strong class="text-accent">Full national scholar</strong></div>
+            <div class="spec-row"><span>Delivery record</span><strong class="text-ok">5 handed over · 2 live</strong></div>
+          </div>
         </div>
-        <div class="about-text reveal">
-          <h2 class="section-title">About</h2>
-          <p>I'm a junior Civil Engineering student at <strong>Paragon International University</strong>, Phnom Penh, on a fully funded national scholarship. Alongside my degree, I work with <strong>Singbuild Construction Co., Ltd.</strong>, a design &amp; build contractor established in 2015, coordinating hotel, residential, retail, F&amp;B and office fit-out projects.</p>
-          <p>My daily work is the paperwork that keeps a site moving: progress reports, quantity takeoff (QTO) and BOQ documentation, procurement and delivery tracking, RFIs and transmittals, method statements, defect lists and handover packages. I also visit site to verify that what is reported matches what is built.</p>
-          <p>I enjoy building small tools that remove repetitive work, and I'm steadily connecting what I learn in the classroom with what actually happens on site.</p>
-          <dl class="facts-list">
-            <div><dt>Degree</dt><dd>B.Sc. Civil Engineering (junior), Paragon International University, full national scholarship</dd></div>
-            <div><dt>Experience</dt><dd>Project coordination at Singbuild since July 2025: hotel, residential, F&amp;B and office packages</dd></div>
-            <div><dt>Focus</dt><dd>Site reporting · quantity takeoff · BOQ &amp; procurement · handover documentation</dd></div>
-            <div><dt>Languages</dt><dd>Khmer (native) · English (fluent, IELTS 7.5) · Chinese (limited working)</dd></div>
-            <div><dt>Based in</dt><dd>Phnom Penh, Cambodia</dd></div>
+
+        <p class="hero-sub">Civil Engineering student at <strong>Paragon International University</strong> on a full national scholarship, and Project Coordinator at <strong>Singbuild Construction Co., Ltd.</strong> I run the documentation that keeps sites moving: master schedules, progress reporting, quantity takeoff and BOQ, RFI and submittal registers, and handover packages for hotel, retail, F&amp;B, office and luxury residential fit-out across Phnom Penh.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects-and-milestones">Explore project dossiers <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-arrow-down"></use></svg></a>
+          <a class="btn btn-secondary" href="#contact">Direct contact terminal <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-mail"></use></svg></a>
+          <a class="btn btn-quiet" href="#workflow-utilities"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-terminal"></use></svg> View site automation tools</a>
+        </div>
+
+        <dl class="metrics">
+          <div class="metric">
+            <dt>Field deployment</dt>
+            <dd class="metric-value">7</dd>
+            <dd class="metric-note">Fit-out and construction packages coordinated at Singbuild</dd>
+          </div>
+          <div class="metric">
+            <dt>Handed over</dt>
+            <dd class="metric-value">5</dd>
+            <dd class="metric-note">Packages closed out and handed to the client on programme</dd>
+          </div>
+          <div class="metric">
+            <dt>Academic merit</dt>
+            <dd class="metric-value metric-value-sm">PIU Scholar <svg class="ico ico-accent" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-check"></use></svg></dd>
+            <dd class="metric-note">Full 4-year national civil engineering scholarship</dd>
+          </div>
+          <div class="metric">
+            <dt>Linguistic agility</dt>
+            <dd class="metric-value">7.5</dd>
+            <dd class="metric-note">IELTS Academic · Khmer native · Mandarin basic</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== Edge-to-edge feature band ===== -->
+    <figure class="band">
+      <img class="band-img" src="images/hero.jpg?v=4" alt="Rendered interior of a luxury penthouse living room with floor-to-ceiling glazing, UVP2 Penthouse P5, Phnom Penh" width="2400" height="1350" fetchpriority="high" decoding="async">
+      <figcaption class="wrap band-caption">
+        <span class="mono-note">Featured // UVP2 Penthouse P5</span>
+        <span class="mono-note">Phnom Penh · Live ID &amp; MEP fit-out</span>
+      </figcaption>
+    </figure>
+
+    <!-- ===== 01 Operational competency ===== -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">01 // Operational Competency</p>
+          <h2 class="section-title">Engineering Mindset, Ground-Level Rigour.</h2>
+          <p class="section-lede">Structural theory in one hand, site reality in the other: drawings, cost, code and sub-contractors held on one line of communication.</p>
+        </header>
+
+        <div class="grid-12">
+          <div class="col-7">
+            <article class="card card-pad prose">
+              <h3 class="card-title">Bridging Structural Theory with Active Site Delivery</h3>
+              <p>At Singbuild Construction my coordination approach treats a site as one interconnected system where drawing accuracy, structural safety, commercial viability and sub-contractor alignment meet. Resolving an MEP and ID clash or sequencing a slab repair carries the same mandate: remove the ambiguity before it becomes a costly field variation.</p>
+              <p>I am in my third year of Civil Engineering at Paragon International University on a competitive national scholarship, pairing structural analysis fundamentals with the administrative machinery a live site needs: daily labour and progress reporting, fast-turnaround transmittals, procurement tracking and snag-list close-out through to authority handover.</p>
+            </article>
+            <article class="card card-pad scope-card">
+              <p class="eyebrow eyebrow-dim">Daily operational scope</p>
+              <ul class="pill-list">
+                <li class="badge">Progress S-curves &amp; tracking</li>
+                <li class="badge">Quantity takeoff (QTO)</li>
+                <li class="badge">Bill of quantities (BOQ)</li>
+                <li class="badge">RFI / RFA submittals</li>
+                <li class="badge">Method statements</li>
+                <li class="badge">Subcontractor quality checks</li>
+                <li class="badge">Authority &amp; mall fit-out permits</li>
+                <li class="badge">Defect liability close-out</li>
+              </ul>
+            </article>
+
+            <div class="grid-2 snapshot">
+              <article class="card card-pad">
+                <p class="snapshot-kicker"><svg class="ico ico-accent" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-cap"></use></svg>Paragon International University</p>
+                <h3 class="card-title-sm">B.Sc. Civil Engineering</h3>
+                <p class="card-desc">Full 100% four-year tuition scholarship awarded through a national academic competition. Junior standing, studying structural analysis alongside site work.</p>
+              </article>
+              <article class="card card-pad">
+                <p class="snapshot-kicker"><svg class="ico ico-accent" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-building"></use></svg>Singbuild Construction</p>
+                <h3 class="card-title-sm">Project Coordinator</h3>
+                <p class="card-desc">July 2025 to present. Documentation and coordination across Norodom Business Center, the UVP2 packages and high-street retail fit-out.</p>
+              </article>
+            </div>
+          </div>
+          <aside class="col-5">
+            <div class="card card-pad spec-card">
+              <div class="card-head">
+                <h3 class="card-title-sm"><svg class="ico ico-accent" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-clipboard"></use></svg>Candidate Spec Sheet</h3>
+                <span class="badge">Doc ID: KK-ENG-25</span>
+              </div>
+              <dl class="spec-sheet">
+                <div>
+                  <dt>Primary discipline</dt>
+                  <dd>Structural coordination, QTO and MEP / ID fit-out management</dd>
+                </div>
+                <div>
+                  <dt>Quantification stack</dt>
+                  <dd>MS Excel (QTO matrices, S-curve models) · AutoCAD · PlanGrid</dd>
+                </div>
+                <div>
+                  <dt>Digital utilities</dt>
+                  <dd>React · Firebase · Telegram Bot API · Google Apps Script</dd>
+                </div>
+                <div>
+                  <dt>Languages</dt>
+                  <dd>English: IELTS 7.5 Academic (C1)<br>Khmer: native<br>Mandarin: basic site use</dd>
+                </div>
+                <div>
+                  <dt>Availability</dt>
+                  <dd>Open to project coordination and site management roles in Phnom Penh, with regional travel</dd>
+                </div>
+              </dl>
+              <a class="btn btn-secondary btn-block" href="mailto:kimporkang01@gmail.com?subject=Verification%20dossier%20request%20%E2%80%94%20Kimpor%20Kang">Request verification dossier <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-arrow-right"></use></svg></a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 02 Experience & education ===== -->
+    <section class="section section-alt" id="experience-and-education">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">02 // Experience &amp; Education</p>
+          <h2 class="section-title">A Field Record Backed by a Degree in Progress.</h2>
+          <p class="section-lede">Site administration at a design and build contractor, carried alongside full-time civil engineering study.</p>
+        </header>
+
+        <div class="grid-12">
+          <aside class="col-4">
+            <div class="portrait-card">
+              <div class="portrait-frame">
+                <span class="portrait-tile" aria-hidden="true">KK</span>
+                <img id="portraitImg" src="images/portrait-cutout.webp?v=3" alt="Portrait of Kimpor Kang" width="760" height="938" loading="lazy" decoding="async">
+              </div>
+              <div class="portrait-meta">
+                <span class="mono-note">Kimpor Kang</span>
+                <span class="mono-note">Project Coordinator · Singbuild</span>
+              </div>
+            </div>
+          </aside>
+
+          <div class="col-8 timeline">
+            <article class="entry card card-pad">
+              <div class="entry-head">
+                <h3 class="card-title-sm">Singbuild Construction Co., Ltd.</h3>
+                <p class="mono-note">Project Coordinator · Jul 2025 to present · Phnom Penh</p>
+              </div>
+              <ul class="entry-list">
+                <li>Document control for the Norodom Business Center guestroom fit-out, held aligned across eleven floors from level 13 to 23F.</li>
+                <li>Progress reporting with S-curves, daily labour returns and weekly site reports issued to client consultants.</li>
+                <li>Quantity takeoff, BOQ documentation, material approvals and procurement tracking for the UVP2 packages and retail fit-out.</li>
+                <li>RFI and RFA registers, method statements, transmittals, authority permits, defect lists and handover packages through to defect liability close-out.</li>
+              </ul>
+            </article>
+
+            <article class="entry card card-pad">
+              <div class="entry-head">
+                <h3 class="card-title-sm">Paragon International University</h3>
+                <p class="mono-note">B.Sc. Civil Engineering · Junior standing · Full national scholarship</p>
+              </div>
+              <ul class="entry-list">
+                <li>Structural analysis fundamentals: load paths, reinforced concrete behaviour, steel and section design.</li>
+                <li>Coursework applied on site: reading construction drawings, measuring works for QTO, and checking built work against specification.</li>
+                <li>Competitive full tuition scholarship held across the degree programme.</li>
+              </ul>
+            </article>
+
+            <article class="entry card card-pad">
+              <div class="entry-head">
+                <h3 class="card-title-sm">Independent Site Tooling</h3>
+                <p class="mono-note">Self-directed builds · 2025 to present</p>
+              </div>
+              <ul class="entry-list">
+                <li>A React and Firebase web app that lets staff allocate their own site ride codes.</li>
+                <li>A Telegram to Google Sheets pipeline that logs daily sub-contractor headcount per trade.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 Field projects ===== -->
+    <section class="section" id="projects-and-milestones">
+      <div class="wrap">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="eyebrow">03 // Field Projects</p>
+            <h2 class="section-title">Coordination Dossiers &amp; Milestones.</h2>
+            <p class="section-lede">Seven packages supported at Singbuild Construction Co., Ltd., from first site survey to handover and warranty. Tap any photo to open the full gallery.</p>
+          </div>
+          <div class="filter-bar" role="group" aria-label="Filter projects by status">
+            <button class="filter-btn is-active" data-filter="all" type="button">All<em>7</em></button>
+            <button class="filter-btn" data-filter="handed-over" type="button">Handed over<em>5</em></button>
+            <button class="filter-btn" data-filter="ongoing" type="button">Active<em>2</em></button>
+          </div>
+        </header>
+
+        <div class="projects-grid" id="projectsGrid">
+          <article class="card project-card" data-status="ongoing">
+            <div class="card-media" data-gallery="norodom-business-center" data-total="16">
+              <img src="images/projects/norodom-business-center/01.jpg?v=3" width="1280" height="800" alt="Norodom Business Center guestroom fit-out" loading="lazy" decoding="async" onerror="this.remove()">
+              <span class="status-pill status-ongoing"><span class="beacon" aria-hidden="true"></span>Ongoing</span>
+              <span class="media-index">LVL 13–23F</span>
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">Hotel guestroom fit-out · 11 floors</p>
+              <h3 class="card-title">Norodom Business Center</h3>
+              <p class="card-desc">Document control for the guestroom fit-out on levels 13 to 23: master schedule, ID procurement, MEP method statements and signage, kept aligned across eleven floors.</p>
+              <dl class="card-meta">
+                <div><dt>Scope</dt><dd>Hotel guestroom interior fit-out</dd></div>
+                <div><dt>Location</dt><dd>Phnom Penh · Levels 13–23F</dd></div>
+                <div><dt>Deliverables</dt><dd>Master schedule, method statements, procurement</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="card project-card" data-status="handed-over">
+            <div class="card-media" data-gallery="uvp2-retiling" data-total="6">
+              <img src="images/projects/uvp2-retiling/01.png?v=3" width="1280" height="800" alt="UVP2 floor re-tiling and slab repair work" loading="lazy" decoding="async" onerror="this.remove()">
+              <span class="status-pill status-ahead"><span class="beacon" aria-hidden="true"></span>Ahead of Schedule</span>
+              <span class="media-index">SLAB REPAIR</span>
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">Floor re-tiling &amp; structural repair</p>
+              <h3 class="card-title">UVP2 Retilling Work</h3>
+              <p class="card-desc">Inspections, material approvals and progress reports for hacking, re-tiling and slab repair. Closed months ahead of programme.</p>
+              <dl class="card-meta">
+                <div><dt>Scope</dt><dd>Floor re-tiling, hacking and slab repair</dd></div>
+                <div><dt>Location</dt><dd>Urban Village Phase 2, Phnom Penh</dd></div>
+                <div><dt>Deliverables</dt><dd>Inspection records, material approvals, progress reports</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="card project-card" data-status="handed-over">
+            <div class="card-media" data-gallery="uvp2-common-areas" data-total="34">
+              <img src="images/projects/uvp2-common-areas/01.png?v=3" width="1280" height="800" alt="UVP2 common areas handover finishes" loading="lazy" decoding="async" onerror="this.remove()">
+              <span class="status-pill status-done"><span class="beacon" aria-hidden="true"></span>Handed Over</span>
+              <span class="media-index">TOWERS H · F · G · E</span>
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">Common areas · Towers H, F, G and E</p>
+              <h3 class="card-title">UVP2 Common Areas</h3>
+              <p class="card-desc">Document control through handover for the common areas of Towers H, F, G and E at Urban Hub (Cambodia): submissions, transmittals, procurement tracking and the completion report of November 2025.</p>
+              <dl class="card-meta">
+                <div><dt>Scope</dt><dd>Common area finishes and services</dd></div>
+                <div><dt>Location</dt><dd>Urban Village Phase 2, Phnom Penh</dd></div>
+                <div><dt>Deliverables</dt><dd>Submittals, transmittals, completion report</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="card project-card" data-status="handed-over">
+            <div class="card-media" data-gallery="uvp2-swimming-pool" data-total="26">
+              <img src="images/projects/uvp2-swimming-pool/01.jpg?v=3" width="1280" height="800" alt="UVP2 swimming pool and restroom facility finishes" loading="lazy" decoding="async" onerror="this.remove()">
+              <span class="status-pill status-done"><span class="beacon" aria-hidden="true"></span>Handed Over</span>
+              <span class="media-index">POOL DECK</span>
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">Swimming pool &amp; restroom facility</p>
+              <h3 class="card-title">UVP2 Swimming Pool</h3>
+              <p class="card-desc">Five shop-drawing revisions, tiling method statements and testing and commissioning support for pool MEP, then defect close-out through the liability period.</p>
+              <dl class="card-meta">
+                <div><dt>Scope</dt><dd>Pool finishes and facility MEP</dd></div>
+                <div><dt>Location</dt><dd>Urban Village Phase 2, Phnom Penh</dd></div>
+                <div><dt>Deliverables</dt><dd>Shop drawings, method statements, commissioning</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="card project-card" data-status="handed-over">
+            <div class="card-media" data-gallery="singapore-airlines" data-total="12">
+              <img src="images/projects/singapore-airlines/01.jpg?v=3" width="1280" height="800" alt="Singapore Airlines Phnom Penh office renovation" loading="lazy" decoding="async" onerror="this.remove()">
+              <span class="status-pill status-done"><span class="beacon" aria-hidden="true"></span>Handed Over</span>
+              <span class="media-index">OFFICE REFIT</span>
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">Office renovation</p>
+              <h3 class="card-title">Singapore Airlines Office</h3>
+              <p class="card-desc">Submissions, site-entry permits, replacement loose-furniture drawings and the handover timeline, tracked through to completion.</p>
+              <dl class="card-meta">
+                <div><dt>Scope</dt><dd>Airline office interior renovation</dd></div>
+                <div><dt>Location</dt><dd>Phnom Penh</dd></div>
+                <div><dt>Deliverables</dt><dd>Submittals, permits, loose furniture drawings</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="card project-card" data-status="handed-over">
+            <div class="card-media" data-gallery="kfk-kmall2" data-total="12">
+              <img src="images/projects/kfk-kmall2/01.png?v=3" width="1280" height="800" alt="KFK KMALL 2 food and beverage fit-out" loading="lazy" decoding="async" onerror="this.remove()">
+              <span class="status-pill status-done"><span class="beacon" aria-hidden="true"></span>Handed Over</span>
+              <span class="media-index">F&amp;B · KMALL 2</span>
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">F&amp;B fit-out · ID &amp; MEP</p>
+              <h3 class="card-title">KFK KMALL 2</h3>
+              <p class="card-desc">Fit-out coordination from mall permits and material boards through thirteen weekly reports, MEP training and defect close-out. Handed over in February 2026.</p>
+              <dl class="card-meta">
+                <div><dt>Scope</dt><dd>Food and beverage unit fit-out</dd></div>
+                <div><dt>Location</dt><dd>KMALL 2, Phnom Penh</dd></div>
+                <div><dt>Deliverables</dt><dd>Weekly reports, material boards, MEP training</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="card project-card" data-status="ongoing">
+            <div class="card-media" data-gallery="uvp2-penthouse-p5" data-total="21">
+              <img src="images/projects/uvp2-penthouse-p5/01.jpg?v=3" width="1280" height="800" alt="UVP2 Penthouse P5 interior fit-out" loading="lazy" decoding="async" onerror="this.remove()">
+              <span class="status-pill status-ongoing"><span class="beacon" aria-hidden="true"></span>Ongoing</span>
+              <span class="media-index">PENTHOUSE P5</span>
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">Luxury penthouse interior · ID &amp; MEP</p>
+              <h3 class="card-title">UVP2 Penthouse P5</h3>
+              <p class="card-desc">Quantity takeoff and BOQ for interior and MEP works, door, window and carpentry schedules, RFA and RFI tracking and the catch-up master programme.</p>
+              <dl class="card-meta">
+                <div><dt>Scope</dt><dd>Penthouse interior and MEP fit-out</dd></div>
+                <div><dt>Location</dt><dd>Urban Village Phase 2, Phnom Penh</dd></div>
+                <div><dt>Deliverables</dt><dd>QTO, BOQ, RFA / RFI tracking, catch-up programme</dd></div>
+              </dl>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 04 Engineering utilities ===== -->
+    <section class="section section-alt" id="workflow-utilities">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">04 // Engineering Utilities</p>
+          <h2 class="section-title">Engineering Utilities &amp; Workflow Automation.</h2>
+          <p class="section-lede">Small internal tools built to take a repetitive step off the team. These are personal side builds, not a software engineering practice.</p>
+        </header>
+
+        <div class="util-grid">
+          <article class="card card-pad util-card">
+            <div class="card-head">
+              <span class="badge">Utility // App Build</span>
+              <span class="status-pill status-done"><span class="beacon" aria-hidden="true"></span>Active in Production</span>
+            </div>
+            <h3 class="card-title">SB Grab Code Tracker</h3>
+            <p class="card-kicker">Ride-code allocation · React &amp; Firebase</p>
+            <figure class="util-media">
+              <img src="images/side/sb-grab.jpg?v=3" alt="SB Grab Code Tracker screen showing 53 of 110 ride codes still available" width="880" height="1046" loading="lazy" decoding="async">
+              <figcaption class="mono-note">Live board · 53 of 110 codes available</figcaption>
+            </figure>
+            <p class="card-desc">Staff collect their own ride codes instead of sending every request through one person. I found the bottleneck at work, then designed and shipped the fix: a live board of available codes with a simple claim step.</p>
+            <div class="compare">
+              <div class="compare-cell">
+                <p class="mono-note mono-warn">The friction</p>
+                <p>Every request queued behind one person, who also had to track which codes were still free.</p>
+              </div>
+              <div class="compare-cell">
+                <p class="mono-note mono-ok">The impact</p>
+                <p>Staff self-serve from the board. One person is no longer the queue, and code availability is visible to everyone.</p>
+              </div>
+            </div>
+            <ul class="pill-list">
+              <li class="badge">React</li>
+              <li class="badge">Firebase</li>
+              <li class="badge">Vercel</li>
+              <li class="badge">Role-based access</li>
+            </ul>
+          </article>
+
+          <article class="card card-pad util-card">
+            <div class="card-head">
+              <span class="badge">Utility // Bot Pipeline</span>
+              <span class="status-pill status-done"><span class="beacon" aria-hidden="true"></span>Active in Production</span>
+            </div>
+            <h3 class="card-title">Manpower Reporting Automation</h3>
+            <p class="card-kicker">Telegram → Google Sheets · Google Apps Script</p>
+            <div class="terminal">
+              <p class="terminal-line terminal-dim">// Telegram webhook · NBC site group</p>
+              <p class="terminal-line">&gt; "NBC: 12 carpenters, 6 MEP, 4 painters"</p>
+              <p class="terminal-line terminal-ok">&gt;&gt; parsed [CARP: 12] [MEP: 6] [PNT: 4]</p>
+              <p class="terminal-line terminal-dim">&gt;&gt; 22 rows appended to NBC_Manpower_2025</p>
+            </div>
+            <p class="card-desc">Supervisors post the daily headcount into a Telegram group in plain text. The bot parses each trade, writes the row into a central Google Sheet, and keeps the manpower curve current without a second data entry pass.</p>
+            <div class="compare">
+              <div class="compare-cell">
+                <p class="mono-note mono-warn">The friction</p>
+                <p>Collating fragmented chat messages into the monthly labour report cost roughly 45 minutes at the end of every site day.</p>
+              </div>
+              <div class="compare-cell">
+                <p class="mono-note mono-ok">The impact</p>
+                <p>Headcount per trade is captured the day it happens, so monthly labour reporting became a refresh instead of a rebuild.</p>
+              </div>
+            </div>
+            <ul class="pill-list">
+              <li class="badge">Telegram Bot API</li>
+              <li class="badge">Google Apps Script</li>
+              <li class="badge">Google Sheets</li>
+              <li class="badge">Regex parsing</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05 Employer value proposition ===== -->
+    <section class="section" id="handover-competencies">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">05 // Employer Value Proposition</p>
+          <h2 class="section-title">Why Hire Kimpor Kang?</h2>
+          <p class="section-lede">The academic grounding of a civil engineering student, paired with real commercial contractor discipline on live sites.</p>
+        </header>
+
+        <div class="pillar-grid">
+          <article class="card card-pad pillar">
+            <span class="pillar-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-shield"></use></svg></span>
+            <h3 class="card-title-sm">Field-Tested Site Rigour</h3>
+            <p class="card-desc">Active Cambodian site conditions, high-density residential towers and live shopping mall restrictions. Handover phases do not rattle me.</p>
+          </article>
+          <article class="card card-pad pillar">
+            <span class="pillar-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-terminal"></use></svg></span>
+            <h3 class="card-title-sm">Digital Precision</h3>
+            <p class="card-desc">Paper trails replaced with structured registers: Excel calculation models, transmittal logs, procurement trackers and snag databases.</p>
+          </article>
+          <article class="card card-pad pillar">
+            <span class="pillar-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-cap"></use></svg></span>
+            <h3 class="card-title-sm">Academic Excellence</h3>
+            <p class="card-desc">Full 100% Paragon International University scholar. Structural load paths, concrete behaviour and steel fundamentals behind every site decision.</p>
+          </article>
+          <article class="card card-pad pillar">
+            <span class="pillar-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-globe"></use></svg></span>
+            <h3 class="card-title-sm">Trilingual Interface</h3>
+            <p class="card-desc">I align international consultants (IELTS 7.5, C1 English), local craft trades (native Khmer) and regional vendors (working Mandarin).</p>
+          </article>
+        </div>
+        <div class="matrix card">
+          <div class="matrix-head">
+            <h3 class="card-title-sm">Competency Verification Matrix</h3>
+            <span class="badge">Standards: ISO 9001 &amp; FIDIC aligned</span>
+          </div>
+          <div class="table-scroll">
+            <table class="matrix-table">
+              <caption class="sr-only">Practical field evidence and self-assessed proficiency per competency domain</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Competency domain</th>
+                  <th scope="col">Practical field proof &amp; tools</th>
+                  <th scope="col" class="ta-right">Proficiency</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Project coordination &amp; master scheduling</th>
+                  <td>Critical path tracking, Gantt updates and eleven-floor guestroom sequencing at Norodom Business Center</td>
+                  <td class="ta-right"><span class="stars" role="img" aria-label="5 out of 5"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg></span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Quantity takeoff (QTO) &amp; BOQ documentation</th>
+                  <td>Penthouse P5 and common-area material verification, door and window schedules, variation support in Excel</td>
+                  <td class="ta-right"><span class="stars stars-4" role="img" aria-label="4 out of 5"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star-o"></use></svg></span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Technical submittals (RFI / RFA)</th>
+                  <td>Shop-drawing registers, material approvals and mock-up sign-off tracked with client consultants</td>
+                  <td class="ta-right"><span class="stars" role="img" aria-label="5 out of 5"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg></span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Digital site workflows &amp; automation</th>
+                  <td>React ride-code application on Firebase, and a Telegram to Google Sheets daily manpower pipeline</td>
+                  <td class="ta-right"><span class="stars" role="img" aria-label="5 out of 5"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg></span></td>
+                </tr>
+                <tr>
+                  <th scope="row">QA/QC inspections &amp; handover closeout</th>
+                  <td>Five packages closed out with completion reports, defect lists and defect liability clearance</td>
+                  <td class="ta-right"><span class="stars" role="img" aria-label="5 out of 5"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star"></use></svg></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="matrix-note">Ratings are self-assessed against documented site deliverables and can be verified on request.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== 06 Hiring & engagement ===== -->
+    <section class="section section-contrast" id="contact">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">06 // Hiring &amp; Engagement</p>
+          <h2 class="section-title">Initiate Collaboration.</h2>
+          <p class="section-lede">Available for project coordination roles, site engineering engagements and construction management recruitment in Phnom Penh.</p>
+        </header>
+
+        <div class="grid-12">
+          <div class="col-5">
+            <div class="card card-pad">
+              <div class="card-head">
+                <h3 class="card-title-sm"><svg class="ico ico-accent" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-mail"></use></svg>Direct Channels</h3>
+                <span class="status-pill status-done"><span class="beacon" aria-hidden="true"></span>Responding</span>
+              </div>
+              <dl class="channel-list">
+                <div class="channel-row">
+                  <dt>Electronic mail</dt>
+                  <dd><a href="mailto:kimporkang01@gmail.com">kimporkang01@gmail.com</a></dd>
+                </div>
+                <div class="channel-row">
+                  <dt>Mobile &amp; Telegram</dt>
+                  <dd><a href="tel:+85595727281">+855 95 727 281</a></dd>
+                </div>
+                <div class="channel-row">
+                  <dt>Professional network</dt>
+                  <dd><a href="https://www.linkedin.com/in/kimpor-kang-bb87b0340" target="_blank" rel="noopener">LinkedIn: Kimpor Kang</a></dd>
+                </div>
+                <div class="channel-row">
+                  <dt>Base location</dt>
+                  <dd>Phnom Penh, Cambodia (open to regional travel)</dd>
+                </div>
+                <div class="channel-row">
+                  <dt>Degree</dt>
+                  <dd>B.Sc. Civil Engineering, Paragon International University</dd>
+                </div>
+              </dl>
+              <a class="btn btn-accent btn-block" href="mailto:kimporkang01@gmail.com?subject=CV%20request%20%E2%80%94%20Kimpor%20Kang&amp;body=Please%20send%20the%20official%20CV%20and%20verified%20transcripts%20package.">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-download"></use></svg>Request official CV
+              </a>
+            </div>
+          </div>
+
+          <div class="col-7">
+            <div class="card card-pad">
+              <div class="card-head">
+                <h3 class="card-title-sm">Direct Inquiry Terminal</h3>
+                <span class="badge">No tracking · Direct dispatch</span>
+              </div>
+              <form class="inquiry" id="portfolioContactForm" data-mailto="kimporkang01@gmail.com">
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="inqName">Your name and title</label>
+                    <input id="inqName" name="name" type="text" autocomplete="name" placeholder="e.g. Senior Project Manager…" required>
+                  </div>
+                  <div class="field">
+                    <label for="inqCompany">Company or firm</label>
+                    <input id="inqCompany" name="organization" type="text" autocomplete="organization" placeholder="e.g. Tier-1 contractor or developer…" required>
+                  </div>
+                </div>
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="inqEmail">Official email address</label>
+                    <input id="inqEmail" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="name@company.com…" required>
+                  </div>
+                  <div class="field">
+                    <label for="inqTopic">Engagement category</label>
+                    <select id="inqTopic" name="topic">
+                      <option>Site management or coordination hire</option>
+                      <option>Quantity surveying and BOQ assignment</option>
+                      <option>Interview scheduling</option>
+                      <option>Request the full project dossier</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="inqMessage">Project scope or message note</label>
+                  <textarea id="inqMessage" name="message" rows="4" placeholder="Outline the development type, expected start date and the deliverables you need…" required></textarea>
+                </div>
+                <div class="inquiry-foot">
+                  <button class="btn btn-primary" type="submit">Send direct inquiry <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-send"></use></svg></button>
+                  <span class="mono-note">Opens in your mail client · typical reply within 24 hours</span>
+                </div>
+                <p class="notice" id="contactFormNotice" role="status" aria-live="polite" hidden></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer: document title block ===== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-name">Kimpor&nbsp;Kang</p>
+          <p class="footer-copy">Project Coordinator at Singbuild Construction Co., Ltd. and undergraduate Civil Engineer at Paragon International University, working across high-density residential and commercial fit-out in Phnom Penh.</p>
+          <p class="footer-status"><span class="beacon beacon-done" aria-hidden="true"></span>Available for project coordination and site engineering work</p>
+        </div>
+        <div>
+          <p class="eyebrow">01 // Navigation</p>
+          <ul class="footer-links">
+            <li><a href="#overview">Portfolio overview</a></li>
+            <li><a data-nav href="#about">Professional dossier</a></li>
+            <li><a data-nav href="#experience-and-education">Singbuild and Paragon University</a></li>
+            <li><a data-nav href="#projects-and-milestones">Field projects and handover</a></li>
+            <li><a data-nav href="#workflow-utilities">Workflow utilities</a></li>
+            <li><a data-nav href="#handover-competencies">Competency matrix</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow">02 // Structural Spec Sheet</p>
+          <dl class="spec-sheet spec-sheet-compact">
+            <div><dt>Role</dt><dd>Project Coordinator</dd></div>
+            <div><dt>Current firm</dt><dd>Singbuild Construction</dd></div>
+            <div><dt>Institution</dt><dd>Paragon International University</dd></div>
+            <div><dt>Location</dt><dd>Phnom Penh, Cambodia</dd></div>
+            <div><dt>Discipline</dt><dd>Structural and site operations</dd></div>
           </dl>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== Projects ===== -->
-  <section class="section section-soft" id="projects">
-    <div class="container">
-      <p class="section-label reveal"><span>02</span>Projects</p>
-      <div class="proj-head">
-        <div>
-          <h2 class="section-title reveal">Projects</h2>
-          <p class="section-lede reveal">Real projects supported at Singbuild Construction Co., Ltd., from first site survey to handover and warranty.</p>
-        </div>
-        <div class="filter-bar reveal" role="group" aria-label="Filter projects by status">
-          <button class="filter-btn is-active" data-filter="all" type="button">All<em>7</em></button>
-          <button class="filter-btn" data-filter="completed" type="button">Completed / Handover<em>5</em></button>
-          <button class="filter-btn" data-filter="ongoing" type="button">Ongoing<em>2</em></button>
-        </div>
+      <div class="footer-base">
+        <p class="mono-note">© <span id="year">2026</span> Kimpor Kang · Document series KK-CE-ENG</p>
+        <p class="mono-note">ISO 9001 / FIDIC aligned · <a href="#contact">Inquiry terminal →</a></p>
       </div>
-
-      <div class="projects-grid" id="projectsGrid">
-
-        <article class="card reveal" data-status="ongoing">
-          <div class="card-media" data-gallery="norodom-business-center" data-total="16">
-            <img src="images/projects/norodom-business-center/01.jpg?v=3" alt="Norodom Business Center project photo" loading="lazy" decoding="async" onerror="this.remove()">
-            <span class="badge"><i class="dot dot-live"></i>Ongoing</span>
-          </div>
-          <div class="card-body">
-            <h3>Norodom Business Center</h3>
-            <p class="card-type">Hotel guestroom fit-out · Levels 13–23F</p>
-            <p class="card-desc">Document control for guestroom fit-out on levels 13–23: master schedule, ID procurement, MEP method statements and signage, kept aligned across eleven floors.</p>
-          </div>
-        </article>
-
-        <article class="card reveal" data-status="completed">
-          <div class="card-media" data-gallery="uvp2-retiling" data-total="6">
-            <img src="images/projects/uvp2-retiling/01.png?v=3" alt="UVP2 re-tiling work project photo" loading="lazy" decoding="async" onerror="this.remove()">
-            <span class="badge"><i class="dot dot-ahead"></i>Ahead of Schedule</span>
-          </div>
-          <div class="card-body">
-            <h3>UVP2 - Retilling Work</h3>
-            <p class="card-type">Floor re-tiling &amp; structural repair</p>
-            <p class="card-desc">Inspections, material approvals and progress reports for hacking, re-tiling and slab repair. Closed months ahead of programme.</p>
-          </div>
-        </article>
-
-        <article class="card reveal" data-status="completed">
-          <div class="card-media" data-gallery="uvp2-common-areas" data-total="34">
-            <img src="images/projects/uvp2-common-areas/01.png?v=3" alt="UVP2 common areas project photo" loading="lazy" decoding="async" onerror="this.remove()">
-            <span class="badge"><i class="dot dot-done"></i>Handed Over</span>
-          </div>
-          <div class="card-body">
-            <h3>UVP2 - Common Areas</h3>
-            <p class="card-type">Common areas · Towers H, F, G and E</p>
-            <p class="card-desc">Document control through handover for the common areas of Towers H, F, G and E at Urban Hub (Cambodia): submissions, transmittals, procurement tracking and the completion report, November 2025.</p>
-          </div>
-        </article>
-
-        <article class="card reveal" data-status="completed">
-          <div class="card-media" data-gallery="uvp2-swimming-pool" data-total="26">
-            <img src="images/projects/uvp2-swimming-pool/01.jpg?v=3" alt="UVP2 swimming pool project photo" loading="lazy" decoding="async" onerror="this.remove()">
-            <span class="badge"><i class="dot dot-done"></i>Completed</span>
-          </div>
-          <div class="card-body">
-            <h3>UVP2 - Swimming Pool</h3>
-            <p class="card-type">Swimming pool &amp; restroom facility</p>
-            <p class="card-desc">Five shop-drawing revisions, tiling method statements and testing &amp; commissioning support for pool MEP, then defect close-out through the liability period.</p>
-          </div>
-        </article>
-
-        <article class="card reveal" data-status="completed">
-          <div class="card-media" data-gallery="singapore-airlines" data-total="12">
-            <img src="images/projects/singapore-airlines/01.jpg?v=3" alt="Singapore Airlines office renovation project photo" loading="lazy" decoding="async" onerror="this.remove()">
-            <span class="badge"><i class="dot dot-done"></i>Completed</span>
-          </div>
-          <div class="card-body">
-            <h3>Singapore Airlines Office</h3>
-            <p class="card-type">Office renovation</p>
-            <p class="card-desc">Submissions, site-entry permits, replacement loose-furniture drawings and the handover timeline, tracked through to completion.</p>
-          </div>
-        </article>
-
-        <article class="card reveal" data-status="completed">
-          <div class="card-media" data-gallery="kfk-kmall2" data-total="12">
-            <img src="images/projects/kfk-kmall2/01.png?v=3" alt="KFK - KMALL 2 project photo" loading="lazy" decoding="async" onerror="this.remove()">
-            <span class="badge"><i class="dot dot-done"></i>Handed Over</span>
-          </div>
-          <div class="card-body">
-            <h3>KFK - KMALL 2</h3>
-            <p class="card-type">F&amp;B fit-out · ID &amp; MEP</p>
-            <p class="card-desc">Fit-out coordination from mall permits and material boards through thirteen weekly reports, MEP training and defect close-out. Handed over February 2026.</p>
-          </div>
-        </article>
-
-        <article class="card reveal" data-status="ongoing">
-          <div class="card-media" data-gallery="uvp2-penthouse-p5" data-total="21">
-            <img src="images/projects/uvp2-penthouse-p5/01.jpg?v=3" alt="UVP2 Penthouse P5 project photo" loading="lazy" decoding="async" onerror="this.remove()">
-            <span class="badge"><i class="dot dot-live"></i>Ongoing</span>
-          </div>
-          <div class="card-body">
-            <h3>UVP2 - Penthouse P5</h3>
-            <p class="card-type">Luxury penthouse interior · ID &amp; MEP</p>
-            <p class="card-desc">Quantity takeoff and BOQ for interior and MEP works, door, window and carpentry schedules, RFA / RFI tracking and the catch-up master programme.</p>
-          </div>
-        </article>
-
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Side Projects ===== -->
-  <section class="section section-navy" id="side-projects">
-    <div class="container">
-      <p class="section-label reveal"><span>03</span>Side Projects</p>
-      <h2 class="section-title reveal">Side Projects</h2>
-      <p class="section-lede reveal">Small internal tools that take a repetitive step off the team. These are personal builds, not a software-engineering practice.</p>
-      <div class="side-grid">
-        <article class="side-card reveal">
-          <img class="side-shot" src="images/side/sb-grab.jpg?v=3" alt="SB Grab Code Tracker showing 53 of 110 codes available" width="880" height="1046" decoding="async" loading="lazy">
-          <p class="side-tag">Web app · Internal tool</p>
-          <h3>SB Grab Code Tracker</h3>
-          <p>Staff collect their own ride codes instead of sending every request through one person. I found the bottleneck at work, then designed and shipped the fix.</p>
-          <p class="side-impact">Staff self-serve the code. One person is no longer the queue.</p>
-          <p class="side-stack">React · Firebase · Vercel</p>
-        </article>
-        <article class="side-card reveal">
-          <div class="tool-frame" aria-hidden="true">
-            <div class="tool-chrome"><span></span><span></span><span></span><em>Manpower</em></div>
-            <div class="tool-body">
-              <div class="tool-sheet"><span></span><span></span><span></span><span></span></div>
-              <div class="tool-sheet"><span></span><span></span><span></span><span></span></div>
-              <div class="tool-sheet"><span></span><span></span><span></span><span></span></div>
-            </div>
-          </div>
-          <p class="side-tag">Automation · Internal tool</p>
-          <h3>Manpower Reporting Automation</h3>
-          <p>Daily manpower totals posted in a Telegram group are written into Google Sheets on their own. The manual retype is gone.</p>
-          <p class="side-impact">One less data-entry pass at the end of every site day.</p>
-          <p class="side-stack">Google Apps Script · Telegram · Google Sheets</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Contact ===== -->
-  <section class="section" id="contact">
-    <div class="container">
-      <p class="section-label reveal"><span>04</span>Contact</p>
-      <h2 class="section-title reveal">Contact</h2>
-      <p class="section-lede reveal">Open to site experience, project coordination roles and engineering conversations in Phnom Penh and beyond.</p>
-      <div class="contact-actions reveal">
-        <a class="btn btn-navy" href="mailto:kimporkang01@gmail.com?subject=Project%20coordination%20%E2%80%94%20Kimpor%20Kang">Email</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/kimpor-kang-bb87b0340" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn btn-ghost" href="mailto:kimporkang01@gmail.com?subject=CV%20request%20%E2%80%94%20Kimpor%20Kang">Request CV</a>
-      </div>
-      <div class="contact-card reveal">
-        <div class="contact-row"><span class="contact-key">Email</span><span class="contact-val"><a href="mailto:kimporkang01@gmail.com">kimporkang01@gmail.com</a></span></div>
-        <div class="contact-row"><span class="contact-key">Phone</span><span class="contact-val"><a href="tel:+85595727281">+855 95 727 281</a></span></div>
-        <div class="contact-row"><span class="contact-key">LinkedIn</span><span class="contact-val"><a href="https://www.linkedin.com/in/kimpor-kang-bb87b0340" target="_blank" rel="noopener">kimpor-kang</a></span></div>
-        <div class="contact-row"><span class="contact-key">Location</span><span class="contact-val">Phnom Penh, Cambodia</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Footer ===== -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <p>&copy; <span id="year">2026</span> Kimpor Kang · Phnom Penh, Cambodia</p>
-      <a class="to-top" href="#top">Back to top &uarr;</a>
     </div>
   </footer>
 
-    <!-- ===== Lightbox ===== -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
+  <!-- ===== Gallery lightbox ===== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" inert>
     <span class="lb-count" id="lightboxCount">1 / 1</span>
-    <button class="lightbox-btn lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
-    <button class="lightbox-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
-    <button class="lightbox-btn lb-next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="Project photo enlarged">
+    <button class="lightbox-btn lb-close" id="lbClose" type="button" aria-label="Close gallery"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-close"></use></svg></button>
+    <button class="lightbox-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chev-left"></use></svg></button>
+    <button class="lightbox-btn lb-next" id="lbNext" type="button" aria-label="Next photo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chev-right"></use></svg></button>
+    <img class="lightbox-img" id="lightboxImg" alt="Enlarged project photo" decoding="async">
   </div>
 
   <script src="js/gallery-manifest.js"></script>
   <script src="js/script.js"></script>
+
+
+
+
+
+
+
+
+
 </body>
 </html>
-
-
-

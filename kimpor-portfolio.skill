@@ -1,6 +1,6 @@
 ---
 name: kimpor-portfolio
-description: Full project context for Kimpor Kang's construction portfolio website — a single-page static site (plain HTML/CSS/vanilla JS, no build step) showcasing 8 construction and interior fit-out projects in Phnom Penh, Cambodia. Use this skill whenever working on, extending, restyling, or deploying this website.
+description: Full project context for Kimpor Kang's construction portfolio website — a single-page static site (plain HTML/CSS/vanilla JS, no build step) covering 7 construction and interior fit-out projects in Phnom Penh, Cambodia, styled with the "Structural Modernist" design system. Use this skill whenever working on, extending, restyling, valuing, or deploying this website.
 metadata:
   owner: Kimpor Kang
   location: Phnom Penh, Cambodia
@@ -12,219 +12,270 @@ metadata:
 
 ## 1. Project Purpose
 
-Personal single-page portfolio for **Kimpor Kang**, a junior Civil Engineering
-student at Paragon International University (Phnom Penh) who works as Project
-Coordinator at **Singbuild Construction Co., Ltd.** (design & build contractor,
-est. 2015). The site presents real construction / interior fit-out project
-experience, skills, side projects, and contact info. Target audience: employers,
-clients, and engineering contacts in Phnom Penh and beyond.
+Personal single-page portfolio for **Kimpor Kang**, a Civil Engineering student at
+Paragon International University (Phnom Penh, full national scholarship) who works as
+Project Coordinator at **Singbuild Construction Co., Ltd.** (design & build contractor,
+est. 2015). The site presents 7 real construction / interior fit-out packages, the
+experience and education record, two internal automation tools, a competency matrix and
+contact channels. Audience: tier-1 contractors, developers, consultants, and recruiters.
 
 ## 2. Tech Stack & Constraints
 
-- **Plain HTML5 + CSS3 + vanilla JavaScript** — no frameworks, no bundlers,
-  no npm dependencies, no build step.
-- Fonts loaded from Google Fonts CDN: `Yantramanav` (headings, menu, labels,
-  counters) and `Poppins` (body copy). Site degrades gracefully to system
-  fonts offline.
-- Deployable as-is on any static host. On Vercel it needs **zero config**
-  (no framework, output = repo root, `index.html` entry).
-- Do NOT introduce a framework, package.json, or build pipeline unless the
-  user explicitly asks — the deliberate simplicity is a design decision.
+- **Plain HTML5 + CSS3 + vanilla JavaScript** — no frameworks, no bundlers, no npm
+  dependencies, no build step. `index.html` is opened directly or served statically.
+- **Fonts** (Google Fonts CDN, system fallbacks): `Plus Jakarta Sans` (display,
+  headings, buttons), `Inter` (body copy), `Space Mono` (metadata, indices, terminals).
+- **Icons**: one inline SVG sprite at the top of `<body>`
+  (`<svg class="sprite">` → `<symbol id="ico-*">`, referenced as
+  `<svg class="ico" viewBox="0 0 24 24"><use href="#ico-star"></use></svg>`).
+  Never add an icon font or icon library; add a symbol to the sprite instead.
+- **Motion**: CSS only. A staggered hero entrance plus a scroll-linked reveal that is
+  wrapped in `@supports (animation-timeline: view())` and
+  `prefers-reduced-motion: no-preference`, so unsupported browsers and reduced-motion
+  users simply get the static layout.
+- **Interactivity is progressive**: every section reads fine without JS; the galleries,
+  filter, lightbox, drawer and form are enhancements.
+- Deployable as-is on any static host. On Vercel it needs **zero config** (no framework,
+  output = repo root, `index.html` entry).
+- Do NOT introduce a framework, package.json, or build pipeline unless the user
+  explicitly asks — the deliberate simplicity is a design decision.
 
 ## 3. File Structure
 
 ```
 Kimpor-Portfolio-Website/
-├── index.html              # The ENTIRE site (single page, ~420 lines)
+├── index.html              # The ENTIRE site (single page, ~6 numbered sections)
 ├── css/
-│   └── style.css           # All styling: tokens, layout, responsive (~20 KB)
+│   └── style.css           # All styling: tokens, layout, components, responsive
 ├── js/
-│   └── script.js           # All interactivity (IIFE, strict mode, ES5-safe)
+│   ├── gallery-manifest.js # Generated gallery filenames (tools/build_galleries.py)
+│   └── script.js           # Drawer, scroll-spy, filter, galleries, lightbox, form
 ├── images/
-│   ├── projects/           # 8 project photo galleries (one folder per project)
-│   ├── hero.jpg            # Hero background (Fengfu render)
-│   ├── KimporKANG_Portrait.png # Owner's headshot (white studio background)
-│   └── portrait-cutout.png # Generated: transparent-background portrait
+│   ├── projects/           # 7 project photo galleries (one folder per project)
+│   ├── side/sb-grab.jpg    # Screenshot of the internal ride-code tool
+│   ├── hero.jpg            # Edge-to-edge featured band (UVP2 Penthouse P5 render)
+│   ├── KimporKANG_Portrait.png  # Owner's headshot (white studio background)
+│   ├── portrait-cutout.webp     # Generated: transparent-background portrait (used)
+│   └── portrait-cutout.png      # Generated PNG fallback of the same cutout
 ├── tools/
 │   ├── cutout.py           # Removes the white background from the headshot
-│   └── build_galleries.py  # Copies + resizes archive photos into the galleries
-├── README.md               # Human docs: run, photo map, edit guides
+│   ├── build_galleries.py  # Copies + resizes archive photos into the galleries
+│   └── _validate.py        # Structural validator: galleries, anchors, sprite, CSS, JS
+├── README.md               # Human docs: run, photo map, design tokens, edit guides
 └── kimpor-portfolio.skill  # This file
 ```
 
-## 4. Design System (css/style.css `:root`)
+## 4. Design System — "Structural Modernist" (css/style.css `:root`)
+
+Editorial minimalism (architectural publication) crossed with technical Swiss structure:
+warm linen canvas, hairline rules, terracotta accent, monospaced drafting annotations.
 
 | Token | Value | Use |
 |---|---|---|
-| `--navy` | `#00283b` | TPMG brand navy: burger, side menu, stats band, hero strip, footer, badges (`rgba(0,40,59,.86)`) |
-| `--navy-2` | `#0a4159` | hovers on navy, text links |
-| `--navy-deep` | `#001d2b` | headings, hero veil + fallback background |
-| `--paper` | `#ffffff` | page background |
-| `--soft` | `#f4f6f8` | alt sections + portrait frame background |
-| `--line` | `#e8e8e9` | hairline borders and dividers (TPMG's sticky-header line) |
-| `--text` / `--dim` | `#383a40` / `#565969` | body / secondary text |
-| `--menu` | `#9aa2ab` | inactive nav menu cells |
-| `--ok` / `--live` | `#2f855a` / `#c07a17` | status colours (dots render `#5fd39a` done, `#f0b34e` ongoing, `#7dc4ff` ahead) |
-| `--bar` | `72px` | top-bar height (60px under 640px) |
-| `--w` | `min(1300px, 92%)` | content width (TPMG uses a 1300px grid) |
+| `--surface-canvas` | `#fbfbfa` | page background |
+| `--surface-card` | `#ffffff` | cards, terminal-free panels |
+| `--surface-subtle` | `#f0efea` | badges, key/value rows, inputs |
+| `--surface-container-low` | `#f4f4f2` | alternating sections + footer |
+| `--surface-container-high` | `#e8e8e6` | contact section |
+| `--primary-container` | `#1e232a` | primary buttons, drawer, terminals |
+| `--accent` | `#c85028` | section indices, kickers, hovers, CTA |
+| `--accent-deep` | `#a83912` | accent hover |
+| `--text-primary/secondary/tertiary` | `#111418` / `#575d66` / `#8a8f98` | copy hierarchy |
+| `--border-subtle` / `--border-strong` | `#e6e6e3` / `#cfceca` | hairlines, hover borders |
+| status ongoing / done / ahead | `#d97706` / `#166534` / `#0284c7` | status pills and beacons |
 
-- Headings, menu, counters, labels: **Yantramanav** (300/400/500/700) — the
-  font TPMG uses. Body copy: **Poppins** (300–600). Both from Google Fonts
-  with system fallbacks.
-- Signature treatments matched to tpmoralgroup.com: solid-color typography
-  only (no ghost/stroke text — the hero title and stat numbers are plain solid
-  text); the logo SVG mark is removed and "KIMPOR KANG" is centered in the top
-  bar; a navy side menu sliding in from the right; uppercase micro-labels with
-  0.1–0.32em letter-spacing; hairline rules; square corners (no border radius
-  anywhere).
-- Re-theming: colours live only in `:root`; README documents the palette.
+- **Type scale**: display hero `clamp(2.25rem, 7vw, 3.5rem)` / -0.03em; section titles
+  `clamp(1.75rem, 3.2vw, 2.25rem)`; card titles 20px/28; body 15px/1.6-1.7; metadata is
+  `Space Mono` 11-12px with 0.04-0.08em tracking (`.eyebrow`, `.mono-note`, `.badge`).
+- **Shape**: 0.125-0.75rem radii on cards/inputs, `9999px` pills for status and filter
+  chips; buttons 0.375rem. No heavy shadows: hover uses
+  `0 8px 24px -4px rgba(17,20,24,.06)` plus a border shift to `--border-strong`.
+- **Layout**: 1140px content grid (`.wrap`), 12-column `.grid-12` with `.col-4/5/7/8`,
+  24px gutters, 48px desktop / 20px mobile outer margins, `4rem` vertical section rhythm.
+- **Photos**: muted grade (`filter: saturate(.92) contrast(.98)`), cover-cropped to
+  16:10 media frames with mono index overlays; the hero band is edge-to-edge.
+- **Re-theming**: change the `:root` tokens and the whole site follows. README carries
+  the same table for humans.
 
 ## 5. Page Sections (index.html, in order)
 
-1. **Top bar** — white bar; the SVG logo mark is removed and "KIMPOR KANG ·
-   Civil Engineering · Phnom Penh" is centered, with equal-width menu cells
-   divided by hairlines (`.menu-item[data-nav]`) and a navy hamburger
-   (`#navToggle`) at the far right. Menu cells hide below 980px.
-2. **Side menu** (`#navPanel`, TPMG style) — the hamburger slides a navy panel
-   in from the right (over `.menu-backdrop`, body gets `.menu-open` to lock
-   scroll) with numbered `.side-link`s and contact meta; closes via the X
-   button (`#navClose`), backdrop click, Escape, or choosing a link.
-3. **Hero** — full-bleed `images/hero.jpg` (Fengfu dusk render) under a navy
-   veil; eyebrow "Kimpor Kang · Phnom Penh, Cambodia"; the plain **"Civil
-   Engineering Portfolio"** title (solid text, no ghost/stroke); sub-line;
-   two buttons (`.btn-solid`, `.btn-line`); navy bottom strip with the domain.
-4. **Stats band** (navy) — four solid-number cells (`.stat-num`), each
-   followed by `.stat-kicker` + `.stat-title`: 8 Projects Supported / 5 Delivery
-   Completed & handed over / 3 Currently ongoing / 4 Sectors Hotel ·
-   Residential · F&B · Office.
-5. **About** (`#about`, label `01`) — portrait frame (`#portraitImg` on a
-   blueprint-grid background with a navy name plate) beside the bio and a
-   hairline `.facts-list` (degree, experience, focus, languages, location).
-6. **Projects** (`#projects`, label `02`, soft-grey) — filter buttons
-   (All 8 / Completed-Handover 5 / Ongoing 3) + 8 `.card` tiles carrying
-   `data-status`; each card has a 16:10 media area that builds a horizontal
-   scroll-snap photo gallery (`data-gallery` + `data-total` → `images/
-   projects/<slug>/01.jpg` …) with prev/next buttons, a counter, and a
-   click-to-open lightbox. Each card also shows a `.badge` with `.dot`,
-   title, type line and description.
-7. **Skills** (`#skills`, label `03`) — groups A/B (`.skill-group`) with
-   `.chip-list` hairline rows.
-8. **Side Projects** (`#side-projects`, label `04`, navy section) — two
-   translucent `.side-card`s: SB Grab Code Tracker, Manpower Reporting
-   Automation.
-9. **Contact** (`#contact`, label `05`) — navy-topped `.contact-card` with
-   label/value rows. **Contains placeholders**: `[Add your email]`,
-   `[Add your phone]`, `[Add your LinkedIn URL]` — update both the visible
-   text and the `mailto:` / `tel:` / href attributes.
-10. **Footer** — navy bar with JS-injected year and back-to-top link.
-
-Scroll-reveal: elements carry `.reveal`; JS adds `.is-visible` via
-IntersectionObserver. Sections use `scroll-margin-top` to clear the sticky bar.
+1. **Top bar** (`#top`, sticky, `backdrop-filter: blur(12px)` at 85% opacity) — brand
+   block "KIMPOR KANG / Civil Engineering · Singbuild Construction", mono `.nav-link`
+   cells for the six sections (shown from 1240px), `Get in Touch` + terracotta `Dossier`
+   buttons, a decorative avatar, and `#navToggle`.
+2. **Drawer** (`#navPanel`, `inert` while closed) — dark panel sliding from the right
+   with numbered `01-06` links and contact meta; closes via `#navClose`, backdrop,
+   Escape or link choice; focus moves to the close button and returns to the burger.
+3. **Hero** (`#overview`) — live status pill, `DOSSIER // KIMPOR KANG` eyebrow, the H1
+   "Project coordination, from drawing to handover.", a hairline spec card (firm
+   affiliation, academic standing, delivery record), a narrative paragraph, three CTAs,
+   and four metric cells (7 / 5 / PIU Scholar / 7.5).
+4. **Featured band** (`figure.band`) — edge-to-edge `images/hero.jpg` with a mono
+   caption pair.
+5. **01 // Operational Competency** (`#about`) — narrative cards, "Daily operational
+   scope" badges, Paragon/Singbuild snapshot cards, and a sticky `Candidate Spec Sheet`
+   card (`Doc ID: KK-ENG-25`).
+6. **02 // Experience & Education** (`#experience-and-education`) — sticky portrait card
+   (`#portraitImg`) beside three entry cards (Singbuild role, Paragon degree, independent
+   tooling) with square-bulleted record lists.
+7. **03 // Field Projects** (`#projects-and-milestones`) — filter chips
+   (All 7 / Handed over 5 / Active 2) above the `#projectsGrid` of 7 `.project-card`
+   tiles; each card has a 16:10 `data-gallery` / `data-total` media strip, status pill,
+   mono index overlay, title, kicker, narrative, and a Scope/Location/Deliverables meta
+   matrix.
+8. **04 // Engineering Utilities** (`#workflow-utilities`) — two utility cards
+   (SB Grab Code Tracker with its screenshot; Manpower Reporting Automation with a
+   terminal snapshot and a friction/impact comparison).
+9. **05 // Employer Value Proposition** (`#handover-competencies`) — four pillars, then
+   the `Competency Verification Matrix` (real `<table>` with labelled star ratings) and a
+   note that ratings are self-assessed.
+10. **06 // Hiring & Engagement** (`#contact`) — `Direct Channels` spec list with dotted
+    separators and a CV request button, plus the `Direct Inquiry Terminal` form
+    (native validation; submit composes a `mailto:` for the visitor's mail client and
+    reveals an `aria-live` notice).
+11. **Footer** — brand/copy/availability beacon, `01 // Navigation` links,
+    `02 // Structural Spec Sheet` key/value pairs, and a hairline base line with the
+    JS-filled year.
+12. **Lightbox** (`#lightbox`, `inert` while closed) — counter, close/prev/next labelled
+    buttons, image, Esc/←/→ support, focus captured on open and returned on close.
 
 ## 6. JavaScript Behavior (js/script.js)
 
-Single IIFE, `'use strict'`, ES5-compatible (var, function expressions) with
-modern APIs guarded:
-1. Side menu: `#navToggle` ↔ `#navPanel` (`.is-open` slides it in from the
-   right), keeps aria-expanded/aria-hidden/label in sync, toggles
-   `body.menu-open` (locks scroll + fades `.menu-backdrop`); also closes via
-   `#navClose`, backdrop click, Escape, or choosing a link.
-2. Scroll reveal via IntersectionObserver; fallback shows everything.
-3. Active nav highlighting: second IntersectionObserver over `section[id]`
-   toggles `.is-active` on every `[data-nav]` link with a matching hash
-   (covers both menu cells and panel links).
-4. Project status filter: `.filter-btn[data-filter]` toggles `.is-hidden` on
-   `#projectsGrid .card` by matching `data-status`; re-adds `.is-visible` so
-   filtered cards don't re-animate.
-5. Project photo galleries: each `.card-media[data-gallery]` builds a
-   scroll-snap strip from `images/projects/<slug>/01.jpg`…`data-total`, with
-   prev/next buttons, a live counter, and click-to-open lightbox navigation
-   (Esc / ← / → supported).
-6. Footer year via `new Date().getFullYear()`.
+Single IIFE, `'use strict'`, ES5-compatible (var, function declarations) with modern APIs
+guarded by feature checks:
+
+1. **Drawer**: `#navToggle` ↔ `#navPanel` (`.is-open` slides it in), keeps
+   `aria-expanded` / `aria-hidden` / label in sync, toggles `body.menu-open`
+   (locks scroll and fades the backdrop), and toggles the panel's `inert` attribute so
+   off-canvas links stay out of the tab order. Focus moves to `#navClose` on open and
+   back to the burger on close. Also closes via backdrop, Escape, or choosing a link.
+2. **Scroll-spy**: an IntersectionObserver over `section[id]` toggles `.is-active` on
+   every `[data-nav]` link whose hash matches (top nav, drawer and footer links alike).
+3. **Project filter**: `.filter-btn[data-filter]` ("all" / "handed-over" / "ongoing")
+   toggles `.is-hidden` on `#projectsGrid .card` by matching `data-status`, and syncs the
+   choice to `?filter=` with `history.replaceState` (wrapped in try/catch, so `file://`
+   simply keeps the filter in memory). Loads read `?filter=` back for deep links.
+4. **Galleries**: each `.card-media[data-gallery]` builds a scroll-snap strip. Only the
+   cover plus the slide on either side of the visible one is assigned a `src`
+   (`loadAround`), so a gallery never downloads all its photos at once. Prev/next buttons
+   scroll by one frame; the `.gal-count` element is a real `<button>` that opens the
+   lightbox (the keyboard route in) and its label states the photo position.
+5. **Lightbox**: `#lightbox` holds the counter, labelled close/prev/next buttons and the
+   image. Opens from a photo click or the counter button, preloads only the next photo,
+   supports Esc / ← / →, keeps off-canvas focus out (`inert` removed on open, restored on
+   close) and returns focus to the trigger.
+6. **Portrait fallback**: if `#portraitImg` fails, `.portrait-frame` gets `.is-empty` and
+   a "KK" tile shows instead.
+7. **Inquiry form**: native validation runs first; on submit the script composes a
+   `mailto:` to the address in `data-mailto` with name, company, email, engagement
+   category and message, hands it to the visitor's mail client, and reveals the
+   `aria-live` notice. It never fakes a send — there is no backend.
+8. **Footer year** via `new Date().getFullYear()`.
 
 Keep new JS in the same IIFE style; no external libraries.
-## 7. Content Inventory — 8 Project Galleries
 
-Photos live in `images/projects/<slug>/` as `01.jpg`, `02.jpg`, … A card's
-`data-total` attribute in `index.html` controls how many photos load; the first
-file (`01.jpg`) is the card cover. Rebuild all galleries from the source archive
-at `D:\SingBuild's Document` with:
+## 7. Content Inventory — 7 Project Galleries
+
+Photos live in `images/projects/<slug>/` as `01.jpg` / `01.png`, `02.*`, … A card's
+`data-total` in `index.html` controls how many photos load and must equal both the folder
+file count and the manifest entry in `js/gallery-manifest.js`. The card cover is `01.*`.
+
+| # | Card | Slug | Status shown | `data-status` |
+|---|---|---|---|---|
+| 1 | Norodom Business Center | `norodom-business-center` | Ongoing · LVL 13-23F | `ongoing` |
+| 2 | UVP2 Retilling Work | `uvp2-retiling` | Ahead of Schedule | `handed-over` |
+| 3 | UVP2 Common Areas | `uvp2-common-areas` | Handed Over | `handed-over` |
+| 4 | UVP2 Swimming Pool | `uvp2-swimming-pool` | Handed Over | `handed-over` |
+| 5 | Singapore Airlines Office | `singapore-airlines` | Handed Over | `handed-over` |
+| 6 | KFK - KMALL 2 | `kfk-kmall2` | Handed Over | `handed-over` |
+| 7 | UVP2 Penthouse P5 | `uvp2-penthouse-p5` | Ongoing | `ongoing` |
+
+Filter chips (`All 7`, `Handed over 5`, `Active 2`), the hero delivery row
+(`5 handed over · 2 live`) and the `Handed over` metric must stay in sync with this table.
+
+Rebuild all galleries from the source archive at `D:\SingBuild's Document`:
 
 ```
 python tools/build_galleries.py
 ```
 
-(The archive's Norodom folder holds ~38,000 photos / 6.5 GB, so an even sample
-from its latest month is used; Fengfu has no photo folder — its 16 3D renders
-are used instead.)
-
-| # | Card | Slug | Status |
-|---|---|---|---|
-| 1 | Norodom Business Center | `norodom-business-center/` | Ongoing |
-| 2 | UVP2 - Retilling Work | `uvp2-retiling/` | Completed |
-| 3 | UVP2 - Common Areas | `uvp2-common-areas/` | Completed |
-| 4 | UVP2 - Swimming Pool | `uvp2-swimming-pool/` | Completed |
-| 5 | Singapore Airlines Office | `singapore-airlines/` | Completed |
-| 6 | Fengfu | `fengfu/` | Ongoing |
-| 7 | KFK - KMALL 2 | `kfk-kmall2/` | Completed |
-| 8 | UVP2 - Penthouse P5 | `uvp2-penthouse-p5/` | Ongoing |
-
-Hero stats (8 / 5 / 3 / 4 in the stats band and filter counts) must stay in
-sync with card count and statuses. The hero background is `images/hero.jpg`.
-Full photo-source mapping table lives in README.md.
+(Nothing in the archive is moved or modified; files are only read and copied. Norodom's
+archive holds ~38,000 photos / 6.5 GB, so an even sample from its latest month is used.)
 
 ## 8. Content Boundaries (Privacy)
 
-- Deliberately excluded projects: `15. Akram (Show House)`,
-  `16. KFK - Domrey Park` (per owner instruction).
-- Never surface HR/personal data (payroll, reviews, Work & HR Records).
+- Deliberately excluded projects: `15. Akram (Show House)`, `16. KFK - Domrey Park`
+  (owner instruction). Fengfu was removed from the site as well.
+- Never surface HR/personal data (payroll, reviews, `Work & HR Records`).
 - Photos should avoid recognizable worker faces and client-sensitive pricing.
-- Contact details are placeholders until the owner supplies real ones.
+- Claims are kept factual: project and handed-over counts follow the table above, and
+  IELTS 7.5, the full 4-year scholarship and the tool descriptions come from the owner.
+  Competency star ratings are self-assessed, which the matrix note states.
 
-## 9. Running & Deploying
+## 9. Running, Validating & Deploying
 
-- **Local:** double-click `index.html`, or `python -m http.server 8000`.
+- **Local:** double-click `index.html`, or run `python -m http.server 8000` and open
+  <http://localhost:8000>.
+- **Validate before committing** (Python 3, no dependencies):
+
+  ```
+  python tools/_validate.py
+  ```
+
+  It checks: zero em dashes in the HTML, `data-total` ↔ folder file counts ↔ manifest,
+  every referenced asset exists, tag balance, anchor targets, SVG sprite symbol
+  references, exactly one `<h1>`, label/field wiring, CSS brace balance, undefined CSS
+  tokens, the CSS hooks JS relies on, and JS element ids/selectors present in the markup.
+  The last line reads `RESULT: ALL OK` when clean. Also run `node --check js/script.js`.
 - **GitHub:** repo `KangKimpor/Kimpor-Portfolio-Website`, default branch `main`.
-- **Live site:** https://kimpor-portfolio-website.vercel.app
-- **Vercel project:** `kimpor-portfolio-website` (scope `kimporkang01-3264s-projects`),
-  linked to the GitHub repo via `vercel git connect`, so **every push to `main`
-  auto-deploys production** and branches/PRs get preview URLs.
-- **Static, zero-config:** no build command, no output directory override,
-  framework preset "Other" (files served from repo root).
+- **Live site:** <https://kimpor-portfolio-website.vercel.app>
+- **Vercel project:** `kimpor-portfolio-website`
+  (scope `kimporkang01-3264s-projects`) linked with `vercel git connect`, so **every push
+  to `main` auto-deploys production** and branches/PRs get preview URLs.
+- **Static, zero-config:** no build command, no output directory, framework preset
+  "Other" (files served from the repo root).
 - **Manual deploy (if needed):**
+
   ```
   vercel link --yes --project kimpor-portfolio-website --scope kimporkang01-3264s-projects
   vercel --prod
   ```
-  Check state with `vercel ls` and open the dashboard at
-  https://vercel.com/kimporkang01-3264s-projects/kimpor-portfolio-website
-- **Vercel Authentication (SSO) protection is OFF** — the site must stay
-  publicly viewable (it is a portfolio).
 
-### Repo conventions
-
+- **Vercel Authentication (SSO) protection is OFF** — the site must stay publicly
+  viewable (it is a portfolio).
 - `.gitignore` excludes `.vercel`, `.env.local`, OS/editor junk.
-- Commit history starts at "Initial commit: Kimpor Kang construction portfolio
-  site"; the README carries the human-facing docs and photo-source map.
-
 
 ## 10. Maintenance Cookbook
 
-- **Update contact info:** edit `#contact` in index.html; update text AND
-  `mailto:` / `tel:` / LinkedIn href.
-- **Add a project card:** copy an existing `<article class="card">` block, set
-  `data-status`, add image to `images/projects/`, and bump the filter counts,
-  stats band and README table.
+- **Update contact info:** edit the `#contact` section and keep the visible text,
+  `mailto:` / `tel:` / LinkedIn href, the drawer footer and the `data-mailto` on
+  `#portfolioContactForm` aligned.
+- **Add or change a project card:** copy an `<article class="card project-card">` block,
+  set `data-status` + `data-gallery` + `data-total`, add the photo folder, regenerate
+  `js/gallery-manifest.js`, then bump the filter chip counts, the hero metrics, this
+  skill's table and the README table.
+- **Change a status label:** pill classes are `status-ongoing`, `status-done`,
+  `status-ahead`; the pill text is free text, but `data-status` must stay `ongoing` or
+  `handed-over` for the filter to work.
+- **Replace photos:** keep the `01.jpg`, `02.jpg` … filenames, then bump the `?v=` query
+  string on the cover images in `index.html` and the `BUILD` constant in `js/script.js`
+  (gallery + lightbox URLs) so cached copies refresh. `vercel.json` caches `/images/*`
+  for 7 days.
+- **Swap the hero band image:** replace `images/hero.jpg`, update the `og:image` meta,
+  the `<link rel="preload">` and the band caption. Pick a landscape shot; the band crops
+  with `object-fit: cover` in a `clamp(200px, 32vw, 440px)` frame.
 - **Regenerate the portrait cutout:**
-  `python tools/cutout.py images/KimporKANG_Portrait.png images/portrait-cutout.png images/_portrait-preview.png`
-  — writes `images/portrait-cutout.png` plus a navy-backed
-  `_portrait-preview.png`. Requires Pillow + numpy. Missing cutout falls
-  back to `KimporKANG_Portrait.png`, then to the faded "KK" tile.
-- **Swap the hero image:** change the `src` of `.hero-img` — pick a landscape
-  shot with a clear band for the centred headline (test under the navy veil).
-- **Re-theme:** all colours live in `:root` (`--navy*`, `--soft`, `--line`,
-  `--text`, `--dim`, `--menu`). Keep it restrained; status dots are the only
-  other colours.
-- **Commit style:** small, imperative commits; static assets welcome in git
-  (total images ≈ 3.5 MB, well under limits).
 
+  ```
+  python tools/cutout.py images/KimporKANG_Portrait.png images/portrait-cutout.png images/_portrait-preview.png
+  ```
+
+  Requires Pillow + numpy. The site loads `images/portrait-cutout.webp`; if it is
+  missing, the frame falls back to the "KK" tile.
+- **Re-theme:** all colours and radii live in `:root` in `css/style.css`, with token
+  names taken from the Structural Modernist system. Keep the restraint: hairline borders,
+  a single terracotta accent, monospaced metadata. README mirrors the token table.
+- **Add an icon:** add a `<symbol id="ico-…">` to the sprite at the top of `<body>` and
+  reference it with `<use href="#ico-…">`; `tools/_validate.py` fails on dangling refs.
+- **Commit style:** small, imperative commits; static assets welcome in git
+  (images total roughly 12 MB, well under limits).

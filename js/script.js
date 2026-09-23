@@ -1,13 +1,16 @@
 /* ============================================================
    Kimpor Kang - Portfolio
-   Vanilla JS: slide-down menu panel, scroll reveal, active nav
-   highlighting, project status filter, footer year.
+   Vanilla JS: mobile drawer, scroll-spy navigation, project
+   status filter (synced to the URL), lazy photo galleries,
+   lightbox, portrait fallback, inquiry form, footer year.
    ============================================================ */
 
 (function () {
   'use strict';
 
-  /* ---------- Side menu (slides in from the right) ---------- */
+  var BUILD = '3';
+
+  /* ---------- Mobile drawer (slides in from the right) ---------- */
   var navToggle = document.getElementById('navToggle');
   var navPanel = document.getElementById('navPanel');
   var navClose = document.getElementById('navClose');
@@ -17,10 +20,16 @@
     if (!navPanel || !navToggle) { return; }
     navPanel.classList.toggle('is-open', open);
     navPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    // Keep the off-canvas links out of the tab order while closed
+    if (open) { navPanel.removeAttribute('inert'); } else { navPanel.setAttribute('inert', ''); }
     navToggle.classList.toggle('is-open', open);
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.classList.toggle('menu-open', open);
+
+    var closeBtn = document.getElementById('navClose');
+    if (open && closeBtn) { closeBtn.focus(); }
+    if (!open) { navToggle.focus(); }
   }
 
   function closeMenu() { setMenu(false); }
@@ -29,28 +38,19 @@
     navToggle.addEventListener('click', function () {
       setMenu(!navPanel.classList.contains('is-open'));
     });
-
     if (navClose) { navClose.addEventListener('click', closeMenu); }
     if (navBackdrop) { navBackdrop.addEventListener('click', closeMenu); }
 
-    // Close after choosing a link
     navPanel.addEventListener('click', function (e) {
       if (e.target.closest('a')) { closeMenu(); }
     });
 
-    // Close on Escape
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { closeMenu(); }
     });
   }
 
-  /* ---------- Motion ----------
-     Text is visible without this script. The class is only a hook
-     for anything that still looks for .is-visible after filtering. */
-  var revealEls = document.querySelectorAll('.reveal');
-  revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-
-  /* ---------- Active nav link highlighting ---------- */
+  /* ---------- Scroll-spy navigation ---------- */
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('[data-nav]');
 
@@ -65,33 +65,58 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
 
-    sections.forEach(function (s) { sectionObserver.observe(s); });
+    sections.forEach(function (section) { sectionObserver.observe(section); });
   }
 
   /* ---------- Project status filter ---------- */
   var filterBtns = document.querySelectorAll('.filter-btn');
   var cards = document.querySelectorAll('#projectsGrid .card');
 
+  function isKnownFilter(value) {
+    return value === 'all' || value === 'handed-over' || value === 'ongoing';
+  }
+
+  function applyFilter(filter) {
+    filterBtns.forEach(function (btn) {
+      btn.classList.toggle('is-active', btn.getAttribute('data-filter') === filter);
+    });
+    cards.forEach(function (card) {
+      var show = filter === 'all' || card.getAttribute('data-status') === filter;
+      card.classList.toggle('is-hidden', !show);
+    });
+  }
+
+  function syncFilterToUrl(filter) {
+    try {
+      var url = new URL(window.location.href);
+      if (filter === 'all') {
+        url.searchParams.delete('filter');
+      } else {
+        url.searchParams.set('filter', filter);
+      }
+      window.history.replaceState(null, '', url.toString());
+    } catch (err) {
+      /* file:// or an older browser: the filter simply stays in memory */
+    }
+  }
+
   filterBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var filter = btn.getAttribute('data-filter');
-
-      filterBtns.forEach(function (b) { b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-
-      cards.forEach(function (card) {
-        var show = filter === 'all' || card.getAttribute('data-status') === filter;
-        card.classList.toggle('is-hidden', !show);
-        if (show) { card.classList.add('is-visible'); } // keep revealed after filtering
-      });
+      var filter = btn.getAttribute('data-filter') || 'all';
+      applyFilter(filter);
+      syncFilterToUrl(filter);
     });
   });
 
-  /* ---------- Project galleries ----------
-     Only the cover, plus the slide on either side of the one in view,
-     is downloaded. The rest wait until the visitor swipes. */
-  var BUILD = '3';
+  if (filterBtns.length) {
+    var requested = null;
+    try { requested = new URL(window.location.href).searchParams.get('filter'); } catch (err) { requested = null; }
+    if (requested && isKnownFilter(requested)) { applyFilter(requested); }
+  }
 
+  /* ---------- Project galleries ----------
+     Only the cover, plus the slide on either side of the one in
+     view, is downloaded. The rest wait until the visitor swipes. */
   function slideSrc(slug, files, index) {
     var name = (files && files[index])
       ? files[index]
@@ -104,31 +129,29 @@
   galleryMedias.forEach(function (media) {
     var slug = media.getAttribute('data-gallery');
     var total = parseInt(media.getAttribute('data-total'), 10) || 0;
-    // Exact filenames from the build manifest (extensions vary: jpg/png)
     var files = (window.GALLERY_FILES && window.GALLERY_FILES[slug]) || null;
-            if (!slug || total < 2) { return; }
+    if (!slug || total < 2) { return; }
 
     var track = document.createElement('div');
     track.className = 'gallery-track';
     var slides = [];
+    var current = 0;
 
     var cover = media.querySelector('img');
     if (cover) {
       if (!cover.alt) { cover.alt = slug.replace(/-/g, ' '); }
       cover.decoding = 'async';
       cover.draggable = false;
-      // Already has its final URL, so loadAround must not re-request it
+      // Already carries its final URL, so loadAround must not re-request it
       cover.setAttribute('data-src-set', cover.getAttribute('src') || '');
       track.appendChild(cover);
       slides.push(cover);
     }
 
-    // Slides are created without src; loadAround assigns it only
-    // when a slide is (about to be) viewed, so photos are never
-    // downloaded twice or all at once.
+    // Slides ship without src; loadAround assigns it as they come into play
     for (var i = 2; i <= total; i++) {
       var img = document.createElement('img');
-      img.alt = slug.replace(/-/g, ' ');
+      img.alt = slug.replace(/-/g, ' ') + ' photo ' + i;
       img.loading = 'lazy';
       img.decoding = 'async';
       img.draggable = false;
@@ -151,28 +174,32 @@
     prev.type = 'button';
     prev.className = 'gal-btn gal-prev';
     prev.setAttribute('aria-label', 'Previous photo');
-    prev.textContent = '\u2039';
+    prev.innerHTML = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chev-left"></use></svg>';
 
     var next = document.createElement('button');
     next.type = 'button';
     next.className = 'gal-btn gal-next';
-    var max = total - 1;
-    var current = 0;
     next.setAttribute('aria-label', 'Next photo');
-    next.textContent = '\u203a';
+    next.innerHTML = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chev-right"></use></svg>';
 
-    var count = document.createElement('span');
+    // The counter doubles as the keyboard route into the full gallery
+    var count = document.createElement('button');
+    count.type = 'button';
     count.className = 'gal-count';
-    count.textContent = '1/' + total;
+    count.textContent = '1 / ' + total;
+    count.setAttribute('aria-label', 'Open the full gallery, photo 1 of ' + total + ' photos');
 
-    function syncCount() {
-      var w = track.clientWidth || 1;
-      current = Math.min(max, Math.round(track.scrollLeft / w));
-      count.textContent = (current + 1) + '/' + total;
+    function updatePosition() {
+      var width = track.clientWidth || 1;
+      current = Math.max(0, Math.min(total - 1, Math.round(track.scrollLeft / width)));
+      count.textContent = (current + 1) + ' / ' + total;
+      count.setAttribute('aria-label', 'Open the full gallery, photo ' + (current + 1) + ' of ' + total + ' photos');
       loadAround(current);
     }
-    track.addEventListener('scroll', syncCount, { passive: true });
-    window.addEventListener('resize', syncCount);
+
+    track.addEventListener('scroll', function () {
+      window.requestAnimationFrame(updatePosition);
+    }, { passive: true });
 
     prev.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -181,6 +208,10 @@
     next.addEventListener('click', function (e) {
       e.stopPropagation();
       track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+    });
+    count.addEventListener('click', function (e) {
+      e.stopPropagation();
+      openLightbox(slug, total, current, count);
     });
 
     media.appendChild(track);
@@ -206,7 +237,7 @@
     track.addEventListener('click', function (e) {
       if (e.target.tagName !== 'IMG') { return; }
       if (Math.abs(e.clientX - dragX) > 8) { return; }
-      openLightbox(slug, total, current);
+      openLightbox(slug, total, current, count);
     });
   });
 
@@ -217,6 +248,7 @@
   var lightboxSlug = '';
   var lightboxTotal = 0;
   var lightboxIndex = 0;
+  var lastFocus = null;
 
   if (lightboxImg) { lightboxImg.decoding = 'async'; }
 
@@ -238,22 +270,28 @@
     }
   }
 
-  function openLightbox(slug, total, index) {
+  function openLightbox(slug, total, index, trigger) {
+    if (!lightbox) { return; }
+    lastFocus = trigger || document.activeElement;
     lightboxSlug = slug;
     lightboxTotal = total;
     lightboxIndex = index;
     renderLightbox();
-    if (lightbox) {
-      lightbox.classList.add('is-open');
-      document.body.classList.add('lb-open');
-    }
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.removeAttribute('inert');
+    document.body.classList.add('lb-open');
+    var closeBtn = document.getElementById('lbClose');
+    if (closeBtn) { closeBtn.focus(); }
   }
 
   function closeLightbox() {
-    if (lightbox) {
-      lightbox.classList.remove('is-open');
-      document.body.classList.remove('lb-open');
-    }
+    if (!lightbox) { return; }
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightbox.setAttribute('inert', '');
+    document.body.classList.remove('lb-open');
+    if (lastFocus && typeof lastFocus.focus === 'function') { lastFocus.focus(); }
   }
 
   function stepLightbox(dir) {
@@ -275,7 +313,56 @@
     });
   }
 
+  /* ---------- Portrait fallback ---------- */
+  var portraitImg = document.getElementById('portraitImg');
+  var portraitFrame = portraitImg && portraitImg.closest('.portrait-frame');
+
+  if (portraitImg && portraitFrame) {
+    function markPortraitMissing() { portraitFrame.classList.add('is-empty'); }
+    portraitImg.addEventListener('error', markPortraitMissing);
+    if (portraitImg.complete && portraitImg.naturalWidth === 0) { markPortraitMissing(); }
+  }
+
+  /* ---------- Inquiry form ----------
+     The site is static, so the form hands the message to the
+     visitor's own mail client instead of pretending to send it. */
+  var inquiryForm = document.getElementById('portfolioContactForm');
+  var inquiryNotice = document.getElementById('contactFormNotice');
+
+  function fieldValue(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  if (inquiryForm) {
+    inquiryForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var to = inquiryForm.getAttribute('data-mailto') || 'kimporkang01@gmail.com';
+      var topic = fieldValue('inqTopic') || 'Project inquiry';
+      var lines = [
+        'Name: ' + fieldValue('inqName'),
+        'Company: ' + fieldValue('inqCompany'),
+        'Email: ' + fieldValue('inqEmail'),
+        'Engagement: ' + topic,
+        '',
+        fieldValue('inqMessage')
+      ];
+      var url = 'mailto:' + to +
+        '?subject=' + encodeURIComponent('Project inquiry: ' + topic) +
+        '&body=' + encodeURIComponent(lines.join('\n'));
+
+      window.location.href = url;
+
+      if (inquiryNotice) {
+        inquiryNotice.textContent = 'Your mail client should open with these details addressed to Kimpor Kang. If it does not open, email kimporkang01@gmail.com directly.';
+        inquiryNotice.hidden = false;
+      }
+    });
+  }
+
   /* ---------- Footer year ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+
 })();
