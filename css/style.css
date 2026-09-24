@@ -329,7 +329,6 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 1.5rem); }
   background: rgba(251, 251, 250, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-subtle);
 }
 
 .topbar-inner {
@@ -504,7 +503,6 @@ body.menu-open { overflow: hidden; }
   grid-template-columns: 1fr;
   column-gap: var(--gutter);
   padding-top: 1.5rem;
-  border-top: 1px solid var(--border-subtle);
 }
 
 .hero-title {

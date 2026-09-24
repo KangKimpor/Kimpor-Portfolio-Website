@@ -64,7 +64,7 @@ The single page is laid out in numbered sections:
 | 02 | Experience & Education | `#experience-and-education` | Portrait card plus Singbuild, Paragon and tools entries |
 | 03 | Field Projects | `#projects-and-milestones` | Filter chips and 7 project cards with photo galleries |
 | 04 | Tools | `#workflow-utilities` | SB Grab Code Tracker and Manpower Reporting Automation |
-| 05 | Contact | `#contact` | Contact details card with a CV request button |
+| 05 | Contact | `#contact` | Contact details card |
 | — | Footer | — | Brand block, navigation, details |
 
 Top navigation, drawer links and footer links all point at those anchors, and the
@@ -176,10 +176,6 @@ hair strands, while protecting the white shirt and collar.
 Email, phone, LinkedIn, location and degree are set in the `#contact` section of
 `index.html` - update the visible text and the `mailto:` / `tel:` / LinkedIn `href`
 together, plus the drawer footer.
-
-There is no backend and no PDF resume in the repo. The **Request official CV** button
-opens a pre-filled CV request email in the visitor's mail client. Drop a PDF in later
-if you want a real download link.
 
 ## Validate before you push
 
