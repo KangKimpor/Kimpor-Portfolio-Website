@@ -373,17 +373,6 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 1.5rem); }
 .topbar-actions { display: flex; align-items: center; gap: 0.5rem; }
 .nav-cta { display: none; }
 
-.avatar {
-  display: none;
-  width: 2rem;
-  height: 2rem;
-  border-radius: var(--radius-pill);
-  background: var(--primary-container);
-  color: #ffffff;
-  place-items: center;
-}
-.avatar .ico { width: 16px; height: 16px; }
-
 .burger {
   width: 2.5rem;
   height: 2.5rem;
@@ -412,7 +401,6 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 1.5rem); }
 
 @media (min-width: 720px) {
   .nav-cta { display: inline-flex; }
-  .avatar { display: grid; }
 }
 @media (max-width: 479px) {
   .brand-tag { display: none; }
@@ -509,7 +497,7 @@ body.menu-open { overflow: hidden; }
 .drawer-foot p { margin: 0; }
 
 /* ---------- Hero ---------- */
-.hero { padding: 2.5rem 0 3rem; }
+.hero { padding: 1.25rem 0 3rem; }
 
 .hero-grid {
   display: grid;
@@ -562,7 +550,7 @@ body.menu-open { overflow: hidden; }
   .hero-lead, .hero-sub, .hero-actions { grid-column: 1; }
 }
 @media (min-width: 1024px) {
-  .hero { padding: 3.5rem 0 4rem; }
+  .hero { padding: 1.75rem 0 4rem; }
 }
 
 /* ---------- Edge-to-edge feature band ---------- */
