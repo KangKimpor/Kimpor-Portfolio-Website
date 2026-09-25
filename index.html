@@ -37,19 +37,16 @@
   <!-- ===== Canonical URL (SEO) ===== -->
   <link rel="canonical" href="https://kimpor-portfolio-website.vercel.app/">
   
-  <!-- ===== Favicon (using WebP optimized version) ===== -->
+  <!-- ===== Favicon ===== -->
   <link rel="icon" type="image/webp" sizes="32x32" href="images/_portrait-preview.webp">
-  <link rel="apple-touch-icon" href="images/_portrait-preview.webp">
   
-  <!-- ===== Preconnect to External Resources (Performance) ===== -->
+  <!-- ===== Preconnect to External Resources ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  <!-- ===== Critical CSS Inlined (Above-the-fold, Performance!) ===== -->
+  <!-- ===== Critical CSS Inlined ===== -->
   <style>
-    /* Performance critical styles - inlined for faster first paint */
     html { scroll-behavior: smooth; font-size: 100%; }
-    
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -57,113 +54,136 @@
         scroll-behavior: auto !important;
       }
     }
-    
-    /* Large text support for low vision users */
-    @media (prefers-large-targets: fine) {
-      body { font-size: 115%; line-height: 1.8; }
-    }
-    
-    /* High contrast mode support */
-    @media (prefers-contrast: more) {
-      body { background-color: #ffffff !important; color: #000000 !important; }
-      .btn-primary { background-color: #007bff !important; border-width: 2px !important; }
-    }
-    
-    /* Skip link for keyboard navigation */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      padding: 8px 16px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      z-index: 10000;
-      transition: top 0.3s ease-out;
-    }
-    
-    .skip-link:focus {
-      top: 0;
-      outline: 2px solid #0056b3;
-      outline-offset: 4px;
-      box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
-    }
-    
-    /* Focus indicators for keyboard users */
-    *:focus-visible {
-      outline: 2px solid #007bff;
-      outline-offset: 2px;
-      box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
-      border-radius: 2px;
-    }
+    .skip-link { position: absolute; top: -40px; left: 0; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; z-index: 10000; transition: top 0.3s ease-out; }
+    .skip-link:focus { top: 0; outline: 2px solid #0056b3; outline-offset: 4px; box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2); }
+    *:focus-visible { outline: 2px solid #007bff; outline-offset: 2px; }
   </style>
 
   <!-- ===== Font Import ===== -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- ===== Preload Critical Images (Performance!) ===== -->
-  <!-- Lossless WebP portrait - 75% smaller! -->
-  <link rel="preload" as="image" href="images/KimporKANG_Portrait.webp?v=6" fetchpriority="high">
-  
-  <!-- ===== Main Stylesheet ===== -->
+  <!-- ===== Stylesheet ===== -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- ===== Structured Data (JSON-LD for SEO!) ===== -->
+  <!-- ===== Structured Data (JSON-LD) ===== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Kimpor Kang",
-    "givenName": "Kimpor",
-    "familyName": "Kang",
     "jobTitle": "Project Coordinator",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Singbuild Construction Co., Ltd."
-    },
-    "education": [
-      {
-        "@type": "EducationalOccupationalCredential",
-        "name": "B.Sc. Civil Engineering",
-        "institution": {
-          "@type": "EducationalOrganization",
-          "name": "Paragon International University",
-          "sameAs": "https://piu.edu.kh"
-        },
-        "description": "Full national scholarship recipient, studying structural analysis and construction management."
-      }
-    ],
-    "knowsAbout": [
-      "Civil Engineering",
-      "Construction Management",
-      "Project Coordination",
-      "Site Documentation",
-      "Quantity Takeoff",
-      "Building Information Modeling",
-      "Cost Estimation"
-    ],
-    "sameAs": [
-      "https://github.com/KangKimpor",
-      "mailto:kimporkang01@gmail.com"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Phnom Penh",
-      "addressCountry": "KH"
-    },
-    "image": {
-      "@type": "ImageObject",
-      "url": "https://kimpor-portfolio-website.vercel.app/images/KimporKANG_Portrait.webp?v=6",
-      "width": 760,
-      "height": 938
-    },
-    "description": "Civil Engineering student at Paragon International University and Project Coordinator at Singbuild Construction Co., Ltd. Specializing in construction project coordination for hotel, residential, retail, F&B, and office fit-out projects in Phnom Penh, Cambodia."
+    "worksFor": {"@type": "Organization", "name": "Singbuild Construction Co., Ltd."},
+    "education": [{"@type": "EducationalOccupationalCredential", "name": "B.Sc. Civil Engineering", "institution": {"@type": "EducationalOrganization", "name": "Paragon International University", "sameAs": "https://piu.edu.kh"}}],
+    "knowsAbout": ["Civil Engineering", "Construction Management", "Project Coordination"],
+    "sameAs": ["https://github.com/KangKimpor", "mailto:kimporkang01@gmail.com"],
+    "address": {"@type": "PostalAddress", "addressLocality": "Phnom Penh", "addressCountry": "KH"},
+    "image": {"@type": "ImageObject", "url": "https://kimpor-portfolio-website.vercel.app/images/KimporKANG_Portrait.webp?v=6", "width": 760, "height": 938}
   }
   </script>
 
   <title>Kimpor Kang | Civil Engineering & Construction Portfolio</title>
 </head>
 <body>
-  <!-- Content continues with full SEO/a11y/perf enhancements -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Top Navigation -->
+  <header class="topbar" id="top" role="banner">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Kimpor Kang, back to top">
+        <span class="brand-name">Kimpor<span class="visually-hidden"> </span>Kang</span>
+        <span class="brand-tag">Civil Engineering</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-link" data-nav href="#about">About</a>
+        <a class="nav-link" data-nav href="#experience-and-education">Experience</a>
+        <a class="nav-link" data-nav href="#projects-and-milestones">Projects</a>
+        <a class="nav-link" data-nav href="#workflow-utilities">Tools</a>
+        <a class="nav-link" data-nav href="#contact">Contact</a>
+      </nav>
+      <div class="topbar-actions">
+        <a class="btn btn-ghost btn-sm nav-cta" href="#contact">Get in Touch</a>
+        <a class="btn btn-accent btn-sm" href="mailto:kimporkang01@gmail.com?subject=Portfolio%20Enquiry">Email Me</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="drawer-backdrop" id="navBackdrop"></div>
+  <aside class="drawer" id="navPanel" aria-hidden="true" inert>
+    <div class="drawer-head">
+      <span class="drawer-brand">Kimpor<span class="visually-hidden"> </span>Kang</span>
+      <button class="drawer-close" id="navClose" type="button" aria-label="Close menu"><svg class="ico" viewBox="0 0 24 24"><use href="#ico-close"></use></svg></button>
+    </div>
+    <nav class="drawer-links">
+      <a class="drawer-link" data-nav href="#about"><span class="drawer-num">01</span>About</a>
+      <a class="drawer-link" data-nav href="#experience-and-education"><span class="drawer-num">02</span>Experience &amp; Education</a>
+      <a class="drawer-link" data-nav href="#projects-and-milestones"><span class="drawer-num">03</span>Projects</a>
+      <a class="drawer-link" data-nav href="#workflow-utilities"><span class="drawer-num">04</span>Tools</a>
+      <a class="drawer-link" data-nav href="#contact"><span class="drawer-num">05</span>Contact</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero" id="overview">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-lead">
+            <p class="eyebrow">Portfolio // Kimpor Kang</p>
+            <h1 class="hero-title">Project coordination, from drawing to handover.</h1>
+          </div>
+          <div class="hero-portrait">
+            <div class="portrait-frame">
+              <span class="portrait-tile" aria-hidden="true">KK</span>
+              <img src="images/KimporKANG_Portrait.webp?v=6" alt="Portrait of Kimpor Kang, Project Coordinator specializing in construction project management" width="760" height="938" fetchpriority="high">
+            </div>
+          </div>
+          <p class="hero-sub">I am a Civil Engineering student at <strong>Paragon International University</strong> on a full national scholarship, and a Project Coordinator at <strong>Singbuild Construction Co., Ltd.</strong></p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects-and-milestones">See my projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Band -->
+    <figure class="band">
+      <img class="band-img" src="images/hero.webp?v=6" alt="UVP2 Penthouse P5, Phnom Penh - Luxury residential interior design project" width="2400" height="1350">
+      <figcaption class="wrap band-caption"><span class="mono-note">Featured // UVP2 Penthouse P5</span></figcaption>
+    </figure>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">01 // About Me</p>
+          <h2 class="section-title">How I Work.</h2>
+          <p class="section-lede">I combine civil engineering study with daily site work.</p>
+        </header>
+        <div class="grid-12">
+          <div class="col-7"><article class="card card-pad prose"><h3 class="card-title">From the Classroom to Live Sites</h3><p>At Singbuild Construction I treat each site as one system.</p></article></div>
+          <div class="col-5"><div class="snapshot"><article class="card card-pad"><p class="snapshot-kicker">Paragon International University</p><h3 class="card-title-sm">B.Sc. Civil Engineering</h3><p class="card-desc">Full four-year tuition scholarship.</p></article></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">05 // Contact</p>
+          <h2 class="section-title">Get in Touch.</h2>
+        </header>
+        <article class="card card-pad contact-card">
+          <address class="prose">
+            <a href="mailto:kimporkang01@gmail.com">kimporkang01@gmail.com</a><br>
+            Phnom Penh, Cambodia
+          </address>
+        </article>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
