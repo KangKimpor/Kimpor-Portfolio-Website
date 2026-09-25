@@ -208,7 +208,6 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 1.5rem); }
 }
 .btn:active { transform: translateY(1px); }
 .btn-sm { padding: 0.5rem 0.85rem; font-size: 13px; line-height: 16px; }
-.btn-block { width: 100%; }
 
 .btn-primary { background: var(--primary-container); border-color: var(--primary-container); color: var(--on-primary); }
 .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
@@ -603,11 +602,7 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- Structural grid ---------- */
 .grid-12 { display: grid; grid-template-columns: 1fr; gap: var(--gutter); align-items: start; }
-.grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--gutter); }
 
-@media (min-width: 640px) {
-  .grid-2 { grid-template-columns: 1fr 1fr; }
-}
 @media (min-width: 1024px) {
   .grid-12 { grid-template-columns: repeat(12, 1fr); }
   .col-4 { grid-column: span 4; }
@@ -620,7 +615,8 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- 01 About Me ---------- */
 .prose p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
-.snapshot { margin-top: var(--gutter); }
+/* the two snapshot cards fill the column beside the narrative */
+.snapshot { display: grid; gap: var(--gutter); }
 .snapshot .card { display: flex; flex-direction: column; gap: 0.55rem; }
 .snapshot-kicker {
   display: flex;
@@ -635,6 +631,11 @@ body.menu-open { overflow: hidden; }
   margin: 0;
 }
 .snapshot-kicker .ico { width: 16px; height: 16px; }
+
+/* side by side while the layout is stacked, single file inside the desktop column */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .snapshot { grid-template-columns: 1fr 1fr; }
+}
 
 .spec-sheet { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
 .spec-sheet > div {
@@ -667,10 +668,6 @@ body.menu-open { overflow: hidden; }
 .spec-sheet-compact > div:last-child { border-bottom: none; }
 .spec-sheet-compact dt { margin: 0; }
 .spec-sheet-compact dd { text-align: right; color: var(--text-secondary); }
-
-@media (min-width: 1024px) {
-  .spec-card { position: sticky; top: calc(var(--topbar-h) + 1.5rem); }
-}
 
 /* ---------- Portrait frame (hero portrait card, with the KK fallback) ---------- */
 .portrait-frame {
@@ -974,7 +971,8 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ---------- 05 Contact ---------- */
-.contact-card { max-width: 640px; margin-left: auto; margin-right: auto; }
+/* left-aligned with the section head, on the same 44rem measure */
+.contact-card { max-width: 44rem; }
 .channel-list { display: flex; flex-direction: column; margin-bottom: 1.25rem; }
 .channel-row {
   display: grid;

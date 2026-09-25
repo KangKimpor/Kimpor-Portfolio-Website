@@ -111,8 +111,8 @@ warm linen canvas, hairline rules, terracotta accent, monospaced drafting annota
    (`images/portrait-cutout.webp`), a narrative paragraph, and three CTAs.
 4. **Featured band** (`figure.band`) — edge-to-edge `images/hero.jpg` with a mono
    caption pair.
-5. **01 // About Me** (`#about`) — narrative cards, Paragon/Singbuild snapshot
-   cards, and a sticky `Profile` card (`Doc ID: KK-ENG-25`).
+5. **01 // About Me** (`#about`) — the narrative card (`col-7`) beside the Paragon
+   and Singbuild snapshot cards (`col-5`, stacked in that column).
 6. **02 // Experience & Education** (`#experience-and-education`) — two equal columns
    (`col-6`, labelled `Work` and `Study`) holding the Singbuild role card beside the
    Paragon degree card, then a full-width `Tools I Built` record card (`col-12`, its
@@ -125,8 +125,8 @@ warm linen canvas, hairline rules, terracotta accent, monospaced drafting annota
 8. **04 // Tools** (`#workflow-utilities`) — two tool cards
    (SB Grab Code Tracker with its screenshot; Manpower Reporting Automation with a
    terminal snapshot and a friction/impact comparison).
-9. **05 // Contact** (`#contact`) — a centred `Contact Details` card with the spec list
-    (dotted separators), an availability pill and a CV request `mailto:` button.
+9. **05 // Contact** (`#contact`) — a left-aligned `Contact Details` card (44rem,
+   matching the section head) with the spec list (dotted separators).
 10. **Footer** — brand/copy, `01 // Navigation` links,
     `02 // Details` key/value pairs, and a hairline base line with the
     JS-filled year.

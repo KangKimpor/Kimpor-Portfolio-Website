@@ -60,7 +60,7 @@ The single page is laid out in numbered sections:
 |---|---|---|---|
 | — | Hero | `#overview` | Headline, portrait card, three CTAs |
 | — | Featured band | — | Edge-to-edge `images/hero.jpg` with a mono caption |
-| 01 | About Me | `#about` | Narrative, school/firm snapshots, profile card |
+| 01 | About Me | `#about` | Narrative card beside the school/firm snapshot cards |
 | 02 | Experience & Education | `#experience-and-education` | Two equal columns (work / study) plus a full-width "Tools I Built" row |
 | 03 | Field Projects | `#projects-and-milestones` | Filter chips and 7 project cards with photo galleries |
 | 04 | Tools | `#workflow-utilities` | SB Grab Code Tracker and Manpower Reporting Automation |
