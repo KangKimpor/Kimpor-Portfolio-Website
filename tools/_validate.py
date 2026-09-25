@@ -11,7 +11,7 @@ ok = True
 totals = dict(re.findall(r'data-gallery="([^"]+)" data-total="(\d+)"', html))
 for slug, total in totals.items():
     folder = os.path.join(ROOT, "images", "projects", slug)
-    files = [f for f in os.listdir(folder) if f.lower().endswith((".jpg", ".png"))]
+    files = [f for f in os.listdir(folder) if f.lower().endswith((".jpg", ".png", ".webp"))]
     status = "OK" if int(total) == len(files) else "MISMATCH"
     if status != "OK":
         ok = False

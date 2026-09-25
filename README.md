@@ -42,12 +42,14 @@ Kimpor-Portfolio-Website/
 ├── images/
 │   ├── projects/              ← 7 project photo galleries (one folder per project)
 │   ├── side/sb-grab.jpg       ← screenshot of the internal ride-code tool
-│   ├── hero.jpg               ← edge-to-edge featured band (UVP2 Penthouse P5)
+│   ├── hero.webp              ← edge-to-edge featured band (UVP2 Penthouse P5)
+│   ├── og-hero.jpg            ← 1200x630 social card for Open Graph / Twitter
 │   ├── KimporKANG_Portrait.png ← original headshot (white studio background)
 │   └── portrait-cutout.webp    ← generated transparent cutout (used on the page)
 ├── tools/
 │   ├── cutout.py              ← cuts the white background off the portrait
 │   ├── build_galleries.py     ← copies + resizes project photos into galleries
+│   ├── optimize_images.py     ← compresses gallery photos and hero to WebP
 │   └── _validate.py           ← structural checker (run it before pushing)
 └── README.md                  ← this file
 ```
@@ -59,7 +61,7 @@ The single page is laid out in numbered sections:
 | # | Section | Anchor | Contents |
 |---|---|---|---|
 | — | Hero | `#overview` | Headline, portrait card, three CTAs |
-| — | Featured band | — | Edge-to-edge `images/hero.jpg` with a mono caption |
+| — | Featured band | — | Edge-to-edge `images/hero.webp` with a mono caption |
 | 01 | About Me | `#about` | Narrative card beside the school/firm snapshot cards |
 | 02 | Experience & Education | `#experience-and-education` | Two equal columns (work / study) plus a full-width "Tools I Built" row |
 | 03 | Field Projects | `#projects-and-milestones` | Filter chips and 7 project cards with photo galleries |
@@ -111,7 +113,7 @@ that do not support it simply render the content, and everything is disabled und
 ## Project photos
 
 Each project card holds a scrollable photo gallery. Photos live in
-`images/projects/<project-slug>/` as `01.jpg`, `02.jpg`, … The card's `data-total`
+`images/projects/<project-slug>/` as `01.webp`, `02.webp`, … The card's `data-total`
 attribute in `index.html` controls how many photos load, `01.*` is the card cover,
 and tapping a photo (or the counter button) opens the full-screen lightbox with
 keyboard support (Esc, ←, →).
@@ -136,11 +138,11 @@ python tools/build_galleries.py
 ```
 
 The tool copies every photo from each project's "Completion Photos" / "Photos"
-folder and resizes them for the web (max 1600 px, JPEG q82). Norodom Business
+folder and resizes them for the web (max 1600 px, WebP q76). Norodom Business
 Center's archive holds ~38,000 photos (6.5 GB), so an even sample from its most
 recent month is used. Nothing in the archive was moved or modified.
 
-**Replacing photos:** keep the `01.jpg`, `02.jpg` … filenames, then bump the `?v=`
+**Replacing photos:** keep the `01.webp`, `02.webp` … filenames, then bump the `?v=`
 query string on the cover images in `index.html` and the `BUILD` constant in
 `js/script.js`, so browsers pick up the new files. `vercel.json` caches
 `/images/*` for 7 days.
