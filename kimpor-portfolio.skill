@@ -90,7 +90,7 @@ warm linen canvas, hairline rules, terracotta accent, monospaced drafting annota
 - **Shape**: 0.125-0.75rem radii on cards/inputs, `9999px` pills for status and filter
   chips; buttons 0.375rem. No heavy shadows: hover uses
   `0 8px 24px -4px rgba(17,20,24,.06)` plus a border shift to `--border-strong`.
-- **Layout**: 1140px content grid (`.wrap`), 12-column `.grid-12` with `.col-4/5/7/8`,
+- **Layout**: 1140px content grid (`.wrap`), 12-column `.grid-12` with `.col-4/5/6/7/8/12`,
   24px gutters, 48px desktop / 20px mobile outer margins, `4rem` vertical section rhythm.
 - **Photos**: muted grade (`filter: saturate(.92) contrast(.98)`), cover-cropped to
   16:10 media frames with mono index overlays; the hero band is edge-to-edge.
@@ -113,9 +113,10 @@ warm linen canvas, hairline rules, terracotta accent, monospaced drafting annota
    caption pair.
 5. **01 // About Me** (`#about`) — narrative cards, Paragon/Singbuild snapshot
    cards, and a sticky `Profile` card (`Doc ID: KK-ENG-25`).
-6. **02 // Experience & Education** (`#experience-and-education`) — sticky portrait card
-   (`#portraitImg`) beside three entry cards (Singbuild role, Paragon degree, personal
-   tools) with square-bulleted record lists.
+6. **02 // Experience & Education** (`#experience-and-education`) — two equal columns
+   (`col-6`, labelled `Work` and `Study`) holding the Singbuild role card beside the
+   Paragon degree card, then a full-width `Tools I Built` record card (`col-12`, its
+   list runs two-up from 900px). No portrait here; the headshot sits in the hero.
 7. **03 // Field Projects** (`#projects-and-milestones`) — filter chips
    (All 7 / Handed over 5 / Active 2) above the `#projectsGrid` of 7 `.project-card`
    tiles; each card has a 16:10 `data-gallery` / `data-total` media strip, status pill,

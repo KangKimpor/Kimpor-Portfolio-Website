@@ -97,7 +97,7 @@ for el_id in sorted(set(re.findall(r"getElementById\('([^']+)'\)", js))):
     if el_id not in ids:
         ok = False
         print("JS ID NOT IN HTML:", el_id)
-for selector in ["#projectsGrid", ".filter-btn", ".card-media", ".portrait-frame", "[data-nav]"]:
+for selector in ["#projectsGrid", ".filter-btn", ".card-media", ".portrait-frame", ".timeline-col", "[data-nav]"]:
     if selector.startswith("#"):
         if selector[1:] not in ids:
             ok = False
