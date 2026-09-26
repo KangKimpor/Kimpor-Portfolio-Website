@@ -323,6 +323,25 @@
     if (img.complete && img.naturalWidth === 0) { markPortraitMissing(); }
   });
 
+  /* ---------- Back to top control ---------- */
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    backToTop.addEventListener('click', function (e) {
+      e.preventDefault();
+      var overview = document.getElementById('overview');
+      if (overview) {
+        overview.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      if (history.pushState) {
+        history.pushState(null, null, '#overview');
+      } else {
+        window.location.hash = '#overview';
+      }
+    });
+  }
+
   /* ---------- Footer year ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) { yearEl.textContent = new Date().getFullYear(); }

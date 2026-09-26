@@ -634,7 +634,8 @@ body.menu-open { overflow: hidden; }
 
 /* side by side while the layout is stacked, single file inside the desktop column */
 @media (min-width: 640px) and (max-width: 1023px) {
-  .snapshot { grid-template-columns: 1fr 1fr; }
+  .snapshot { grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .snapshot .card { height: 100%; }
 }
 
 .spec-sheet { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
@@ -705,7 +706,8 @@ body.menu-open { overflow: hidden; }
 .timeline-col { display: flex; flex-direction: column; gap: 0.85rem; }
 .timeline-label { margin: 0; }
 
-.timeline { display: flex; flex-direction: column; gap: var(--gutter); }
+.timeline { display: flex; flex-direction: column; gap: var(--gutter); flex: 1; }
+.timeline .entry { display: flex; flex-direction: column; flex: 1; height: 100%; }
 .entry-head {
   display: flex;
   flex-direction: column;
@@ -731,6 +733,11 @@ body.menu-open { overflow: hidden; }
   height: 4px;
   border-radius: 1px;
   background: var(--accent);
+}
+
+@media (min-width: 1024px) {
+  .timeline-col { align-self: stretch; height: 100%; }
+  .timeline-col .entry-head { min-height: 4.5rem; }
 }
 
 /* the "Tools I Built" entry closes the section as a full-width row */
@@ -773,6 +780,7 @@ body.menu-open { overflow: hidden; }
 .project-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   overflow: hidden;
   transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
 }
@@ -783,6 +791,24 @@ body.menu-open { overflow: hidden; }
   transform: translateY(-2px);
 }
 .project-card.is-hidden { display: none; }
+
+.project-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin: 0;
+}
+.project-card-head .card-title {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+.project-card-head .status-pill {
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-top: 2px;
+}
 
 .card-media {
   position: relative;
@@ -914,9 +940,16 @@ body.menu-open { overflow: hidden; }
 
 @media (min-width: 700px) {
   .projects-grid { grid-template-columns: 1fr 1fr; }
+  .project-card-head { min-height: 3.5rem; }
+  .project-card .card-kicker { min-height: 1.15rem; }
+  .project-card .card-desc { min-height: 5.25rem; }
+  .project-card .card-meta > div { min-height: 2.35rem; align-items: baseline; }
 }
 @media (min-width: 1024px) {
   .projects-grid { grid-template-columns: repeat(3, 1fr); }
+  .project-card-head { min-height: 3.65rem; }
+  .project-card .card-desc { min-height: 5.65rem; }
+  .project-card .card-meta > div { min-height: 2.5rem; }
 }
 
 /* ---------- 04 Tools ---------- */
@@ -967,7 +1000,9 @@ body.menu-open { overflow: hidden; }
   .compare { grid-template-columns: 1fr 1fr; }
 }
 @media (min-width: 900px) {
-  .util-grid { grid-template-columns: 1fr 1fr; }
+  .util-grid { grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .util-card { height: 100%; }
+  .util-card .pill-list { margin-top: auto; }
 }
 
 /* ---------- 05 Contact ---------- */
@@ -1027,6 +1062,14 @@ body.menu-open { overflow: hidden; }
   border-top: 1px solid var(--border-subtle);
 }
 .footer-base a:hover { color: var(--accent); }
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: color 0.16s var(--ease);
+}
+.back-to-top:hover { color: var(--accent); }
 
 @media (min-width: 900px) {
   .footer-grid { grid-template-columns: 1.6fr 1fr 1.2fr; gap: 2.5rem; }
