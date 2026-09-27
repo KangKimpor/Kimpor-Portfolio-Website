@@ -613,31 +613,6 @@ body.menu-open { overflow: hidden; }
   .col-12 { grid-column: span 12; }
 }
 
-/* ---------- 01 About Me ---------- */
-.prose p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
-/* the two snapshot cards fill the column beside the narrative */
-.snapshot { display: grid; gap: var(--gutter); }
-.snapshot .card { display: flex; flex-direction: column; gap: 0.55rem; }
-.snapshot-kicker {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 16px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  margin: 0;
-}
-.snapshot-kicker .ico { width: 16px; height: 16px; }
-
-/* side by side while the layout is stacked, single file inside the desktop column */
-@media (min-width: 640px) and (max-width: 1023px) {
-  .snapshot { grid-template-columns: 1fr 1fr; align-items: stretch; }
-  .snapshot .card { height: 100%; }
-}
-
 .spec-sheet { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
 .spec-sheet > div {
   background: var(--surface-subtle);
@@ -701,7 +676,7 @@ body.menu-open { overflow: hidden; }
 }
 .portrait-frame.is-empty .portrait-tile { display: grid; }
 
-/* ---------- 02 Experience & education ---------- */
+/* ---------- 01 Experience & education ---------- */
 /* Two equal columns, one per track: work beside study. */
 .timeline-col { display: flex; flex-direction: column; gap: 0.85rem; }
 .timeline-label { margin: 0; }
@@ -737,7 +712,8 @@ body.menu-open { overflow: hidden; }
 
 @media (min-width: 1024px) {
   .timeline-col { align-self: stretch; height: 100%; }
-  .timeline-col .entry-head { min-height: 4.5rem; }
+  /* reserve two lines for the note so the Work and Study rules line up */
+  .timeline-col .entry-head { min-height: 4.75rem; }
 }
 
 /* the "Tools I Built" entry closes the section as a full-width row */
@@ -749,7 +725,7 @@ body.menu-open { overflow: hidden; }
   }
 }
 
-/* ---------- 03 Field projects ---------- */
+/* ---------- 02 Field projects ---------- */
 .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .filter-btn {
   display: inline-flex;
@@ -841,7 +817,6 @@ body.menu-open { overflow: hidden; }
   cursor: zoom-in;
 }
 
-.card-media .status-pill { position: absolute; top: 0.7rem; left: 0.7rem; z-index: 3; }
 .media-index {
   position: absolute;
   bottom: 0.7rem;
@@ -952,9 +927,10 @@ body.menu-open { overflow: hidden; }
   .project-card .card-meta > div { min-height: 2.5rem; }
 }
 
-/* ---------- 04 Tools ---------- */
+/* ---------- 03 Site utilities ---------- */
 .util-grid { display: grid; grid-template-columns: 1fr; gap: var(--gutter); }
-.util-card { display: flex; flex-direction: column; gap: 0.85rem; }
+/* min-width:0 lets the card shrink so the nowrap terminal lines scroll inside it */
+.util-card { display: flex; flex-direction: column; gap: 0.85rem; min-width: 0; }
 
 .util-media { margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 .util-media img {
@@ -1005,7 +981,7 @@ body.menu-open { overflow: hidden; }
   .util-card .pill-list { margin-top: auto; }
 }
 
-/* ---------- 05 Contact ---------- */
+/* ---------- 04 Contact ---------- */
 /* left-aligned with the section head, on the same 44rem measure */
 .contact-card { max-width: 44rem; }
 .channel-list { display: flex; flex-direction: column; margin-bottom: 1.25rem; }
@@ -1025,7 +1001,8 @@ body.menu-open { overflow: hidden; }
   text-transform: uppercase;
   color: var(--text-tertiary);
 }
-.channel-row dd { margin: 0; font-size: 13px; line-height: 20px; color: var(--text-primary); }
+/* long values (the email address) must break rather than widen the row on small phones */
+.channel-row dd { margin: 0; font-size: 13px; line-height: 20px; color: var(--text-primary); overflow-wrap: anywhere; }
 .channel-row a {
   font-weight: 600;
   border-bottom: 1px solid transparent;
@@ -1144,8 +1121,7 @@ body.lb-open { overflow: hidden; }
     .section-head,
     .project-card,
     .util-card,
-    .entry,
-    .snapshot .card {
+    .entry {
       animation: rise linear both;
       animation-timeline: view();
       animation-range: entry 0% cover 26%;

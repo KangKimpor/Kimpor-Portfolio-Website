@@ -120,15 +120,17 @@ keyboard support (Esc, ←, →).
 | Card | Slug | Status | Photos |
 |---|---|---|---|
 | Norodom Business Center | `norodom-business-center/` | Ongoing | 16 |
+| UVP2 - Penthouse P5 | `uvp2-penthouse-p5/` | Ongoing | 21 |
 | UVP2 - Retilling Work | `uvp2-retiling/` | Ahead of schedule | 6 |
 | UVP2 - Common Areas | `uvp2-common-areas/` | Handed over | 34 |
 | UVP2 - Swimming Pool | `uvp2-swimming-pool/` | Handed over | 26 |
 | Singapore Airlines Office | `singapore-airlines/` | Handed over | 12 |
 | KFK - KMALL 2 | `kfk-kmall2/` | Handed over | 12 |
-| UVP2 - Penthouse P5 | `uvp2-penthouse-p5/` | Ongoing | 21 |
 
-The filter chips read `All 7`, `Handed over 5`, `Active 2`. If a project changes
-state, update the pill text, `data-status`, those counts and this table together.
+The table follows the order of `#projectsGrid`: ongoing cards first, completed
+work after. The filter chips read `All 7`, `Handed over 5`, `Active 2`. If a
+project changes state, update the pill text, `data-status`, those counts and this
+table together.
 
 To rebuild all galleries from the source archive at `D:\SingBuild's Document`:
 
