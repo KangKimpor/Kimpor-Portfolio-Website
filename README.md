@@ -38,7 +38,7 @@ Kimpor-Portfolio-Website/
 │   └── style.css              ← all styling (tokens, components, responsive)
 ├── js/
 │   ├── gallery-manifest.js    ← generated gallery filenames (tools/build_galleries.py)
-│   └── script.js              ← drawer, scroll-spy, filter, galleries, lightbox, form
+│   └── script.js              ← drawer, scroll-spy, filter, galleries, lightbox
 ├── images/
 │   ├── projects/              ← 7 project photo galleries (one folder per project)
 │   ├── side/sb-grab.jpg       ← screenshot of the internal ride-code tool

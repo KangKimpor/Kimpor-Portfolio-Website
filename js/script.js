@@ -1,16 +1,10 @@
-/* ============================================================
-   Kimpor Kang - Portfolio
-   Vanilla JS: mobile drawer, scroll-spy navigation, project
-   status filter (synced to the URL), lazy photo galleries,
-   lightbox, portrait fallback, footer year.
-   ============================================================ */
-
 (function () {
   'use strict';
 
-  var BUILD = '3';
+  // Matches the ?v= suffix on the gallery cover images in index.html, so the
+  // lightbox reuses the bytes the card already downloaded instead of refetching.
+  var BUILD = '4';
 
-  /* ---------- Mobile drawer (slides in from the right) ---------- */
   var navToggle = document.getElementById('navToggle');
   var navPanel = document.getElementById('navPanel');
   var navClose = document.getElementById('navClose');
@@ -27,8 +21,7 @@
     navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.classList.toggle('menu-open', open);
 
-    var closeBtn = document.getElementById('navClose');
-    if (open && closeBtn) { closeBtn.focus(); }
+    if (open && navClose) { navClose.focus(); }
     if (!open) { navToggle.focus(); }
   }
 
@@ -46,11 +39,10 @@
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { closeMenu(); }
+      if (e.key === 'Escape' && navPanel.classList.contains('is-open')) { closeMenu(); }
     });
   }
 
-  /* ---------- Scroll-spy navigation ---------- */
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('[data-nav]');
 
@@ -68,7 +60,6 @@
     sections.forEach(function (section) { sectionObserver.observe(section); });
   }
 
-  /* ---------- Project status filter ---------- */
   var filterBtns = document.querySelectorAll('.filter-btn');
   var cards = document.querySelectorAll('#projectsGrid .card');
 
@@ -114,13 +105,12 @@
     if (requested && isKnownFilter(requested)) { applyFilter(requested); }
   }
 
-  /* ---------- Project galleries ----------
-     Only the cover, plus the slide on either side of the one in
-     view, is downloaded. The rest wait until the visitor swipes. */
+  /* Only the cover, plus the slide on either side of the one in view, is
+     downloaded. The rest wait until the visitor swipes. */
   function slideSrc(slug, files, index) {
     var name = (files && files[index])
       ? files[index]
-      : (index < 9 ? '0' + (index + 1) : index + 1) + '.jpg';
+      : (index < 9 ? '0' + (index + 1) : index + 1) + '.webp';
     return 'images/projects/' + slug + '/' + name + '?v=' + BUILD;
   }
 
@@ -241,7 +231,6 @@
     });
   });
 
-  /* ---------- Lightbox ---------- */
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightboxImg');
   var lightboxCount = document.getElementById('lightboxCount');
@@ -256,7 +245,7 @@
     var files = window.GALLERY_FILES && window.GALLERY_FILES[lightboxSlug];
     var name = (files && files[index])
       ? files[index]
-      : (index < 9 ? '0' + (index + 1) : index + 1) + '.jpg';
+      : (index < 9 ? '0' + (index + 1) : index + 1) + '.webp';
     return 'images/projects/' + lightboxSlug + '/' + name + '?v=' + BUILD;
   }
 
@@ -313,7 +302,6 @@
     });
   }
 
-  /* ---------- Portrait fallback ---------- */
   var portraitImgs = document.querySelectorAll('.portrait-frame img');
   portraitImgs.forEach(function (img) {
     var frame = img.closest('.portrait-frame');
@@ -323,7 +311,6 @@
     if (img.complete && img.naturalWidth === 0) { markPortraitMissing(); }
   });
 
-  /* ---------- Back to top control ---------- */
   var backToTop = document.getElementById('backToTop');
   if (backToTop) {
     backToTop.addEventListener('click', function (e) {
@@ -342,7 +329,6 @@
     });
   }
 
-  /* ---------- Footer year ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
 

@@ -34,7 +34,7 @@ contact channels. Audience: tier-1 contractors, developers, consultants, and rec
   `prefers-reduced-motion: no-preference`, so unsupported browsers and reduced-motion
   users simply get the static layout.
 - **Interactivity is progressive**: every section reads fine without JS; the galleries,
-  filter, lightbox, drawer and form are enhancements.
+  filter, lightbox and drawer are enhancements.
 - Deployable as-is on any static host. On Vercel it needs **zero config** (no framework,
   output = repo root, `index.html` entry).
 - Do NOT introduce a framework, package.json, or build pipeline unless the user
@@ -49,7 +49,7 @@ Kimpor-Portfolio-Website/
 │   └── style.css           # All styling: tokens, layout, components, responsive
 ├── js/
 │   ├── gallery-manifest.js # Generated gallery filenames (tools/build_galleries.py)
-│   └── script.js           # Drawer, scroll-spy, filter, galleries, lightbox, form
+│   └── script.js           # Drawer, scroll-spy, filter, galleries, lightbox
 ├── images/
 │   ├── projects/           # 7 project photo galleries (one folder per project)
 │   ├── side/sb-grab.jpg    # Screenshot of the internal ride-code tool
