@@ -72,7 +72,7 @@ The single page is laid out in numbered sections:
 |---|---|---|---|
 | — | Hero | `#overview` | Headline, portrait card, three CTAs |
 | — | Featured band | — | Edge-to-edge `images/hero.webp` with a mono caption |
-| 01 | Experience & Education | `#experience-and-education` | Two equal columns (work / study) plus a full-width "Tools I Built" row |
+| 01 | Experience & Education | `#experience-and-education` | Two equal columns (work / study) |
 | 02 | Field Projects | `#projects-and-milestones` | Filter chips and 7 project cards with photo galleries |
 | 03 | Site Utilities | `#workflow-utilities` | SB Grab Code Tracker and Manpower Reporting Automation |
 | 04 | Contact | `#contact` | Contact details card |

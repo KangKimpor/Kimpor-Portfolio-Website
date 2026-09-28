@@ -667,15 +667,6 @@ body.menu-open { overflow: hidden; }
   .timeline-col .entry-head { min-height: 4.75rem; }
 }
 
-/* the "Tools I Built" entry closes the section as a full-width row */
-@media (min-width: 900px) {
-  .entry-wide .entry-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.55rem 1.75rem;
-  }
-}
-
 /* ---------- 02 Field projects ---------- */
 .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .filter-btn {
