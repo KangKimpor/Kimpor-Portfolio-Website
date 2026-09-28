@@ -9,7 +9,17 @@ for civil engineering and construction coordination work.
 
 ## Live site
 
-**https://kimpor-portfolio-website.vercel.app**
+**https://kimporkang.com**
+
+The apex domain is the primary address; `www.kimporkang.com` 308-redirects to
+it, and the original `https://kimpor-portfolio-website.vercel.app` URL keeps
+working. DNS lives at the registrar (Northwest / Business Identity) under
+Domain Settings then DNS Settings: the `@` and `www` `A` records point at
+`216.198.79.1`, or `www` can use a `CNAME` to
+`1b0102ec9671a8d9.vercel-dns-017.com` instead. Vercel's legacy values,
+`76.76.21.21` and `cname.vercel-dns.com`, keep working too. The `mail` `A`
+record and the domain's `MX` and `TXT` (SPF, DMARC) records stay untouched so
+email keeps working.
 
 Hosted on Vercel and deployed straight from this repository's `main` branch —
 every push to `main` triggers a new production deployment automatically.
