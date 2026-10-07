@@ -4,6 +4,26 @@
   // Matches the ?v= suffix on the gallery cover images in index.html, so the
   // lightbox reuses the bytes the card already downloaded instead of refetching.
   var BUILD = '4';
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function scrollBehavior() { return reducedMotion.matches ? 'instant' : 'smooth'; }
+
+  // Only short, cancelable fades where CSS cannot describe the content change.
+  function fadeContent(element) {
+    if (!element || !element.animate) { return; }
+    element.getAnimations().forEach(function (animation) {
+      if (animation.id === 'content-fade') { animation.cancel(); }
+    });
+    if (!reducedMotion.matches) {
+      element.animate([{ opacity: 0.4 }, { opacity: 1 }], { duration: 160, easing: 'ease-out' }).id = 'content-fade';
+    }
+  }
+
+  function setBackgroundInert(open) {
+    document.querySelectorAll('.topbar, main, .footer, .skip-link').forEach(function (element) {
+      element.inert = open;
+    });
+  }
 
   var navToggle = document.getElementById('navToggle');
   var navPanel = document.getElementById('navPanel');
@@ -12,6 +32,7 @@
 
   function setMenu(open) {
     if (!navPanel || !navToggle) { return; }
+    setBackgroundInert(open);
     navPanel.classList.toggle('is-open', open);
     navPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
     // Keep the off-canvas links out of the tab order while closed
@@ -43,6 +64,28 @@
     });
   }
 
+  // Close the mobile overlay when its trigger disappears at the desktop breakpoint.
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', function (event) {
+    if (event.matches && navPanel && navPanel.classList.contains('is-open')) {
+      closeMenu();
+      document.querySelector('.brand').focus({ preventScroll: true });
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Tab') { return; }
+    var panel = document.querySelector('.lightbox.is-open, .drawer.is-open');
+    if (!panel) { return; }
+    var controls = panel.querySelectorAll('a[href], button:not(:disabled)');
+    var first = controls[0];
+    var last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault(); first.focus();
+    }
+  });
+
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('[data-nav]');
 
@@ -52,7 +95,10 @@
         if (!entry.isIntersecting) { return; }
         var target = '#' + entry.target.id;
         navLinks.forEach(function (link) {
-          link.classList.toggle('is-active', link.getAttribute('href') === target);
+          var active = link.getAttribute('href') === target;
+          link.classList.toggle('is-active', active);
+          if (active) { link.setAttribute('aria-current', 'location'); }
+          else { link.removeAttribute('aria-current'); }
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
@@ -67,13 +113,16 @@
     return value === 'all' || value === 'handed-over' || value === 'ongoing';
   }
 
-  function applyFilter(filter) {
+  function applyFilter(filter, animate) {
     filterBtns.forEach(function (btn) {
-      btn.classList.toggle('is-active', btn.getAttribute('data-filter') === filter);
+      var active = btn.getAttribute('data-filter') === filter;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', String(active));
     });
     cards.forEach(function (card) {
       var show = filter === 'all' || card.getAttribute('data-status') === filter;
       card.classList.toggle('is-hidden', !show);
+      if (show && animate) { fadeContent(card.querySelector('.card-body')); }
     });
   }
 
@@ -94,7 +143,8 @@
   filterBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var filter = btn.getAttribute('data-filter') || 'all';
-      applyFilter(filter);
+      if (btn.classList.contains('is-active')) { return; }
+      applyFilter(filter, true);
       syncFilterToUrl(filter);
     });
   });
@@ -102,7 +152,7 @@
   if (filterBtns.length) {
     var requested = null;
     try { requested = new URL(window.location.href).searchParams.get('filter'); } catch (err) { requested = null; }
-    if (requested && isKnownFilter(requested)) { applyFilter(requested); }
+    applyFilter(isKnownFilter(requested) ? requested : 'all');
   }
 
   /* Only the cover, plus the slide on either side of the one in view, is
@@ -193,11 +243,11 @@
 
     prev.addEventListener('click', function (e) {
       e.stopPropagation();
-      track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+      track.scrollBy({ left: -track.clientWidth, behavior: scrollBehavior() });
     });
     next.addEventListener('click', function (e) {
       e.stopPropagation();
-      track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+      track.scrollBy({ left: track.clientWidth, behavior: scrollBehavior() });
     });
     count.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -239,7 +289,12 @@
   var lightboxIndex = 0;
   var lastFocus = null;
 
-  if (lightboxImg) { lightboxImg.decoding = 'async'; }
+  if (lightboxImg) {
+    lightboxImg.decoding = 'async';
+    lightboxImg.addEventListener('load', function () {
+      if (lightbox.classList.contains('is-open')) { fadeContent(lightboxImg); }
+    });
+  }
 
   function lightboxSrc(index) {
     var files = window.GALLERY_FILES && window.GALLERY_FILES[lightboxSlug];
@@ -250,7 +305,10 @@
   }
 
   function renderLightbox() {
-    if (lightboxImg) { lightboxImg.src = lightboxSrc(lightboxIndex); }
+    if (lightboxImg) {
+      lightboxImg.alt = lightboxSlug.replace(/-/g, ' ') + ', photo ' + (lightboxIndex + 1) + ' of ' + lightboxTotal;
+      lightboxImg.src = lightboxSrc(lightboxIndex);
+    }
     if (lightboxCount) { lightboxCount.textContent = (lightboxIndex + 1) + ' / ' + lightboxTotal; }
     // Preload only the next photo so stepping forward feels instant
     if (lightboxTotal > 1) {
@@ -262,6 +320,7 @@
   function openLightbox(slug, total, index, trigger) {
     if (!lightbox) { return; }
     lastFocus = trigger || document.activeElement;
+    setBackgroundInert(true);
     lightboxSlug = slug;
     lightboxTotal = total;
     lightboxIndex = index;
@@ -280,6 +339,7 @@
     lightbox.setAttribute('aria-hidden', 'true');
     lightbox.setAttribute('inert', '');
     document.body.classList.remove('lb-open');
+    setBackgroundInert(false);
     if (lastFocus && typeof lastFocus.focus === 'function') { lastFocus.focus(); }
   }
 
@@ -297,8 +357,8 @@
     document.addEventListener('keydown', function (e) {
       if (!lightbox.classList.contains('is-open')) { return; }
       if (e.key === 'Escape') { closeLightbox(); }
-      if (e.key === 'ArrowLeft') { stepLightbox(-1); }
-      if (e.key === 'ArrowRight') { stepLightbox(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); stepLightbox(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); stepLightbox(1); }
     });
   }
 
@@ -317,9 +377,9 @@
       e.preventDefault();
       var overview = document.getElementById('overview');
       if (overview) {
-        overview.scrollIntoView({ behavior: 'smooth' });
+        overview.scrollIntoView({ behavior: scrollBehavior() });
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: scrollBehavior() });
       }
       if (history.pushState) {
         history.pushState(null, null, '#overview');
