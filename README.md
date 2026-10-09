@@ -3,9 +3,10 @@
 A clean, single-page portfolio site built with plain HTML, CSS and vanilla
 JavaScript. No build tools, no frameworks, no dependencies to install.
 
-The look is the **"Structural Modernist"** system: a warm linen canvas, hairline
-rules, a single terracotta accent, and monospaced drafting-style metadata, framed
-for civil engineering and construction coordination work.
+The design is a photo-led construction portfolio: warm neutral surfaces,
+terracotta accents, generous spacing, and concise project summaries. Telegram
+uses its existing blue. All seven construction projects and both site tools
+are retained.
 
 ## Live site
 
@@ -66,20 +67,22 @@ Kimpor-Portfolio-Website/
 
 ## Page structure
 
-The single page is laid out in numbered sections:
+The single page puts construction projects immediately after the introduction:
 
-| # | Section | Anchor | Contents |
-|---|---|---|---|
-| — | Hero | `#overview` | Headline, portrait card, three CTAs |
-| — | Featured band | — | Edge-to-edge `images/hero.webp` with a mono caption |
-| 01 | Experience & Education | `#experience-and-education` | Two equal columns (work / study) |
-| 02 | Field Projects | `#projects-and-milestones` | Filter chips and 7 project cards with photo galleries |
-| 03 | Site Utilities | `#workflow-utilities` | SB Grab Code Tracker and Manpower Reporting Automation |
-| 04 | Contact | `#contact` | Contact details card |
-| — | Footer | — | Brand block, navigation, details |
+| Section | Anchor | Contents |
+|---|---|---|
+| Introduction | `#overview` | Short positioning, project CTA, labelled penthouse rendering |
+| Construction projects | `#projects-and-milestones` | Seven covers, status filters, expandable details, full galleries |
+| Experience & Education | `#experience-and-education` | Portrait, employment, detailed responsibilities, education |
+| Site Tools | `#workflow-utilities` | Grab Code Tracker and Manpower Reporting Automation |
+| Contact | `#contact` | Email, Telegram, phone and LinkedIn |
+| Footer | — | Copyright and back-to-top link |
 
-Top navigation, drawer links and footer links all point at those anchors, and the
-active section is highlighted while you scroll.
+The sticky header shows navigation and a Get in touch button linking to Contact
+on desktop. Below 700px the name and menu occupy the first row, with Get in touch
+on a second row. Email Me and Telegram remain in the Contact section.
+The header height is measured for section scroll offsets. The mobile menu and
+photo viewer trap keyboard focus, close with Escape, and restore focus.
 
 ## Design system & re-theming
 
@@ -105,40 +108,41 @@ Change those tokens and the whole site re-themes.
 | `--status-done` | `#166534` | Handed Over pills |
 | `--status-ahead` | `#0284c7` | Ahead of Schedule pills |
 
-**Type**: `Plus Jakarta Sans` (display, headings, buttons), `Inter` (body),
-`Space Mono` (indices, badges, captions, terminals). **Shape**: 4-8px radii on
-cards and inputs, pill radius on status chips, and essentially no drop shadows —
-cards sit flat on a hairline border and lift only on hover.
+**Type**: `Plus Jakarta Sans` for headings, body and buttons; `Space Mono` for
+limited dates and metadata. **Shape**: 4px corners, thin borders and flat
+surfaces. Projects use a two-column grid from 700px and a single column below.
+Telegram retains `#0088cc` with `#0077b5` on hover; its dark label improves contrast.
 
 **Icons** are an inline SVG sprite at the top of `<body>`. To add one, define a
 `<symbol id="ico-something">` there and reference it with
 `<svg class="ico" viewBox="0 0 24 24"><use href="#ico-something"></use></svg>`.
 
-**Motion**: a staggered hero entrance and a scroll-linked reveal. The scroll reveal
-uses CSS view timelines inside `@supports (animation-timeline: view())`, so browsers
-that do not support it simply render the content, and everything is disabled under
-`prefers-reduced-motion: reduce`.
+**Motion**: short hover transitions and an off-canvas menu. Reduced-motion
+preferences disable transitions and smooth scrolling. The content appears
+immediately without scroll-dependent entrance effects.
 
 ## Project photos
 
-Each project card holds a scrollable photo gallery. Photos live in
-`images/projects/<project-slug>/` as `01.webp`, `02.webp`, … The card's `data-total`
-attribute in `index.html` controls how many photos load, `01.*` is the card cover,
-and tapping a photo (or the counter button) opens the full-screen lightbox with
-keyboard support (Esc, ←, →).
+Each project card uses a static cover and a keyboard-accessible View photos
+button. Photos live in `images/projects/<project-slug>/` and the manifest
+controls their filenames. The `data-total` count must match the gallery.
+The full-screen viewer shows the project name and count, with arrow keys,
+previous/next buttons, swipe navigation and Escape to close. Only the current
+photo and the next photo load when a gallery opens. Failed images show a
+fallback and the controls remain available.
 
 | Card | Slug | Status | Photos |
 |---|---|---|---|
 | Norodom Business Center | `norodom-business-center/` | Ongoing | 16 |
 | UVP2 - Penthouse P5 | `uvp2-penthouse-p5/` | Ongoing | 21 |
-| UVP2 - Retilling Work | `uvp2-retiling/` | Ahead of schedule | 6 |
+| UVP2 - Retilling Work | `uvp2-retiling/` | Handed over | 6 |
 | UVP2 - Common Areas | `uvp2-common-areas/` | Handed over | 34 |
 | UVP2 - Swimming Pool | `uvp2-swimming-pool/` | Handed over | 26 |
 | Singapore Airlines Office | `singapore-airlines/` | Handed over | 12 |
 | KFK - KMALL 2 | `kfk-kmall2/` | Handed over | 12 |
 
 The table follows the order of `#projectsGrid`: ongoing cards first, completed
-work after. The filter chips read `All 7`, `Handed over 5`, `Active 2`. If a
+work after. The filter chips read `All 7`, `Ongoing 2`, `Handed over 5`. If a
 project changes state, update the pill text, `data-status`, those counts and this
 table together.
 
@@ -180,13 +184,13 @@ It writes `images/portrait-cutout.png` (transparent background) plus
 flood-fills the open white background, then clears white pockets sealed between
 hair strands, while protecting the white shirt and collar.
 
-1. The hero portrait card (`#overview`) shows the cutout automatically.
+1. The Experience & Education portrait shows the cutout automatically.
 2. If the cutout is missing, a faded "KK" tile shows instead (the script adds
    `.is-empty` when the image fails).
 
 ## Contact details
 
-Email, phone, LinkedIn, location and degree are set in the `#contact` section of
+Email, phone, Telegram, LinkedIn and location are set in the `#contact` section of
 `index.html` - update the visible text and the `mailto:` / `tel:` / LinkedIn `href`
 together, plus the drawer footer.
 

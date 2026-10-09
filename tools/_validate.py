@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 html = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -9,6 +10,14 @@ print("em-dashes in html:", html.count("\u2014"))
 
 ok = True
 totals = dict(re.findall(r'data-gallery="([^"]+)" data-total="(\d+)"', html))
+expected_galleries = {
+    "norodom-business-center": "16", "uvp2-penthouse-p5": "21",
+    "uvp2-retiling": "6", "uvp2-common-areas": "34",
+    "uvp2-swimming-pool": "26", "singapore-airlines": "12", "kfk-kmall2": "12",
+}
+if totals != expected_galleries or len(re.findall(r'class="card project-card"', html)) != 7:
+    ok = False
+    print("PROJECT INVENTORY CHANGED: preserve all seven projects and 127 photos")
 for slug, total in totals.items():
     folder = os.path.join(ROOT, "images", "projects", slug)
     files = [f for f in os.listdir(folder) if f.lower().endswith((".jpg", ".png", ".webp"))]
@@ -85,7 +94,7 @@ for control in re.findall(r"<(?:input|select|textarea)\b[^>]*>", html):
         print("FORM CONTROL WITHOUT NAME:", control[:70])
 
 css = open(os.path.join(ROOT, "css", "style.css"), encoding="utf-8").read()
-for hook in ["gallery-track", "gal-btn", "gal-prev", "gal-next", "gal-count", "is-open",
+for hook in ["gallery-cover", "gallery-count", "lightbox-img", "lightbox-btn", "is-open",
              "is-hidden", "is-active", "is-empty", "menu-open", "lb-open", "card-media",
              "project-card"]:
     if "." + hook not in css:
@@ -120,3 +129,4 @@ for name in sorted(set(re.findall(r"var\(\s*(--[\w-]+)", css_text)) - defined):
     print("UNDEFINED CSS TOKEN:", name)
 
 print("RESULT:", "ALL OK" if ok else "PROBLEMS FOUND")
+sys.exit(0 if ok else 1)

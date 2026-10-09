@@ -25,6 +25,13 @@
     });
   }
 
+  var topbar = document.querySelector('.topbar');
+  if (topbar && 'ResizeObserver' in window) {
+    new ResizeObserver(function () {
+      document.documentElement.style.setProperty('--topbar-h', topbar.offsetHeight + 'px');
+    }).observe(topbar);
+  }
+
   var navToggle = document.getElementById('navToggle');
   var navPanel = document.getElementById('navPanel');
   var navClose = document.getElementById('navClose');
@@ -124,6 +131,8 @@
       card.classList.toggle('is-hidden', !show);
       if (show && animate) { fadeContent(card.querySelector('.card-body')); }
     });
+    var result = document.getElementById('filterResult');
+    if (result) { result.textContent = document.querySelectorAll('#projectsGrid .project-card:not(.is-hidden)').length + ' projects shown'; }
   }
 
   function syncFilterToUrl(filter) {
@@ -155,129 +164,18 @@
     applyFilter(isKnownFilter(requested) ? requested : 'all');
   }
 
-  /* Only the cover, plus the slide on either side of the one in view, is
-     downloaded. The rest wait until the visitor swipes. */
-  function slideSrc(slug, files, index) {
-    var name = (files && files[index])
-      ? files[index]
-      : (index < 9 ? '0' + (index + 1) : index + 1) + '.webp';
-    return 'images/projects/' + slug + '/' + name + '?v=' + BUILD;
-  }
-
   var galleryMedias = document.querySelectorAll('#projectsGrid .card-media');
-
   galleryMedias.forEach(function (media) {
-    var slug = media.getAttribute('data-gallery');
-    var total = parseInt(media.getAttribute('data-total'), 10) || 0;
-    var files = (window.GALLERY_FILES && window.GALLERY_FILES[slug]) || null;
-    if (!slug || total < 2) { return; }
-
-    var track = document.createElement('div');
-    track.className = 'gallery-track';
-    var slides = [];
-    var current = 0;
-
+    var trigger = media.querySelector('.gallery-cover');
     var cover = media.querySelector('img');
     if (cover) {
-      if (!cover.alt) { cover.alt = slug.replace(/-/g, ' '); }
-      cover.decoding = 'async';
-      cover.draggable = false;
-      // Already carries its final URL, so loadAround must not re-request it
-      cover.setAttribute('data-src-set', cover.getAttribute('src') || '');
-      track.appendChild(cover);
-      slides.push(cover);
+      function markMissing() { media.classList.add('is-empty'); }
+      cover.addEventListener('error', markMissing);
+      if (cover.complete && !cover.naturalWidth) { markMissing(); }
     }
-
-    // Slides ship without src; loadAround assigns it as they come into play
-    for (var i = 2; i <= total; i++) {
-      var img = document.createElement('img');
-      img.alt = slug.replace(/-/g, ' ') + ' photo ' + i;
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.draggable = false;
-      track.appendChild(img);
-      slides.push(img);
-    }
-
-    function loadAround(index) {
-      for (var j = index - 1; j <= index + 1; j++) {
-        if (j < 0 || j >= slides.length) { continue; }
-        var wanted = slideSrc(slug, files, j);
-        if (slides[j].getAttribute('data-src-set') !== wanted) {
-          slides[j].src = wanted;
-          slides[j].setAttribute('data-src-set', wanted);
-        }
-      }
-    }
-
-    var prev = document.createElement('button');
-    prev.type = 'button';
-    prev.className = 'gal-btn gal-prev';
-    prev.setAttribute('aria-label', 'Previous photo');
-    prev.innerHTML = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chev-left"></use></svg>';
-
-    var next = document.createElement('button');
-    next.type = 'button';
-    next.className = 'gal-btn gal-next';
-    next.setAttribute('aria-label', 'Next photo');
-    next.innerHTML = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chev-right"></use></svg>';
-
-    // The counter doubles as the keyboard route into the full gallery
-    var count = document.createElement('button');
-    count.type = 'button';
-    count.className = 'gal-count';
-    count.textContent = '1 / ' + total;
-    count.setAttribute('aria-label', 'Open the full gallery, photo 1 of ' + total + ' photos');
-
-    function updatePosition() {
-      var width = track.clientWidth || 1;
-      current = Math.max(0, Math.min(total - 1, Math.round(track.scrollLeft / width)));
-      count.textContent = (current + 1) + ' / ' + total;
-      count.setAttribute('aria-label', 'Open the full gallery, photo ' + (current + 1) + ' of ' + total + ' photos');
-      loadAround(current);
-    }
-
-    track.addEventListener('scroll', function () {
-      window.requestAnimationFrame(updatePosition);
-    }, { passive: true });
-
-    prev.addEventListener('click', function (e) {
-      e.stopPropagation();
-      track.scrollBy({ left: -track.clientWidth, behavior: scrollBehavior() });
-    });
-    next.addEventListener('click', function (e) {
-      e.stopPropagation();
-      track.scrollBy({ left: track.clientWidth, behavior: scrollBehavior() });
-    });
-    count.addEventListener('click', function (e) {
-      e.stopPropagation();
-      openLightbox(slug, total, current, count);
-    });
-
-    media.appendChild(track);
-    media.appendChild(prev);
-    media.appendChild(next);
-    media.appendChild(count);
-
-    if ('IntersectionObserver' in window) {
-      var near = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) { return; }
-          loadAround(0);
-          near.unobserve(media);
-        });
-      }, { rootMargin: '240px 0px' });
-      near.observe(media);
-    } else {
-      loadAround(0);
-    }
-
-    var dragX = 0;
-    track.addEventListener('pointerdown', function (e) { dragX = e.clientX; });
-    track.addEventListener('click', function (e) {
-      if (e.target.tagName !== 'IMG') { return; }
-      if (Math.abs(e.clientX - dragX) > 8) { return; }
-      openLightbox(slug, total, current, count);
+    if (!trigger) { return; }
+    trigger.addEventListener('click', function () {
+      openLightbox(media.getAttribute('data-gallery'), parseInt(media.getAttribute('data-total'), 10), 0, trigger);
     });
   });
 
@@ -291,7 +189,9 @@
 
   if (lightboxImg) {
     lightboxImg.decoding = 'async';
+    lightboxImg.addEventListener('error', function () { document.getElementById('lightboxError').hidden = false; lightboxImg.style.visibility = 'hidden'; });
     lightboxImg.addEventListener('load', function () {
+      document.getElementById('lightboxError').hidden = true; lightboxImg.style.visibility = 'visible';
       if (lightbox.classList.contains('is-open')) { fadeContent(lightboxImg); }
     });
   }
@@ -305,7 +205,9 @@
   }
 
   function renderLightbox() {
+    document.getElementById('lightboxError').hidden = true;
     if (lightboxImg) {
+      lightboxImg.style.visibility = 'hidden';
       lightboxImg.alt = lightboxSlug.replace(/-/g, ' ') + ', photo ' + (lightboxIndex + 1) + ' of ' + lightboxTotal;
       lightboxImg.src = lightboxSrc(lightboxIndex);
     }
@@ -323,6 +225,9 @@
     setBackgroundInert(true);
     lightboxSlug = slug;
     lightboxTotal = total;
+    var media = document.querySelector('[data-gallery="' + slug + '"]');
+    var title = media.closest('.project-card').querySelector('h3').textContent;
+    document.getElementById('lightboxTitle').textContent = title;
     lightboxIndex = index;
     renderLightbox();
     lightbox.classList.add('is-open');
@@ -349,6 +254,18 @@
   }
 
   if (lightbox) {
+    var touchStart = null;
+    lightbox.addEventListener('touchstart', function (event) {
+      if (event.touches.length !== 1) { touchStart = null; return; }
+      touchStart = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+    }, { passive: true });
+    lightbox.addEventListener('touchend', function (event) {
+      if (!touchStart || event.touches.length || event.changedTouches.length !== 1) { touchStart = null; return; }
+      var dx = event.changedTouches[0].clientX - touchStart.x;
+      var dy = event.changedTouches[0].clientY - touchStart.y;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) { stepLightbox(dx < 0 ? 1 : -1); }
+      touchStart = null;
+    }, { passive: true });
     document.getElementById('lbClose').addEventListener('click', closeLightbox);
     document.getElementById('lbPrev').addEventListener('click', function () { stepLightbox(-1); });
     document.getElementById('lbNext').addEventListener('click', function () { stepLightbox(1); });
