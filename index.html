@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="images/hero.webp?v=5" fetchpriority="high">
+  <link rel="preload" as="image" href="images/portrait-cutout.webp?v=3" fetchpriority="high">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -65,12 +65,13 @@
           <a class="btn btn-primary" href="#projects-and-milestones">View Projects <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-arrow-down"></use></svg></a>
           <p class="hero-affiliation">Singbuild Construction <span aria-hidden="true">·</span> Civil Engineering student</p>
         </div>
-        <figure class="hero-figure">
-          <img src="images/hero.webp?v=5" alt="Architectural rendering of the UVP2 Penthouse P5 living room" width="2400" height="1350" fetchpriority="high" decoding="async">
-          <figcaption><span>UVP2 Penthouse P5</span><span class="mono-note">Interior rendering</span></figcaption>
-        </figure>
+        <div class="portrait-frame hero-portrait"><span class="portrait-tile" aria-hidden="true">KK</span><img src="images/portrait-cutout.webp?v=3" alt="Portrait of Kimpor Kang" width="760" height="938" fetchpriority="high" decoding="async"></div>
       </div>
     </section>
+    <figure class="featured-band">
+      <img src="images/hero.webp?v=5" alt="Architectural rendering of the UVP2 Penthouse P5 living room" width="2400" height="1350" loading="lazy" decoding="async">
+      <figcaption class="wrap"><span>UVP2 Penthouse P5</span><span class="mono-note">Interior rendering</span></figcaption>
+    </figure>
     <section class="section" id="projects-and-milestones">
       <div class="wrap">
         <header class="section-head section-head-row">
@@ -247,7 +248,7 @@
     </section>
     <section class="section" id="workflow-utilities">
       <div class="wrap">
-        <header class="section-head"><p class="eyebrow">Better workflows</p><h2>Site tools<span class="accent-dot">.</span></h2><p class="section-lede">Small tools I built for everyday work.</p></header>
+        <header class="section-head tools-head"><p class="eyebrow">Better workflows</p><h2>Tools I build to expedite workflows</h2></header>
         <div class="util-grid">
           <article class="util-card">
             <div class="tool-copy"><p class="eyebrow">Internal app</p><h3>SB Grab Code Tracker</h3><p>A shared board that helps staff view and claim available ride codes.</p><details class="tool-details"><summary>How it works <span aria-hidden="true">+</span></summary><p>Staff claim a code themselves, while the team can see which codes remain available.</p><p class="mono-note">React · Firebase · Vercel · Role-based access</p></details></div>
@@ -261,8 +262,7 @@
     </section>
     <section class="section section-alt contact-section" id="contact">
       <div class="wrap contact-grid">
-        <div><p class="eyebrow">Contact</p><h2>Get in touch<span class="accent-dot">.</span></h2><p class="section-lede">Phnom Penh, Cambodia</p><div class="contact-actions"><a class="btn btn-accent btn-sm" href="mailto:kimporkang01@gmail.com?subject=Portfolio%20contact%20%E2%80%94%20Kimpor%20Kang">Email Me</a>
-        <a class="btn btn-telegram btn-sm" href="https://t.me/kimporkang" target="_blank" rel="noopener noreferrer">Telegram</a></div></div>
+        <div><p class="eyebrow">Contact</p><h2>Get in touch<span class="accent-dot">.</span></h2><p class="section-lede">Phnom Penh, Cambodia</p></div>
         <dl class="channel-list">
           <div><dt>Email</dt><dd><a href="mailto:kimporkang01@gmail.com">kimporkang01@gmail.com</a></dd></div>
           <div><dt>Phone</dt><dd><a href="tel:+85595727281">+855 95 727 281</a></dd></div>

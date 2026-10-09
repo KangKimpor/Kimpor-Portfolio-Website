@@ -67,20 +67,23 @@ Kimpor-Portfolio-Website/
 
 ## Page structure
 
-The single page puts construction projects immediately after the introduction:
+The single page puts construction projects after the introduction and featured image:
 
 | Section | Anchor | Contents |
 |---|---|---|
-| Introduction | `#overview` | Short positioning, project CTA, labelled penthouse rendering |
+| Introduction | `#overview` | Short positioning, project CTA, portrait on the right |
+| Featured image | — | Wide UVP2 Penthouse P5 rendering with caption |
 | Construction projects | `#projects-and-milestones` | Seven covers, status filters, expandable details, full galleries |
 | Experience & Education | `#experience-and-education` | Portrait, employment, detailed responsibilities, education |
-| Site Tools | `#workflow-utilities` | Grab Code Tracker and Manpower Reporting Automation |
+| Tools I build to expedite workflows | `#workflow-utilities` | Grab Code Tracker and Manpower Reporting Automation |
 | Contact | `#contact` | Email, Telegram, phone and LinkedIn |
 | Footer | — | Copyright and back-to-top link |
 
 The sticky header shows navigation and a Get in touch button linking to Contact
-on desktop. Below 700px the name and menu occupy the first row, with Get in touch
-on a second row. Email Me and Telegram remain in the Contact section.
+on desktop. Below 1024px the menu replaces desktop navigation. Phone headers
+use one row where space permits; below 390px Get in touch uses a second row.
+Contact uses direct email, phone, Telegram and LinkedIn links without duplicate
+contact buttons.
 The header height is measured for section scroll offsets. The mobile menu and
 photo viewer trap keyboard focus, close with Escape, and restore focus.
 
@@ -110,7 +113,8 @@ Change those tokens and the whole site re-themes.
 
 **Type**: `Plus Jakarta Sans` for headings, body and buttons; `Space Mono` for
 limited dates and metadata. **Shape**: 4px corners, thin borders and flat
-surfaces. Projects use a two-column grid from 700px and a single column below.
+surfaces. Content is capped at 1280px, with safe-area padding on mobile.
+Projects use a two-column grid from 700px and a single column below.
 Telegram retains `#0088cc` with `#0077b5` on hover; its dark label improves contrast.
 
 **Icons** are an inline SVG sprite at the top of `<body>`. To add one, define a
@@ -184,7 +188,8 @@ It writes `images/portrait-cutout.png` (transparent background) plus
 flood-fills the open white background, then clears white pockets sealed between
 hair strands, while protecting the white shirt and collar.
 
-1. The Experience & Education portrait shows the cutout automatically.
+1. The introduction and Experience & Education portraits share the existing cutout.
+   Each has independent responsive sizing; the introduction is larger.
 2. If the cutout is missing, a faded "KK" tile shows instead (the script adds
    `.is-empty` when the image fails).
 
