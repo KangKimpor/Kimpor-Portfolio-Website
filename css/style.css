@@ -185,6 +185,9 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 1.5rem); }
 .btn-accent { background: var(--accent); border-color: var(--accent); color: #ffffff; }
 .btn-accent:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
 
+.btn-telegram { background: #0088cc; border-color: #0088cc; color: #ffffff; }
+.btn-telegram:hover { background: #0077b5; border-color: #0077b5; }
+
 .btn-ghost { background: transparent; border-color: var(--border-strong); color: var(--text-primary); }
 .btn-ghost:hover { background: var(--surface-card); border-color: var(--primary-container); }
 
