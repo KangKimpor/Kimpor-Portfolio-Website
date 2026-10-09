@@ -360,6 +360,7 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 1.5rem); }
   .nav-cta { display: inline-flex; }
 }
 @media (max-width: 479px) {
+  .topbar-inner { flex-wrap: wrap; padding-block: 0.5rem; }
   .brand-tag { display: none; }
 }
 @media (min-width: 1024px) {
